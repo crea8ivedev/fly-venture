@@ -1,0 +1,193 @@
+@layer base, components, utilities;
+
+@source "../views/";
+@source "../../app/";
+@import 'swiper/swiper-bundle.css';
+@import 'tailwindcss';
+@import './base.css';
+@import './components.css';
+@import './layout.css';
+@import './utilities.css';
+
+@theme {
+  --font-worksans: "Work Sans", sans-serif;
+
+  --font-weight-inherit: inherit;
+
+  --color-lightorange: #F79808;
+  --color-orange: #E26216;
+  --color-orange-100: #DC6F1D;
+  --color-blue: #2872A3;
+  --color-lightblue: #DDEBF6;
+  --color-grey: #333333;
+  --color-lightgrey: #E8E8E8;
+
+  --text-body-1: 18px;
+  --text-body-2: 16px;
+  --text-body-3: 14px;
+  --text-body-4: 12px;
+
+  --text-heading-1: 64px;
+  --text-heading-2: 48px;
+  --text-heading-3: 40px;
+  --text-heading-4: 24px;
+  --text-heading-5: 20px;
+  --text-heading-6: 18px;
+
+  --text-heading-tablet-1: 52px;
+  --text-heading-tablet-2: 32px;
+  --text-heading-tablet-3: 25px;
+  --text-heading-tablet-4: 20px;
+  --text-heading-tablet-5: 18px;
+  --text-heading-tablet-6: 16px;
+
+  --text-heading-mobile-1: 40px;
+  --text-heading-mobile-2: 24px;
+
+  --spacing: 1px;
+
+  --breakpoint-2000: 2000px;
+  --breakpoint-1920: 1920px;
+  --breakpoint-1600: 1600px;
+  --breakpoint-1441: 1441px;
+  --breakpoint-1440: 1440px;
+  --breakpoint-1365: 1365px;
+  --breakpoint-1299: 1299px;
+  --breakpoint-1199: 1199.99px;
+  --breakpoint-1023: 1023.99px;
+  --breakpoint-1025: 1025px;
+  --breakpoint-992: 992px;
+  --breakpoint-800: 800px;
+  --breakpoint-767: 767px;
+  --breakpoint-639: 639px;
+  --breakpoint-575: 575px;
+  --breakpoint-479: 479px;
+  --breakpoint-431: 431px;
+  --breakpoint-374: 374px;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}

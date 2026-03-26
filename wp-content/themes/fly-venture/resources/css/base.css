@@ -1,0 +1,125 @@
+*,
+::before,
+::after {
+  @apply box-border;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  @apply outline-dotted! outline-1! outline-white!;
+}
+
+body {
+  @apply font-worksans font-normal text-body-2 leading-26 text-black relative overflow-x-hidden antialiased ;
+}
+
+body.menu-open {
+  @apply overflow-hidden;
+}
+
+a {
+  @apply transition-all duration-300 ease-in-out cursor-pointer;
+}
+
+a,
+a:hover {
+  @apply no-underline! transition-all duration-300;
+}
+
+p {
+  @apply font-worksans text-body-2 leading-26;
+}
+
+b {
+  @apply font-bold;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  @apply outline-0 no-underline shadow-none;
+}
+
+button {
+  @apply bg-transparent border-0;
+}
+
+ul {
+  @apply p-0 mt-0;
+}
+
+ul li {
+  @apply list-none;
+}
+
+img {
+  @apply block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  @apply font-worksans font-bold text-black;
+}
+
+h1,
+.h1 {
+  @apply text-heading-1 tracking-[-0.02em] leading-78 max-1600:text-heading-tablet-1 max-1600:leading-60 max-1199:text-heading-mobile-1 max-1199:leading-44 max-575:text-[36px] ;
+}
+
+h2,
+.h2 {
+  @apply text-heading-2 leading-59 tracking-[-0.02em] max-1600:text-heading-mobile-1 max-1600:leading-40 max-1023:text-heading-mobile-2 max-1023:leading-28;
+}
+
+h3,
+.h3 {
+  @apply text-heading-3 leading-49 tracking-[-0.02em] max-1023:text-heading-tablet-3 max-1023:leading-32;
+}
+
+
+h4,
+.h4 {
+  @apply text-heading-4 leading-29 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25;
+}
+
+h5,
+.h5 {
+  @apply text-heading-5 leading-30;
+}
+
+h6,
+.h6 {
+  @apply text-heading-6 leading-24;
+}
+
+p+p {
+  @apply mt-30
+}
+
+
+
+
