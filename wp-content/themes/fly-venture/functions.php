@@ -238,14 +238,17 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
 
     // Flight duration
-    $durationLabel = $flightDuration['flight_duration_text'] ?? 'Flight duration';
-    $duration      = $flightDuration['flight_duration'] ?? '15 min';
+    $durationLabel = $flightDuration['flight_duration_text'] ?? '';
+    $duration      = $flightDuration['flight_duration'] ?? '';
 
     // Buttons
     $bookBtn  = $buttonGroup['book_now_button'] ?? [];
-    $learnBtn = $buttonGroup['learn_more_button'] ?? [];
-    $bookUrl  = !empty($bookBtn['url']) ? $bookBtn['url'] : 'javascript:void(0);';
-    $learnUrl = !empty($learnBtn['url']) ? $learnBtn['url'] : 'javascript:void(0);';
+    $bookUrl  = !empty($bookBtn['url']) ? $bookBtn['url'] : '#';
+    $learnButtonText = !empty($buttonGroup['learn_more_button'])
+        ? (is_array($buttonGroup['learn_more_button'])
+            ? implode(', ', $buttonGroup['learn_more_button'])
+            : $buttonGroup['learn_more_button'])
+        : '';
 
     // Review block
     $rating = floatval($reviewBlock['select_star_rating'] ?? 4.5);
@@ -385,7 +388,7 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
                         <small><strong><?php echo esc_html($durationLabel); ?></strong></small>
                         <div class="time mt-6 inline-flex gap-6 items-center">
                             <img src="<?php echo esc_url(get_theme_file_uri('/resources/images/blue-clock.svg')); ?>" height="18" width="18" alt="clock-svg">
-                            <strong><?php echo esc_html($duration); ?></strong>
+                            <strong><?php echo esc_html($duration); ?> min</strong>
                         </div>
                     </div>
                 </div>
@@ -399,13 +402,13 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
             <div class="bottom-content">
                 <div class="popular-tour-btns">
-                    <a href="<?php echo esc_url($bookUrl); ?>" class="btn btn-orange" aria-label="Book now">BOOK NOW</a>
-                    <a href="<?php echo esc_url($learnUrl); ?>" class="btn btn-b-white" aria-label="Learn more">LEARN MORE</a>
+                    <a href="<?php echo esc_url($bookUrl); ?>" class="btn btn-orange" aria-label="Book now"><?php echo $bookBtn; ?></a>
+                    <a href="<?php echo get_permalink( $tour->ID ); ?>" class="btn btn-b-white" aria-label="Learn more"><?php echo $learnButtonText; ?></a>
                 </div>
 
                 <div class="popular-tour-rating">
                     <?php echo flyventure_render_svg_rating($rating, $tour->ID); ?>
-                    <?php echo esc_html($reviewText); ?>
+                    <?php echo wp_strip_all_tags($reviewText); ?>
                 </div>
 
             </div>
@@ -507,7 +510,14 @@ function flyventure_render_tampa_tour_card( $tour ): string {
     $durationLabel = $flightDur['flight_duration_text'] ?? 'Flight duration';
     $duration      = $flightDur['flight_duration']      ?? '';
     $bookUrl  = ! empty( $buttonGroup['book_now_button']['url'] )   ? $buttonGroup['book_now_button']['url']   : 'javascript:void(0);';
-    $learnUrl = ! empty( $buttonGroup['learn_more_button']['url'] ) ? $buttonGroup['learn_more_button']['url'] : 'javascript:void(0);';
+
+    $bookButtonText       = ! empty( $buttonGroup['book_now_button']['title'] )   ? $buttonGroup['book_now_button']['title']   : 'BOOK NOW';
+
+    $learnButtonText = !empty($buttonGroup['learn_more_button'])
+        ? (is_array($buttonGroup['learn_more_button'])
+            ? implode(', ', $buttonGroup['learn_more_button'])
+            : $buttonGroup['learn_more_button'])
+        : '';
 
     $rating = floatval($reviewBlock['select_star_rating'] ?? 4.5);
     $reviewText = $reviewBlock['review_text'] ?? '';
@@ -650,7 +660,7 @@ function flyventure_render_tampa_tour_card( $tour ): string {
                         <?php if ( ! empty( $duration ) ) : ?>
                             <div class="time mt-6 inline-flex gap-6 items-center">
                                 <img src="<?php echo esc_url( $clock_uri ); ?>" height="18" width="18" alt="clock">
-                                <strong><?php echo esc_html( $duration ); ?></strong>
+                                <strong><?php echo esc_html( $duration ); ?> min</strong>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -667,13 +677,13 @@ function flyventure_render_tampa_tour_card( $tour ): string {
 
             <div class="bottom-content">
                 <div class="popular-tour-btns">
-                    <a href="<?php echo esc_url( $bookUrl ); ?>"  class="btn btn-orange"  aria-label="Book now">BOOK NOW</a>
-                    <a href="<?php echo esc_url( $learnUrl ); ?>" class="btn btn-b-white" aria-label="Learn more">LEARN MORE</a>
+                    <a href="<?php echo esc_url( $bookUrl ); ?>"  class="btn btn-orange"  aria-label="Book now"><?php echo  $bookButtonText; ?></a>
+                    <a href="<?php echo esc_url(get_permalink( $tour->ID )); ?>" class="btn btn-b-white" aria-label="Learn more"><?php echo $learnButtonText;?></a>
                 </div>
 
                 <div class="popular-tour-rating">
                     <?php echo flyventure_render_svg_rating($rating, $tour->ID); ?>
-                    <?php echo esc_html($reviewText); ?>
+                    <?php echo wp_strip_all_tags($reviewText); ?>
                 </div>
 
             </div>

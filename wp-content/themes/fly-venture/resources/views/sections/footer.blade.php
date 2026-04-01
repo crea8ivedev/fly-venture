@@ -202,7 +202,7 @@
 
 
     {{-- Bottom Copyright --}}
-    <div class="footer-bottom">
+    <div class="footer-bottom flex flex-wrap justify-between w-full items-center gap-24 max-1023:justify-center">
       @php
         $copyright = $footer_copyright_text ?? '';
 
@@ -223,6 +223,22 @@
       @if(!empty($copyright))
         {!! wp_kses_post($copyright) !!}
       @endif
+      <div class="footer-bottom-menu">
+{{--        <a href="#" class="text-white! text-body-2 leading-24 hover:text-orange!" aria-label="Terms & Conditions" role="link">--}}
+{{--          Terms & Conditions--}}
+{{--        </a>--}}
+
+
+        @if (has_nav_menu('footer_bottom_navigation'))
+          {!! wp_nav_menu([
+            'theme_location' => 'footer_bottom_navigation',
+            'container' => false,
+            'menu_class' => 'footer-links',
+            'echo' => false,
+          ]) !!}
+        @endif
+
+      </div>
     </div>
 
   </div>
@@ -236,34 +252,21 @@
              aria-modal="true"
              aria-labelledby="fv-offer-popup-title">
 
-          <button type="button"
-                  class="fv-offer-popup__close"
-                  aria-label="{{ esc_attr__('Close popup', 'textdomain') }}"
-                  data-popup-close>
-            &times;
-          </button>
 
-          {{-- Popup Image --}}
-          @if(!empty($popup_image['url']))
-            <div class="fv-offer-popup__media">
-              <img
-                src="{{ esc_url($popup_image['url']) }}"
-                alt="{{ esc_attr($popup_image['alt'] ?? '') }}"
-                width="{{ esc_attr($popup_image['width'] ?? '') }}"
-                height="{{ esc_attr($popup_image['height'] ?? '') }}"
-                loading="lazy"
-              >
-            </div>
-          @endif
+             <div class="fv-offer-popup__content">
 
-          <div class="fv-offer-popup__content">
-
-            {{-- Lead Text --}}
-            @if(!empty($popup_content_1))
-              <p class="fv-offer-popup__lead" id="fv-offer-popup-title">
-                {{ wp_strip_all_tags($popup_content_1) }}
-              </p>
-            @endif
+               <button type="button"
+                       class="fv-offer-popup__close"
+                       aria-label="{{ esc_attr__('Close popup', 'textdomain') }}"
+                       data-popup-close>
+                 &times;
+               </button>
+              {{-- Lead Text --}}
+              @if(!empty($popup_content_1))
+                <p class="fv-offer-popup__lead" id="fv-offer-popup-title">
+                  {{ wp_strip_all_tags($popup_content_1) }}
+                </p>
+              @endif
 
             {{-- Coupon Block --}}
             @if(!empty($coupon_block_title) || !empty($coupon_code))
@@ -343,3 +346,14 @@
 {{--  </div>--}}
 
 </footer>
+
+
+<!-- mobile-sticky-button-start -->
+            <div class="mobile-sticky-btn">
+                <a href="javascript:void(0);"
+                    class="btn btn-orange"
+                    aria-label="Book Now"
+                    role="link">
+                    BOOK YOUR FLIGHT
+                </a>
+            </div>

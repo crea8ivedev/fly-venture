@@ -4,7 +4,7 @@
 
 
 .site-header .main-header {
-  @apply pb-10 max-1199:pb-0 ;
+  @apply  max-1199:pb-0 ;
 }
 
 @keyframes smoothScroll {
@@ -104,10 +104,10 @@
   @apply w-full
 }
 .header-row {
-  @apply flex items-center justify-between gap-20 ;
+  @apply flex items-center justify-between gap-20 max-1199:flex-wrap max-1199:gap-16;
 }
 .header-row nav {
-  @apply pt-26 pb-24 border-t-white/35 border-0 border-t
+  @apply  border-t-white/35 border-0 border-t max-1199:border-t-0!
 }
 
 .menu-open .header-row nav{
@@ -118,7 +118,7 @@
 }
 
 .menu-toggle {
-  @apply hidden border border-white/40 rounded-sm p-5;
+  @apply hidden border border-white/40 rounded-sm p-5 cursor-pointer;
 }
 
 .menu-toggle span {
@@ -127,27 +127,100 @@
 }
 
 .main-navigation .menu {
-  @apply m-0 flex items-center gap-33 p-0;
+  @apply m-0 flex items-center p-0;
 }
 
-.main-navigation .menu li a {
+.main-navigation .menu > li a {
   @apply text-white text-body-2 leading-19 font-worksans relative font-medium uppercase ;
 }
-.main-navigation .menu li{
-  @apply leading-23
+.main-navigation .menu > li{
+  @apply leading-23 pt-26 pb-34 pl-33 max-1199:p-0!;
+}
+.main-navigation .menu > li:first-child{
+  @apply pl-0
 }
 
-.main-navigation .menu li.current-menu-item a,
-.main-navigation .menu li a:hover {
+.main-navigation .menu li.current-menu-item > a,  .main-navigation .menu li.current-menu-parent > a,
+.main-navigation .menu li > a:hover {
   @apply font-bold;
 }
-.main-navigation .menu li a:hover::before , .main-navigation .menu li.current-menu-item a::before{
+.main-navigation .menu li a:hover::before , .main-navigation .menu li.current-menu-item a::before , .main-navigation .menu li.current-menu-parent a::before{
   @apply w-full
 }
 .main-navigation .menu li a::before{
   @apply content-[''] absolute -bottom-4 h-1 left-0 w-0 bg-lightorange rounded-xs transition-all duration-300 delay-75;
 }
 
+/* Submenu styles */
+.main-navigation .menu li {
+  @apply relative;
+}
+
+.main-navigation .menu li > .submenu-wrapper {
+  @apply absolute right-0 top-full  opacity-0 invisible transition-all duration-300 ease-in-out z-50 p-0 m-0 transform ;
+}
+
+.main-navigation .menu li > .submenu-wrapper > ul {
+  @apply p-0 mt-8 rounded-br-lg rounded-bl-lg min-w-283 bg-black/50 backdrop-blur-sm;
+}
+
+ .main-navigation .menu-item-has-children {
+  @apply static;
+ }
+
+.main-navigation .menu li:hover > .submenu-wrapper {
+  @apply opacity-100 visible translate-y-0;
+}
+
+.main-navigation .menu li.submenu-open > .submenu-wrapper {
+  @apply opacity-100 visible translate-y-0;
+}
+
+/* Disable hover effects on mobile */
+@media (max-width: 1199px) {
+  .main-navigation .menu li:hover > .submenu-wrapper {
+    @apply opacity-0 invisible;
+  }
+}
+
+.main-navigation .menu li ul li {
+  @apply relative;
+}
+
+.main-navigation .menu li ul li a {
+  @apply text-white text-body-2 font-medium leading-19 uppercase block px-28 py-8  relative;
+}
+.main-navigation .menu li ul li a:hover{
+  @apply font-medium;
+ background: linear-gradient(180deg, #F79808 0%, #E26216 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-emphasis-color: transparent;
+}
+
+.main-navigation .menu li ul li a::before {
+  @apply hidden;
+}
+
+.main-navigation .menu li ul li:first-child a {
+  @apply pt-16;
+}
+
+.main-navigation .menu li ul li:last-child a {
+  @apply pb-16;
+}
+
+
+/* Submenu indicators */
+.main-navigation .menu li.menu-item-has-children > a::after {
+  content: '';
+  @apply inline-block ml-11 bg-[url(../images/down-arrow.svg)] h-6 w-12 mb-3 bg-no-repeat bg-center bg-cover transition-transform duration-200;
+}
+
+.main-navigation .menu li.menu-item-has-children.submenu-open > a::after {
+  @apply bg-[url(../images/graident-down.svg)] ;
+}
 
 /* footer-start */
 .site-footer {
@@ -206,9 +279,14 @@
 }
 
 .footer-contact-list li a,
-.footer-contact-list li span,
 .footer-links li a {
-  @apply text-white text-body-2 max-w-258 leading-29 pl-33 block;
+  @apply text-white text-body-2 max-w-258 leading-29 pl-33 block hover:text-orange;
+}
+.footer-contact-list li span{
+  @apply text-white text-body-2 max-w-258 leading-29 pl-33 block
+}
+.footer-contact-list li a.current-menu-item , .footer-links li.current-menu-item a{
+  @apply text-orange
 }
 .footer-links li a{
   @apply leading-22
@@ -227,6 +305,13 @@
 .footer-links li a::before {
   content: "•";
   @apply absolute left-0 top-0 text-white/80;
+}
+
+.footer-bottom-menu ul {
+  @apply m-0! p-0!
+}
+.footer-bottom-menu ul li a::before{
+  @apply hidden;
 }
 
 .footer-logo-col {
@@ -286,19 +371,53 @@
   }
 
   .main-navigation {
-    @apply absolute left-0 top-full w-full z-99;
+    @apply relative  left-0 top-full w-full z-99;
     display: none;
   }
-  .menu-open .menu-toggle svg path {
-    @apply fill-lightorange
+  .menu-open .menu-toggle .menu-toggle-btn {
+    @apply hidden
   }
-
+   .site-header.menu-open{
+    @apply rounded-bl-lg rounded-br-lg
+   }
   .main-navigation .menu {
-    @apply flex-col items-start gap-14 bg-black/90 backdrop-blur-sm rounded-lg p-20 mt-12;
+    @apply flex-col items-start gap-14  rounded-bl-lg rounded-br-lg pt-16 border-t  border-t-white/35 w-full;
   }
+  .menu-open-btn{
+    @apply hidden
+  }
+    .menu-open .menu-toggle .menu-open-btn{
+      @apply block
+    }
 
   .site-header.menu-open .main-navigation {
     display: block;
+  }
+
+  .main-navigation .menu li > .submenu-wrapper {
+    @apply absolute mt-0 bg-transparent! backdrop-blur-none!  opacity-0 invisible transition-none duration-0 transform translate-y-0 w-full ;
+  }
+    .main-navigation .menu li > .submenu-wrapper  ul {
+      @apply bg-transparent! backdrop-blur-none! rounded-none! p-0 mt-0;
+    }
+
+  .main-navigation .menu li.submenu-open > .submenu-wrapper {
+    @apply opacity-100 visible relative;
+  }
+    .main-navigation .menu li.submenu-open a::before {
+      @apply hidden;
+    }
+
+  .main-navigation .menu li .submenu-wrapper ul li a {
+    @apply px-16 py-8;
+  }
+
+  .main-navigation .menu li .submenu-wrapper ul li:first-child a {
+    @apply pt-16;
+  }
+
+  .main-navigation .menu li .submenu-wrapper ul li:last-child a {
+    @apply pb-8;
   }
   .hero-side-cta {
     @apply hidden;

@@ -159,50 +159,39 @@
           </div>
         @endif
 
+
         {{-- CTA Buttons --}}
-        @if ( ! empty( $content->book_your_flight_button ) || ! empty( $content->view_more_button ) )
+        @php
+          $book_link = $content->book_your_flight_button ?? null;
+          $view_link = $content->view_more_button ?? null;
+        @endphp
+
+        @if ( $book_link || $view_link )
           <div class="hero-btn-group">
 
             {{-- Book Your Flight --}}
-            @if ( ! empty( $content->book_your_flight_button ) )
-              @php( $_link = $content->book_your_flight_button )
-              @if ( is_array( $_link ) && ! empty( $_link['url'] ) )
-                <a
-                  href="{{ esc_url( $_link['url'] ) }}"
-                  class="btn btn-orange"
-                  aria-label="{{ esc_attr( $_link['title'] ?? 'Book Your Flight' ) }}"
-                  role="link"
-                  @if ( ! empty( $_link['target'] ) ) target="{{ esc_attr( $_link['target'] ) }}" @endif
-                >{{ $_link['title'] ?? 'Book Your Flight' }}</a>
-              @elseif ( is_string( $_link ) && $_link !== '' )
-                <a
-                  href="{{ esc_url( $_link ) }}"
-                  class="btn btn-orange"
-                  aria-label="Book Your Flight"
-                  role="link"
-                >Book Your Flight</a>
-              @endif
+            @if ( is_array($book_link) && !empty($book_link['url']) )
+              <a
+                href="{{ esc_url($book_link['url']) }}"
+                class="btn btn-orange"
+                aria-label="{{ esc_attr($book_link['title'] ?? 'Book Your Flight') }}"
+                @if(!empty($book_link['target'])) target="{{ esc_attr($book_link['target']) }}" @endif
+              >
+                {{ esc_html($book_link['title'] ?? 'Book Your Flight') }}
+              </a>
             @endif
 
+
             {{-- View Tours --}}
-            @if ( ! empty( $content->view_more_button ) )
-              @php( $_link = $content->view_more_button )
-              @if ( is_array( $_link ) && ! empty( $_link['url'] ) )
-                <a
-                  href="{{ esc_url( $_link['url'] ) }}"
-                  class="btn btn-blue"
-                  aria-label="{{ esc_attr( $_link['title'] ?? 'View Tours' ) }}"
-                  role="link"
-                  @if ( ! empty( $_link['target'] ) ) target="{{ esc_attr( $_link['target'] ) }}" @endif
-                >{{ $_link['title'] ?? 'View Tours' }}</a>
-              @elseif ( is_string( $_link ) && $_link !== '' )
-                <a
-                  href="{{ esc_url( $_link ) }}"
-                  class="btn btn-blue"
-                  aria-label="View Tours"
-                  role="link"
-                >View Tours</a>
-              @endif
+            @if ( is_array($view_link) && !empty($view_link['url']) )
+              <a
+                href="{{ esc_url($view_link['url']) }}"
+                class="btn btn-blue"
+                aria-label="{{ esc_attr($view_link['title'] ?? 'View Tours') }}"
+                @if(!empty($view_link['target'])) target="{{ esc_attr($view_link['target']) }}" @endif
+              >
+                {{ esc_html($view_link['title'] ?? 'View Tours') }}
+              </a>
             @endif
 
           </div>
@@ -226,24 +215,54 @@
 
       </div>
 
+      @php
+        $hasContent = !empty($content->fo_title)
+          || !empty($content->fo_price)
+          || !empty($content->fo_price_suffix)
+          || !empty($content->fo_features_list);
+        $pricingAriaLabel = ($hasContent && !empty($content->fo_title) && !empty($content->fo_price))
+          ? 'aria-label="' . esc_attr($content->fo_title) . ' $' . esc_attr($content->fo_price) . '"'
+          : '';
+      @endphp
 
-      <div class="hero-content-right">
-        <div class="btn-right-horizontal">
-          <?php if (
-            is_array( $content->tours_starting_button )
-            && ! empty( $content->tours_starting_button['url'] )
-            && isset( $content->tours_starting_button['title'] )
-          ) : ?>
-          <a href="<?php echo esc_url( $content->tours_starting_button['url'] ); ?>"
-             class="btn btn-white"
-             aria-label="Tours Starting at $89">
-              <?php echo esc_html( $content->tours_starting_button['title'] ); ?>
-          </a>
-          <?php endif; ?>
+      @if($hasContent)
+        <div class="hero-content-right" {!! $pricingAriaLabel !!}>
+          <div class="hero-price-box">
+
+            @if(!empty($content->fo_title))
+              <div class="flex items-center justify-between">
+                <h5>{{ $content->fo_title }}</h5>
+                <button type="button" class="hero-price-close" aria-label="Close pricing callout">
+                  &times;
+                </button>
+              </div>
+            @endif
+
+            @if(!empty($content->fo_price))
+              <div class="hero-price-head">
+                <h2 class="h1">${{ $content->fo_price }}</h2>
+                @if(!empty($content->fo_price_suffix))
+                  <small>{{ $content->fo_price_suffix }}</small>
+                @endif
+              </div>
+            @endif
+
+            @if(!empty($content->fo_features_list))
+              <ul class="hero-price-features" aria-label="Pricing highlights">
+                @foreach($content->fo_features_list as $item)
+                  @if(!empty($item['feature_text']))
+                    <li>{{ $item['feature_text'] }}</li>
+                  @endif
+                @endforeach
+              </ul>
+            @endif
+
+          </div>
         </div>
-      </div>
+      @endif
 
     </div>
+
   </div>
 
 </section>

@@ -1,6 +1,9 @@
 .container-fluid{
   @apply px-60  max-1199:px-40 max-992:px-25 max-575:px-16;
 }
+.container-fluid-100{
+    @apply px-100 max-1600:px-60 max-1199:px-40 max-992:px-25 max-575:px-16 ;
+}
 .container-fluid-lg{
   @apply px-110 max-1600:px-60 max-1199:px-40 max-992:px-0 ;
 }

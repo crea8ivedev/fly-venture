@@ -108,6 +108,8 @@
 
       @forelse ( $initial_query->posts as $_tour )
         @php
+
+
           $terms    = get_the_terms( $_tour->ID, 'tour_category' );
           $tourTags = get_the_terms( $_tour->ID, 'tour_tag' );
 
@@ -120,7 +122,7 @@
           $bestFor     = function_exists( 'get_field' ) ? (string) get_field( 'best_for',       $_tour->ID ) : '';
           $buttonGroup = function_exists( 'get_field' ) ? (array) get_field( 'button_group',    $_tour->ID ) : [];
           $reviewBlock = function_exists( 'get_field' ) ? (array) get_field( 'review_block',    $_tour->ID ) : [];
-
+//dd($buttonGroup);
           $priceBlock = is_array( $priceBlock ) ? $priceBlock : [];
           $tooltip_for_price_tag  = $priceBlock['tooltip_for_price_tag'] ?? '';
           $originalPrice = $priceBlock['regular_price'] ?? '';
@@ -131,8 +133,13 @@
           $duration      = $flightDur['flight_duration']      ?? '';
           $bookUrl       = ! empty( $buttonGroup['book_now_button']['url'] )   ? $buttonGroup['book_now_button']['url']   : 'javascript:void(0);';
           $bookButtonText       = ! empty( $buttonGroup['book_now_button']['title'] )   ? $buttonGroup['book_now_button']['title']   : 'BOOK NOW';
-          $learnUrl      = ! empty( $buttonGroup['learn_more_button']['url'] ) ? $buttonGroup['learn_more_button']['url'] : 'javascript:void(0);';
-          $learnButtonText      = ! empty( $buttonGroup['learn_more_button']['title'] ) ? $buttonGroup['learn_more_button']['title'] : 'Learn More';
+
+       $learnButtonText = !empty($buttonGroup['learn_more_button'])
+    ? (is_array($buttonGroup['learn_more_button'])
+        ? implode(', ', $buttonGroup['learn_more_button'])
+        : $buttonGroup['learn_more_button'])
+    : '';
+
           $rating = floatval($reviewBlock['select_star_rating'] ?? 4.5);
           $reviewText    = $reviewBlock['review_text'] ?? '';
 
@@ -141,7 +148,7 @@
           if ( ! is_wp_error( $tourTags ) && ! empty( $tourTags ) ) {
               $badgeLabel = $tourTags[0]->name;
                 $tour_icon  = get_field('tour_tag_icon', 'term_' . $tourTags[0]->term_id);
-            
+
           }
           $priceTags = [];
           if ( ! empty( $priceBlock['select_price_tag'] ) ) {
@@ -176,7 +183,6 @@
               }
           }
         @endphp
-
         <div class="popular-tour-card" data-city="{{ esc_attr( $citySlug ) }}">
           <div class="popular-tour-card-media">
             @if ( ! empty( $thumbnail ) )
@@ -262,7 +268,7 @@
                   @if ( ! empty( $duration ) )
                     <div class="time mt-6 inline-flex gap-6 items-center">
                       <img src="{{ esc_url( $clock_uri ) }}" height="18" width="18" alt="clock">
-                      <strong>{{ esc_html( $duration ) }}</strong>
+                      <strong>{{ esc_html( $duration ) }} min</strong>
                     </div>
                   @endif
                 </div>
@@ -279,26 +285,16 @@
 
             <div class="bottom-content">
               <div class="popular-tour-btns">
+
                 <a href="{{ esc_url( $bookUrl ) }}" class="btn btn-orange" aria-label="Book now" role="link">{{ $bookButtonText }}</a>
-                <a href="{{ esc_url( $learnUrl ) }}" class="btn btn-b-white" aria-label="Learn more" role="link"> {{ $learnButtonText }}</a>
-              </div>
-              <div class="popular-tour-rating">
-                  <?php echo flyventure_render_svg_rating($rating, $_tour->ID); ?>
-                  <?php echo esc_html($reviewText); ?>
+                <a href="{{ esc_url(get_permalink( $_tour->ID )) }}" class="btn btn-b-white" aria-label="Learn more" role="link">
+                  {!! $learnButtonText !!} </a>
               </div>
 
-{{--              <div class="popular-tour-rating">--}}
-{{--                @for ( $s = 1; $s <= 5; $s++ )--}}
-{{--                  @if ( $s <= $rating )--}}
-{{--                    <img src="{{ esc_url( $star_uri ) }}" height="17" width="17" alt="star">--}}
-{{--                  @else--}}
-{{--                    <img src="{{ esc_url( $unfill_star_uri ) }}" height="17" width="17" alt="star">--}}
-{{--                  @endif--}}
-{{--                @endfor--}}
-{{--                @if ( ! empty( $reviewText ) )--}}
-{{--                  {{ esc_html( $reviewText ) }}--}}
-{{--                @endif--}}
-{{--              </div>--}}
+              <div class="popular-tour-rating">
+                  <?php echo flyventure_render_svg_rating($rating, $_tour->ID); ?>
+                  <?php echo wp_strip_all_tags($reviewText); ?>
+              </div>
             </div>
           </div>
         </div>

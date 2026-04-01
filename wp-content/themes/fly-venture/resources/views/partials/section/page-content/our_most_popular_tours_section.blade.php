@@ -5,6 +5,7 @@
       foreach ($content->select_tours as $tour) {
           $selectedTourIds[] = $tour->ID;
           $terms = get_the_terms($tour->ID, 'tour_category');
+
           if ($terms && !is_wp_error($terms)) {
               foreach ($terms as $term) {
                   $allCategories[$term->slug] = [
@@ -20,6 +21,7 @@
   $categoryButtons = [
       'tampa'    => $content->view_all_tampa_tours_button    ?? null,
       'sarasota' => $content->view_all_sarasota_tours_button ?? null,
+      'st-pete' => $content->view_all_st_pete_tours_button ?? null,
   ];
 
   $firstCategory = array_key_first($allCategories) ?? '';

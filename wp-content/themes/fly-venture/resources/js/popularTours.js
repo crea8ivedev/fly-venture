@@ -89,15 +89,15 @@ const initPopularTours = () => {
           spaceBetween: 20
         },
         621:{
-          slidesPerView: 1.5,
+          slidesPerView: 1,
           spaceBetween: 20
         },
         768: {
-          slidesPerView: 1.8,
+          slidesPerView: 2,
           spaceBetween: 20
         },
         1024: {
-          slidesPerView: 1.5,
+          slidesPerView: 1,
           spaceBetween: 24
         },
         1300: {

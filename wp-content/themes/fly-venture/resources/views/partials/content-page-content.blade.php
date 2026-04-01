@@ -32,8 +32,9 @@
                   @include('partials.section.page-content.tour_section_with_load_more', ['content' => $content, 'groupData' => $groupData])
             @elseif ($content->layout === 'image_with_content_section')
                   @include('partials.section.page-content.image_with_content_section', ['content' => $content, 'groupData' => $groupData])
-            @elseif ($content->layout === 'what_you_will_see_section')
-                  @include('partials.section.page-content.what_you_will_see_section', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'what_sets_us_apart_section')
+                  @include('partials.section.page-content.what_sets_us_apart_section', ['content' => $content, 'groupData' => $groupData])
+
             @endif
         @endif
     @endforeach

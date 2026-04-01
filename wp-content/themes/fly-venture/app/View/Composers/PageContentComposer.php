@@ -73,6 +73,12 @@ class PageContentComposer extends Composer
                         'id' => $content['id'] ?? null,
                         'class' => $content['class'] ?? null,
                         'hide_section' => $content['hide_section'] ?? null,
+
+                        //Flight Offer Popup
+                        'fo_title' => $content['fo_title'] ?? null,
+                        'fo_price' => $content['fo_price'] ?? null,
+                        'fo_price_suffix' => $content['fo_price_suffix'] ?? null,
+                        'fo_features_list' => $content['fo_features_list'] ?? null,
                     ];
                     continue;
                 }
@@ -184,6 +190,7 @@ class PageContentComposer extends Composer
                         'ompt_description' => $content['ompt_description'] ?? null,
                         'view_all_sarasota_tours_button' => $content['view_all_sarasota_tours_button'] ?? null,
                         'view_all_tampa_tours_button' => $content['view_all_tampa_tours_button'] ?? null,
+                        'view_all_st_pete_tours_button' => $content['view_all_st_pete_tours_button'] ?? null,
                         'select_tours' => $content['select_tours'] ?? null,
                         'id' => $content['id'] ?? null,
                         'class' => $content['class'] ?? null,
@@ -293,6 +300,21 @@ class PageContentComposer extends Composer
                         'wyws_title' => $content['wyws_title'] ?? null,
                         'wyws_description' => $content['wyws_description'] ?? null,
                         'wyws_locations' => $content['wyws_locations'] ?? null,
+                        'id' => $content['id'] ?? null,
+                        'class' => $content['class'] ?? null,
+                        'hide_section' => $content['hide_section'] ?? null,
+                    ];
+                    continue;
+                }
+
+                if ('what_sets_us_apart_section' === ($content['acf_fc_layout'] ?? '')) {
+                    $data[] = (object)[
+                        'layout' => $content['acf_fc_layout'] ?? '',
+                        'wsua_background_color' => $content['wsua_background_color'] ?? null,
+                        'wsua_icon' => $content['wsua_icon'] ?? null,
+                        'wsua_title' => $content['wsua_title'] ?? null,
+                        'wsua_description' => $content['wsua_description'] ?? null,
+                        'wyws_steps' => $content['wyws_steps'] ?? null,
                         'id' => $content['id'] ?? null,
                         'class' => $content['class'] ?? null,
                         'hide_section' => $content['hide_section'] ?? null,
