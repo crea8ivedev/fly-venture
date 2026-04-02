@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>window.YONDER__CLIENT_CODE="974";</script>
+    <script src="https://widget.yonderhq.com/loader.js"></script>
     @php(do_action('get_header'))
     @php(wp_head())
 
