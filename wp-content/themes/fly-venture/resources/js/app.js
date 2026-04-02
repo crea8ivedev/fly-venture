@@ -27,6 +27,9 @@ import initPopularTours from './popularTours.js';
 import { initOfferPopup } from './popupOffer.js';
 import { initGalleryGrid } from './gallery.js';
 import { initTourOverview } from './tab.js';
+import initBlogListing from './blogListing.js';
+import { initCountyMap } from './countyMap.js';
+import initEmploymentFilters from './employment.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   initHeader();
@@ -38,6 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
   initOfferPopup();
   initGalleryGrid();
   initTourOverview();
+  initBlogListing();
+    initCountyMap();
+    initEmploymentFilters();
 
   const heroPriceClose = document.querySelector('.hero-price-close');
     const heroPriceBox = document.querySelector('.hero-price-box');
