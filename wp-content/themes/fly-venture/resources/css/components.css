@@ -96,7 +96,7 @@
 }
 
 .global-list ul {
-  @apply flex flex-col items-start justify-start m-0 p-0 last:mb-0 w-full gap-8;
+  @apply flex flex-col items-start justify-start m-0 p-0 last:mb-0 w-full gap-20;
 }
 
 .global-list.two-column ul li {
@@ -104,15 +104,17 @@
 }
 
 
+
 .global-list ul li {
-  @apply relative w-fit m-0 p-0 pl-16 text-black text-body-2 leading-18 font-worksans font-normal;
+  @apply relative w-fit m-0 p-0 pl-22 max-1023:pl-18 text-black text-body-2 leading-24 font-worksans font-normal;
 }
 
 .global-list ul li:before {
   content: "";
-  @apply absolute top-7 left-0 w-8 h-8 rounded-full;
-  background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
+  @apply absolute top-7 left-0 w-10 h-10 max-1023:w-8 max-1023:h-8 rounded-full bg-blue;
+  ;
 }
+
 
 .global-list li span {
   @apply font-bold;

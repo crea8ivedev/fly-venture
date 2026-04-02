@@ -80,7 +80,7 @@
 }
 
 .announcement-slider .swiper-slide p .btn-white {
-  @apply bg-white px-10 py-5 rounded-[100px] text-blue font-semibold text-body-4 leading-14 ml-10 hover:opacity-80
+  @apply bg-white px-10 py-5 rounded-[100px] text-blue hover:text-white font-semibold text-body-4 leading-14 ml-10 hover:opacity-80
 }
 .announcement-bar .right-side-social{
   @apply flex gap-16 items-center justify-end max-w-[35%] max-1199:hidden
@@ -224,7 +224,7 @@
 
 /* footer-start */
 .site-footer {
-  @apply bg-[#343434] pt-80 max-1023:pt-40;
+  @apply bg-[#343434] pt-60 max-1023:pt-40;
 }
 
 .footer-top {

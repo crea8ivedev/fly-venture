@@ -39,7 +39,7 @@ a:hover {
 }
 
 p {
-  @apply font-worksans text-body-2 leading-26;
+  @apply font-worksans text-body-2 leading-24 tracking-[0.045em]
 }
 
 b {
@@ -117,7 +117,7 @@ h6,
 }
 
 p+p {
-  @apply mt-30
+  @apply mt-20
 }
 
 
