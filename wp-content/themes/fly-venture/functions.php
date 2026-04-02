@@ -2,15 +2,12 @@
 
 use Roots\Acorn\Application;
 if ( ! defined( 'ABSPATH' ) ) exit;
-// Disable Gutenberg for posts
-add_filter('use_block_editor_for_post', '__return_false', 10);
-
-// Disable Gutenberg for post types (pages, posts)
+// Enable Gutenberg only for blog posts; disable for pages and all CPTs (including tours)
 add_filter('use_block_editor_for_post_type', function ($use_block_editor, $post_type) {
-    if ($post_type === 'post' || $post_type === 'page') {
-        return false;
+    if ($post_type === 'post') {
+        return true;
     }
-    return $use_block_editor;
+    return false;
 }, 10, 2);
 
 /*
@@ -224,7 +221,7 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
     }
 
 //    $priceBlock    = function_exists('get_field') ? (array) get_field('price_block', $tour->ID) : [];
-    $priceBlock = function_exists('get_field') ? get_field('price_block', $tour->ID) : [];
+    $priceBlock = function_exists('get_field') ? (array) get_field('price_block', $tour->ID) : [];
     $flightDuration = function_exists('get_field') ? (array) get_field('flight_duration', $tour->ID) : [];
     $bestFor       = function_exists('get_field') ? (string) get_field('best_for', $tour->ID) : '';
     $buttonGroup   = function_exists('get_field') ? (array) get_field('button_group', $tour->ID) : [];
@@ -283,17 +280,19 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
                     continue;
                 }
 
-                $termId    = $term->term_id;
-                $tptIconId = get_term_meta($termId, 'tpt_icon', true);
-                $tptColor  = get_term_meta($termId, 'tpt_color', true);
-                $textColor  = get_term_meta($termId, 'tpt_text_color', true);
+                $termId      = $term->term_id;
+                $tptIconId   = get_term_meta($termId, 'tpt_icon', true);
+                $tptColor    = get_term_meta($termId, 'tpt_color', true);
+                $textColor   = get_term_meta($termId, 'tpt_text_color', true);
+                $tooltipText = get_term_meta($termId, 'tpt_tooltip_text', true);
 
                 $priceTags[] = [
-                    'name'     => $term->name,
-                    'slug'     => $term->slug,
-                    'text_color'     => $textColor,
-                    'color'    => !empty($tptColor) ? sanitize_hex_color($tptColor) : '',
-                    'icon_url' => !empty($tptIconId)
+                    'name'         => $term->name,
+                    'slug'         => $term->slug,
+                    'text_color'   => $textColor,
+                    'color'        => !empty($tptColor) ? sanitize_hex_color($tptColor) : '',
+                    'tooltip_text' => !empty($tooltipText) ? $tooltipText : '',
+                    'icon_url'     => !empty($tptIconId)
                         ? (filter_var($tptIconId, FILTER_VALIDATE_URL)
                             ? esc_url_raw($tptIconId)
                             : wp_get_attachment_image_url(absint($tptIconId), 'full'))
@@ -361,19 +360,15 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
                                     <span style="color:<?php echo esc_attr( sanitize_hex_color( $tag['text_color'] ) ); ?>;"><?php echo esc_html($tag['name']); ?></span>
 
-                                  <?php  if(!empty($tooltip_for_price_tag)):
-                                    ?>
+                                  <?php if (!empty($tag['tooltip_text'])): ?>
                                     <div class="price-tag-tooltip-wrap">
                                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5.3565 7.3565C5.45217 7.2605 5.5 7.14167 5.5 7V5C5.5 4.85833 5.452 4.73967 5.356 4.644C5.26 4.54833 5.14133 4.50033 5 4.5C4.85867 4.49967 4.74 4.54767 4.644 4.644C4.548 4.74033 4.5 4.859 4.5 5V7C4.5 7.14167 4.548 7.2605 4.644 7.3565C4.74 7.4525 4.85867 7.50033 5 7.5C5.14133 7.49967 5.26017 7.45217 5.3565 7.3565ZM5.3565 3.356C5.45217 3.26033 5.5 3.14167 5.5 3C5.5 2.85833 5.452 2.73967 5.356 2.644C5.26 2.54833 5.14133 2.50033 5 2.5C4.85867 2.49967 4.74 2.54767 4.644 2.644C4.548 2.74033 4.5 2.859 4.5 3C4.5 3.141 4.548 3.25983 4.644 3.3565C4.74 3.45317 4.85867 3.501 5 3.5C5.14133 3.499 5.26017 3.451 5.3565 3.356ZM5 10C4.30833 10 3.65833 9.86867 3.05 9.606C2.44167 9.34333 1.9125 8.98717 1.4625 8.5375C1.0125 8.08783 0.656334 7.55867 0.394001 6.95C0.131667 6.34133 0.000333966 5.69133 6.32911e-07 5C-0.0003327 4.30867 0.131001 3.65867 0.394001 3.05C0.657001 2.44133 1.01317 1.91217 1.4625 1.4625C1.91183 1.01283 2.441 0.656667 3.05 0.394C3.659 0.131333 4.309 0 5 0C5.691 0 6.341 0.131333 6.95 0.394C7.559 0.656667 8.08817 1.01283 8.5375 1.4625C8.98683 1.91217 9.34317 2.44133 9.6065 3.05C9.86983 3.65867 10.001 4.30867 10 5C9.999 5.69133 9.86767 6.34133 9.606 6.95C9.34433 7.55867 8.98817 8.08783 8.5375 8.5375C8.08683 8.98717 7.55767 9.3435 6.95 9.6065C6.34233 9.8695 5.69233 10.0007 5 10ZM5 9C6.11667 9 7.0625 8.6125 7.8375 7.8375C8.6125 7.0625 9 6.11667 9 5C9 3.88333 8.6125 2.9375 7.8375 2.1625C7.0625 1.3875 6.11667 1 5 1C3.88333 1 2.9375 1.3875 2.1625 2.1625C1.3875 2.9375 1 3.88333 1 5C1 6.11667 1.3875 7.0625 2.1625 7.8375C2.9375 8.6125 3.88333 9 5 9Z"
                                                   fill="<?php echo esc_attr( sanitize_hex_color( $tag['text_color'] ) ); ?>"/>
                                         </svg>
-
-                                        <?php if (!empty($tooltip_for_price_tag)) : ?>
-                                            <div class="price-tag-tooltip">
-                                                <?php echo esc_html($tooltip_for_price_tag); ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        <div class="price-tag-tooltip">
+                                            <?php echo esc_html($tag['tooltip_text']); ?>
+                                        </div>
                                     </div>
                                     <?php endif; ?>
 
@@ -402,7 +397,7 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
             <div class="bottom-content">
                 <div class="popular-tour-btns">
-                    <a href="<?php echo esc_url($bookUrl); ?>" class="btn btn-orange" aria-label="Book now"><?php echo $bookBtn; ?></a>
+                    <a href="<?php echo esc_url($bookUrl); ?>" class="btn btn-orange" aria-label="Book now"><?php echo esc_html($bookBtn['title'] ?? ''); ?></a>
                     <a href="<?php echo get_permalink( $tour->ID ); ?>" class="btn btn-b-white" aria-label="Learn more"><?php echo $learnButtonText; ?></a>
                 </div>
 
@@ -545,18 +540,19 @@ function flyventure_render_tampa_tour_card( $tour ): string {
                 if ( ! ( $term instanceof WP_Term ) ) {
                     continue;
                 }
-                $termId     = $term->term_id;
-                $tptIconId  = get_term_meta( $termId, 'tpt_icon',       true );
-                $tptColor   = get_term_meta( $termId, 'tpt_color',      true );
-                $textColor  = get_term_meta( $termId, 'tpt_text_color', true );
+                $termId      = $term->term_id;
+                $tptIconId   = get_term_meta( $termId, 'tpt_icon',         true );
+                $tptColor    = get_term_meta( $termId, 'tpt_color',        true );
+                $textColor   = get_term_meta( $termId, 'tpt_text_color',   true );
+                $tooltipText = get_term_meta( $termId, 'tpt_tooltip_text', true );
 
                 $priceTags[] = [
-                    'name'       => $term->name,
-                    'slug'       => $term->slug,
-                    // ✅ sanitize_hex_color applied consistently on both color fields
-                    'color'      => ! empty( $tptColor )  ? sanitize_hex_color( $tptColor )  : '',
-                    'text_color' => ! empty( $textColor ) ? sanitize_hex_color( $textColor ) : '',
-                    'icon_url'   => ! empty( $tptIconId )
+                    'name'         => $term->name,
+                    'slug'         => $term->slug,
+                    'color'        => ! empty( $tptColor )  ? sanitize_hex_color( $tptColor )  : '',
+                    'text_color'   => ! empty( $textColor ) ? sanitize_hex_color( $textColor ) : '',
+                    'tooltip_text' => ! empty( $tooltipText ) ? $tooltipText : '',
+                    'icon_url'     => ! empty( $tptIconId )
                         ? ( filter_var( $tptIconId, FILTER_VALIDATE_URL )
                             ? esc_url_raw( $tptIconId )
                             : wp_get_attachment_image_url( absint( $tptIconId ), 'full' ) )
@@ -632,20 +628,15 @@ function flyventure_render_tampa_tour_card( $tour ): string {
                                     </span>
 
 
-                                    <?php  if(!empty($tooltip_for_price_tag)):
-                                        ?>
-
+                                    <?php if (!empty($tag['tooltip_text'])): ?>
                                         <div class="price-tag-tooltip-wrap">
                                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M5.3565 7.3565C5.45217 7.2605 5.5 7.14167 5.5 7V5C5.5 4.85833 5.452 4.73967 5.356 4.644C5.26 4.54833 5.14133 4.50033 5 4.5C4.85867 4.49967 4.74 4.54767 4.644 4.644C4.548 4.74033 4.5 4.859 4.5 5V7C4.5 7.14167 4.548 7.2605 4.644 7.3565C4.74 7.4525 4.85867 7.50033 5 7.5C5.14133 7.49967 5.26017 7.45217 5.3565 7.3565ZM5.3565 3.356C5.45217 3.26033 5.5 3.14167 5.5 3C5.5 2.85833 5.452 2.73967 5.356 2.644C5.26 2.54833 5.14133 2.50033 5 2.5C4.85867 2.49967 4.74 2.54767 4.644 2.644C4.548 2.74033 4.5 2.859 4.5 3C4.5 3.141 4.548 3.25983 4.644 3.3565C4.74 3.45317 4.85867 3.501 5 3.5C5.14133 3.499 5.26017 3.451 5.3565 3.356ZM5 10C4.30833 10 3.65833 9.86867 3.05 9.606C2.44167 9.34333 1.9125 8.98717 1.4625 8.5375C1.0125 8.08783 0.656334 7.55867 0.394001 6.95C0.131667 6.34133 0.000333966 5.69133 6.32911e-07 5C-0.0003327 4.30867 0.131001 3.65867 0.394001 3.05C0.657001 2.44133 1.01317 1.91217 1.4625 1.4625C1.91183 1.01283 2.441 0.656667 3.05 0.394C3.659 0.131333 4.309 0 5 0C5.691 0 6.341 0.131333 6.95 0.394C7.559 0.656667 8.08817 1.01283 8.5375 1.4625C8.98683 1.91217 9.34317 2.44133 9.6065 3.05C9.86983 3.65867 10.001 4.30867 10 5C9.999 5.69133 9.86767 6.34133 9.606 6.95C9.34433 7.55867 8.98817 8.08783 8.5375 8.5375C8.08683 8.98717 7.55767 9.3435 6.95 9.6065C6.34233 9.8695 5.69233 10.0007 5 10ZM5 9C6.11667 9 7.0625 8.6125 7.8375 7.8375C8.6125 7.0625 9 6.11667 9 5C9 3.88333 8.6125 2.9375 7.8375 2.1625C7.0625 1.3875 6.11667 1 5 1C3.88333 1 2.9375 1.3875 2.1625 2.1625C1.3875 2.9375 1 3.88333 1 5C1 6.11667 1.3875 7.0625 2.1625 7.8375C2.9375 8.6125 3.88333 9 5 9Z"
                                                       fill="<?php echo esc_attr( $tag['text_color'] ); ?>"/>
                                             </svg>
-
-                                            <?php if (!empty($tooltip_for_price_tag)) : ?>
-                                                <div class="price-tag-tooltip">
-                                                    <?php echo esc_html($tooltip_for_price_tag); ?>
-                                                </div>
-                                            <?php endif; ?>
+                                            <div class="price-tag-tooltip">
+                                                <?php echo esc_html($tag['tooltip_text']); ?>
+                                            </div>
                                         </div>
                                     <?php endif; ?>
 
@@ -691,4 +682,77 @@ function flyventure_render_tampa_tour_card( $tour ): string {
     </div>
     <?php
     return ob_get_clean();
+}
+
+
+// ── Blog Listing AJAX ──────────────────────────────────────────────────────
+
+add_action( 'wp_ajax_flyventure_blog_listing',        'flyventure_ajax_blog_listing' );
+add_action( 'wp_ajax_nopriv_flyventure_blog_listing', 'flyventure_ajax_blog_listing' );
+
+function flyventure_ajax_blog_listing(): void {
+    check_ajax_referer( 'flyventure_blog_listing', 'nonce' );
+
+    $paged    = max( 1, absint( $_POST['paged'] ?? 1 ) );
+    $per_page = 9;
+    $search   = sanitize_text_field( wp_unslash( $_POST['search'] ?? '' ) );
+    $category = absint( $_POST['category'] ?? 0 );
+
+    $args = [
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => $per_page,
+        'paged'          => $paged,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'no_found_rows'  => false,
+    ];
+
+    if ( ! empty( $search ) ) {
+        $args['s'] = $search;
+    }
+
+    if ( ! empty( $category ) ) {
+        $args['cat'] = $category;
+    }
+
+    $query = new WP_Query( $args );
+
+    $posts = [];
+    if ( $query->have_posts() ) {
+        foreach ( $query->posts as $post ) {
+            $post_id    = $post->ID;
+            $thumb_id   = get_post_thumbnail_id( $post_id );
+            $categories = get_the_category( $post_id );
+            $cat        = ! empty( $categories ) ? $categories[0] : null;
+
+            $posts[] = [
+                'id'          => $post_id,
+                'title'       => get_the_title( $post_id ),
+                'permalink'   => get_permalink( $post_id ),
+                'author'      => get_the_author_meta( 'display_name', $post->post_author ),
+                'author_url'  => get_author_posts_url( $post->post_author ),
+                'date'        => get_the_date( '', $post_id ),
+                'date_time'   => get_the_date( 'c', $post_id ),
+                'category'    => $cat ? [
+                    'name' => $cat->name,
+                    'url'  => get_category_link( $cat->term_id ),
+                ] : null,
+                'thumbnail'   => $thumb_id ? [
+                    'url' => wp_get_attachment_image_url( $thumb_id, 'large' ) ?: '',
+                    'alt' => get_post_meta( $thumb_id, '_wp_attachment_image_alt', true ) ?: get_the_title( $post_id ),
+                ] : null,
+                'excerpt'     => get_the_excerpt( $post_id ),
+            ];
+        }
+    }
+
+    wp_reset_postdata();
+
+    wp_send_json_success( [
+        'posts'         => $posts,
+        'max_num_pages' => (int) $query->max_num_pages,
+        'paged'         => $paged,
+        'found_posts'   => (int) $query->found_posts,
+    ] );
 }

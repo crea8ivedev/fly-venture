@@ -103,7 +103,7 @@
     {{-- ── Tours Grid ────────────────────────────────────────────── --}}
     <div
       id="tampa-tours-grid"
-      class="tempa-tours-grid grid grid-cols-3 max-992:grid-cols-2 max-575:grid-cols-1 gap-45 max-992:gap-40 items-center"
+      class="tempa-tours-grid grid grid-cols-3 max-1199:grid-cols-2 max-992:grid-cols-1 gap-45 max-1441:gap-30 items-center"
     >
 
       @forelse ( $initial_query->posts as $_tour )
@@ -123,8 +123,7 @@
           $buttonGroup = function_exists( 'get_field' ) ? (array) get_field( 'button_group',    $_tour->ID ) : [];
           $reviewBlock = function_exists( 'get_field' ) ? (array) get_field( 'review_block',    $_tour->ID ) : [];
 //dd($buttonGroup);
-          $priceBlock = is_array( $priceBlock ) ? $priceBlock : [];
-          $tooltip_for_price_tag  = $priceBlock['tooltip_for_price_tag'] ?? '';
+          $priceBlock    = is_array( $priceBlock ) ? $priceBlock : [];
           $originalPrice = $priceBlock['regular_price'] ?? '';
           $offerPrice    = $priceBlock['offer_price']    ?? '';
           $perPersonText    = $priceBlock['per_person_text']    ?? '';
@@ -163,17 +162,19 @@
                       if ( ! ( $term instanceof WP_Term ) ) {
                           continue;
                       }
-                      $termId    = $term->term_id;
-                      $tptIconId = get_term_meta( $termId, 'tpt_icon',       true );
-                      $tptColor  = get_term_meta( $termId, 'tpt_color',      true );
-                      $textColor = get_term_meta( $termId, 'tpt_text_color', true );
+                      $termId      = $term->term_id;
+                      $tptIconId   = get_term_meta( $termId, 'tpt_icon',         true );
+                      $tptColor    = get_term_meta( $termId, 'tpt_color',        true );
+                      $textColor   = get_term_meta( $termId, 'tpt_text_color',   true );
+                      $tooltipText = get_term_meta( $termId, 'tpt_tooltip_text', true );
 
                       $priceTags[] = [
-                          'name'       => $term->name,
-                          'slug'       => $term->slug,
-                          'color'      => ! empty( $tptColor )  ? sanitize_hex_color( $tptColor )  : '',
-                          'text_color' => ! empty( $textColor ) ? sanitize_hex_color( $textColor ) : '',
-                          'icon_url'   => ! empty( $tptIconId )
+                          'name'         => $term->name,
+                          'slug'         => $term->slug,
+                          'color'        => ! empty( $tptColor )  ? sanitize_hex_color( $tptColor )  : '',
+                          'text_color'   => ! empty( $textColor ) ? sanitize_hex_color( $textColor ) : '',
+                          'tooltip_text' => ! empty( $tooltipText ) ? $tooltipText : '',
+                          'icon_url'     => ! empty( $tptIconId )
                               ? ( filter_var( $tptIconId, FILTER_VALIDATE_URL )
                                   ? esc_url_raw( $tptIconId )
                                   : wp_get_attachment_image_url( absint( $tptIconId ), 'full' ) )
@@ -239,23 +240,19 @@
                             {{ $tag['name'] }}
                            </span>
 
-                          <?php if (!empty($tooltip_for_price_tag)):
-                          ?>
+                        @if ( ! empty( $tag['tooltip_text'] ) )
                         <div class="price-tag-tooltip-wrap">
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M5.3565 7.3565C5.45217 7.2605 5.5 7.14167 5.5 7V5C5.5 4.85833 5.452 4.73967 5.356 4.644C5.26 4.54833 5.14133 4.50033 5 4.5C4.85867 4.49967 4.74 4.54767 4.644 4.644C4.548 4.74033 4.5 4.859 4.5 5V7C4.5 7.14167 4.548 7.2605 4.644 7.3565C4.74 7.4525 4.85867 7.50033 5 7.5C5.14133 7.49967 5.26017 7.45217 5.3565 7.3565ZM5.3565 3.356C5.45217 3.26033 5.5 3.14167 5.5 3C5.5 2.85833 5.452 2.73967 5.356 2.644C5.26 2.54833 5.14133 2.50033 5 2.5C4.85867 2.49967 4.74 2.54767 4.644 2.644C4.548 2.74033 4.5 2.859 4.5 3C4.5 3.141 4.548 3.25983 4.644 3.3565C4.74 3.45317 4.85867 3.501 5 3.5C5.14133 3.499 5.26017 3.451 5.3565 3.356ZM5 10C4.30833 10 3.65833 9.86867 3.05 9.606C2.44167 9.34333 1.9125 8.98717 1.4625 8.5375C1.0125 8.08783 0.656334 7.55867 0.394001 6.95C0.131667 6.34133 0.000333966 5.69133 6.32911e-07 5C-0.0003327 4.30867 0.131001 3.65867 0.394001 3.05C0.657001 2.44133 1.01317 1.91217 1.4625 1.4625C1.91183 1.01283 2.441 0.656667 3.05 0.394C3.659 0.131333 4.309 0 5 0C5.691 0 6.341 0.131333 6.95 0.394C7.559 0.656667 8.08817 1.01283 8.5375 1.4625C8.98683 1.91217 9.34317 2.44133 9.6065 3.05C9.86983 3.65867 10.001 4.30867 10 5C9.999 5.69133 9.86767 6.34133 9.606 6.95C9.34433 7.55867 8.98817 8.08783 8.5375 8.5375C8.08683 8.98717 7.55767 9.3435 6.95 9.6065C6.34233 9.8695 5.69233 10.0007 5 10ZM5 9C6.11667 9 7.0625 8.6125 7.8375 7.8375C8.6125 7.0625 9 6.11667 9 5C9 3.88333 8.6125 2.9375 7.8375 2.1625C7.0625 1.3875 6.11667 1 5 1C3.88333 1 2.9375 1.3875 2.1625 2.1625C1.3875 2.9375 1 3.88333 1 5C1 6.11667 1.3875 7.0625 2.1625 7.8375C2.9375 8.6125 3.88333 9 5 9Z"
-                              fill="<?php echo esc_attr( $tag['text_color'] ); ?>"/>
+                              fill="{{ esc_attr( $tag['text_color'] ) }}"/>
                           </svg>
-
-                            <?php if (!empty($tooltip_for_price_tag)) : ?>
                           <div class="price-tag-tooltip">
-                              <?php echo esc_html($tooltip_for_price_tag); ?>
+                            {{ $tag['tooltip_text'] }}
                           </div>
-                          <?php endif; ?>
                         </div>
-                        <?php endif; ?>
+                        @endif
 
 
                       </div>

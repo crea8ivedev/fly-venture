@@ -261,16 +261,20 @@ class TourCategoryComposer extends Composer
             if ('inner_banner' === $layout) {
                 $data[] = (object) [
                     'layout'                         => $layout,
-                    'background_image'               => $content['background_image']              ?? null,
-                    'mobile_video'                   => $content['background_video_mobile']       ?? null,
-                    'select_rating'                  => $content['select_rating']                 ?? null,
-                    'rating_text'                    => $content['rating_text']                   ?? null,
-                    'inner_banner_heading'           => $content['inner_banner_heading']          ?? null,
+                    'background_type_desktop'        => $content['background_type_desktop']        ?? null,
+                    'background_image_desktop'       => $content['background_image_desktop']       ?? null,
+                    'background_video_desktop'       => $content['background_video_desktop']       ?? null,
+                    'background_type_mobile'         => $content['background_type_mobile']         ?? null,
+                    'background_image_mobile'        => $content['background_image_mobile']        ?? null,
+                    'background_video_mobile'        => $content['background_video_mobile']        ?? null,
+                    'select_rating'                  => $content['select_rating']                  ?? null,
+                    'rating_text'                    => $content['rating_text']                    ?? null,
+                    'inner_banner_heading'           => $content['inner_banner_heading']           ?? null,
                     'inner_banner_short_description' => $content['inner_banner_short_description'] ?? null,
-                    'inner_counter_repeater'         => $content['inner_counter_repeater']        ?? null,
-                    'id'                             => $content['id']                            ?? null,
-                    'class'                          => $content['class']                         ?? null,
-                    'hide_section'                   => $content['hide_section']                  ?? null,
+                    'inner_counter_repeater'         => $content['inner_counter_repeater']         ?? null,
+                    'id'                             => $content['id']                             ?? null,
+                    'class'                          => $content['class']                          ?? null,
+                    'hide_section'                   => $content['hide_section']                   ?? null,
                 ];
                 continue;
             }

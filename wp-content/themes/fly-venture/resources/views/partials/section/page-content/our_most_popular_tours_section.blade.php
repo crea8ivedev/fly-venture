@@ -36,12 +36,12 @@
 
   <!-- popular-tours-start -->
 <section
-  class="popular-tours-wrap  pt-80 pb-100 max-1023:py-40 bg-[#F5F9FC]"
+  class="popular-tours-wrap  pt-80 pb-100 max-1023:py-40 bg-[#F5F9FC] overflow-hidden"
   data-ajax-url="{{ esc_url(admin_url('admin-ajax.php')) }}"
   data-ajax-nonce="{{ esc_attr(wp_create_nonce('flyventure_popular_tours')) }}"
   data-selected-tours="{{ esc_attr($selectedToursAttr) }}"
   style="{{ !empty($content->background_color) ? 'background-color:' . esc_attr($content->background_color) . ';' : '' }}">
-  <div class="container-fluid">
+  <div class="container-fluid mr-[-20px] max-575:mr-0 max-1023:px-0! max-1023:m-0!">
     <div class="popular-tours-grid">
       <div class="popular-tours-intro fadeText">
 

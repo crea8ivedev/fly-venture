@@ -46,6 +46,7 @@ class ThemeOptions extends Composer
             'op_content_2' => $footer['op_content_2'] ?? null,
             'coupan_block' => $footer['coupan_block'] ?? null,
             'book_your_flight_button' => $footer['book_your_flight_button'] ?? null,
+            'footer_book_flight_button' => $footer['footer_book_flight_button'] ?? null,
         ];
     }
 }

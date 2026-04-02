@@ -245,16 +245,20 @@ class PageContentComposer extends Composer
                 if ('inner_banner' === ($content['acf_fc_layout'] ?? '')) {
                     $data[] = (object)[
                         'layout' => $content['acf_fc_layout'] ?? '',
-                        'background_image' => $content['background_image'] ?? null,
-                        'mobile_video' => $content['background_video_mobile'] ?? null,
-                        'select_rating' => $content['select_rating'] ?? null,
-                        'rating_text' => $content['rating_text'] ?? null,
-                        'inner_banner_heading' => $content['inner_banner_heading'] ?? null,
+                        'background_type_desktop'        => $content['background_type_desktop'] ?? null,
+                        'background_image_desktop'       => $content['background_image_desktop'] ?? null,
+                        'background_video_desktop'       => $content['background_video_desktop'] ?? null,
+                        'background_type_mobile'         => $content['background_type_mobile'] ?? null,
+                        'background_image_mobile'        => $content['background_image_mobile'] ?? null,
+                        'background_video_mobile'        => $content['background_video_mobile'] ?? null,
+                        'select_rating'                  => $content['select_rating'] ?? null,
+                        'rating_text'                    => $content['rating_text'] ?? null,
+                        'inner_banner_heading'           => $content['inner_banner_heading'] ?? null,
                         'inner_banner_short_description' => $content['inner_banner_short_description'] ?? null,
-                        'inner_counter_repeater' => $content['inner_counter_repeater'] ?? null,
-                        'id' => $content['id'] ?? null,
-                        'class' => $content['class'] ?? null,
-                        'hide_section' => $content['hide_section'] ?? null,
+                        'inner_counter_repeater'         => $content['inner_counter_repeater'] ?? null,
+                        'id'                             => $content['id'] ?? null,
+                        'class'                          => $content['class'] ?? null,
+                        'hide_section'                   => $content['hide_section'] ?? null,
                     ];
                     continue;
                 }
@@ -321,6 +325,73 @@ class PageContentComposer extends Composer
                     ];
                     continue;
                 }
+
+                if ('general_content' === ($content['acf_fc_layout'] ?? '')) {
+                    $data[] = (object)[
+                        'layout'       => $content['acf_fc_layout'] ?? '',
+                        'description'  => $content['description'] ?? null,
+                        'id'           => $content['id'] ?? null,
+                        'class'        => $content['class'] ?? null,
+                        'hide_section' => $content['hide_section'] ?? null,
+                    ];
+                    continue;
+                }
+
+                if ('blog_listing' === ($content['acf_fc_layout'] ?? '')) {
+                    $paged      = max(1, (int) get_query_var('paged'));
+                    $blog_query = new \WP_Query([
+                        'post_type'      => 'post',
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 9,
+                        'paged'          => $paged,
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                        'no_found_rows'  => false,
+                    ]);
+
+                    $posts = [];
+                    if ($blog_query->have_posts()) {
+                        foreach ($blog_query->posts as $post) {
+                            $post_id    = $post->ID;
+                            $thumb_id   = get_post_thumbnail_id($post_id);
+                            $categories = get_the_category($post_id);
+                            $category   = !empty($categories) ? $categories[0] : null;
+
+                            $posts[] = [
+                                'id'           => $post_id,
+                                'title'        => get_the_title($post_id),
+                                'permalink'    => get_permalink($post_id),
+                                'author'       => get_the_author_meta('display_name', $post->post_author),
+                                'author_url'   => get_author_posts_url($post->post_author),
+                                'date'         => get_the_date('', $post_id),
+                                'date_time'    => get_the_date('c', $post_id),
+                                'category'     => $category ? [
+                                    'name' => $category->name,
+                                    'url'  => get_category_link($category->term_id),
+                                ] : null,
+                                'thumbnail'    => $thumb_id ? [
+                                    'url' => wp_get_attachment_image_url($thumb_id, 'large') ?: '',
+                                    'alt' => get_post_meta($thumb_id, '_wp_attachment_image_alt', true) ?: get_the_title($post_id),
+                                ] : null,
+                                'excerpt'      => get_the_excerpt($post_id),
+                            ];
+                        }
+                    }
+
+                    $data[] = (object)[
+                        'layout'         => $content['acf_fc_layout'] ?? '',
+                        'id'             => $content['id'] ?? null,
+                        'class'          => $content['extra_class'] ?? null,
+                        'hide_section'   => $content['hide_section'] ?? null,
+                        'posts'          => $posts,
+                        'max_num_pages'  => (int) $blog_query->max_num_pages,
+                        'paged'          => $paged,
+                    ];
+
+                    wp_reset_postdata();
+                    continue;
+                }
+
                 $data[] = (object)$content;
             }
         }

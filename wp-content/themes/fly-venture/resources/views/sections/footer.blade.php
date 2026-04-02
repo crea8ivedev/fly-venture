@@ -349,11 +349,20 @@
 
 
 <!-- mobile-sticky-button-start -->
-            <div class="mobile-sticky-btn">
-                <a href="javascript:void(0);"
-                    class="btn btn-orange"
-                    aria-label="Book Now"
-                    role="link">
-                    BOOK YOUR FLIGHT
-                </a>
-            </div>
+@php
+  $sticky_btn        = $footer_book_flight_button ?? [];
+  $sticky_btn_url    = $sticky_btn['url'] ?? '';
+  $sticky_btn_title  = $sticky_btn['title'] ?? '';
+  $sticky_btn_target = $sticky_btn['target'] ?? '_self';
+@endphp
+@if(!empty($sticky_btn_url) && !empty($sticky_btn_title))
+  <div class="mobile-sticky-btn">
+    <a href="{{ esc_url($sticky_btn_url) }}"
+       class="btn btn-orange"
+       aria-label="{{ esc_attr($sticky_btn_title) }}"
+       target="{{ in_array($sticky_btn_target, ['_blank', '_self', '_parent', '_top']) ? esc_attr($sticky_btn_target) : '_self' }}"
+       @if($sticky_btn_target === '_blank') rel="noopener noreferrer" @endif>
+      {{ esc_html($sticky_btn_title) }}
+    </a>
+  </div>
+@endif

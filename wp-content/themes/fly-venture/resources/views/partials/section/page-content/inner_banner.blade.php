@@ -25,20 +25,37 @@
   {{-- Background --}}
   <div class="hero-bg">
 
-    {{-- Desktop Image --}}
-    @if ( ! empty( $content->background_image ) )
-      @if ( is_array( $content->background_image ) && ! empty( $content->background_image['url'] ) )
+    {{-- Desktop: Image or Video --}}
+    @if ( ( $content->background_type_desktop ?? '' ) === 'video' )
+      @php
+        $_d_video     = $content->background_video_desktop ?? null;
+        $_d_video_url = is_array( $_d_video ) ? ( $_d_video['url'] ?? '' ) : ( is_string( $_d_video ) ? $_d_video : '' );
+      @endphp
+      @if ( ! empty( $_d_video_url ) )
+        <video
+          src="{{ esc_url( $_d_video_url ) }}"
+          preload="none"
+          autoplay
+          playsinline
+          loop
+          muted
+          class="h-full w-full object-cover desktop-img max-767:hidden!"
+        ></video>
+      @endif
+    @else
+      @php $_d_img = $content->background_image_desktop ?? null; @endphp
+      @if ( is_array( $_d_img ) && ! empty( $_d_img['url'] ) )
         <img
-          src="{{ esc_url( $content->background_image['url'] ) }}"
-          alt="{{ esc_attr( $content->background_image['alt'] ?? 'Hero background' ) }}"
-          @if ( ! empty( $content->background_image['width'] ) )  width="{{ absint( $content->background_image['width'] ) }}"  @endif
-          @if ( ! empty( $content->background_image['height'] ) ) height="{{ absint( $content->background_image['height'] ) }}" @endif
+          src="{{ esc_url( $_d_img['url'] ) }}"
+          alt="{{ esc_attr( $_d_img['alt'] ?? 'Hero background' ) }}"
+          @if ( ! empty( $_d_img['width'] ) )  width="{{ absint( $_d_img['width'] ) }}"  @endif
+          @if ( ! empty( $_d_img['height'] ) ) height="{{ absint( $_d_img['height'] ) }}" @endif
           class="h-full w-full object-cover desktop-img max-767:hidden!"
           loading="eager"
         >
-      @elseif ( is_string( $content->background_image ) && $content->background_image !== '' )
+      @elseif ( is_string( $_d_img ) && $_d_img !== '' )
         <img
-          src="{{ esc_url( $content->background_image ) }}"
+          src="{{ esc_url( $_d_img ) }}"
           alt="Hero background"
           class="h-full w-full object-cover desktop-img max-767:hidden!"
           loading="eager"
@@ -46,26 +63,48 @@
       @endif
     @endif
 
-    {{-- Mobile Video --}}
-    @if ( ! empty( $content->mobile_video ) )
+    {{-- Mobile: Image or Video (falls back to desktop if mobile fields are empty) --}}
+    @php
+      $mobile_has_video = ! empty( $content->background_video_mobile ) && ( is_array( $content->background_video_mobile ) ? ! empty( $content->background_video_mobile['url'] ) : true );
+      $mobile_has_image = ! empty( $content->background_image_mobile ) && ( is_array( $content->background_image_mobile ) ? ! empty( $content->background_image_mobile['url'] ) : true );
+      $mobile_type      = ( $mobile_has_video || $mobile_has_image )
+          ? ( $content->background_type_mobile ?? '' )
+          : ( $content->background_type_desktop ?? '' );
+      $mobile_video_src = ( $mobile_has_video || $mobile_has_image ) ? ( $content->background_video_mobile ?? null ) : ( $content->background_video_desktop ?? null );
+      $mobile_image_src = ( $mobile_has_video || $mobile_has_image ) ? ( $content->background_image_mobile  ?? null ) : ( $content->background_image_desktop ?? null );
+    @endphp
+    @if ( $mobile_type === 'video' )
       @php
-        $_video     = $content->mobile_video;
-        $_video_url = is_array( $_video )
-            ? ( $_video['url'] ?? '' )
-            : ( is_string( $_video ) ? $_video : '' );
+        $_m_video_url = is_array( $mobile_video_src ) ? ( $mobile_video_src['url'] ?? '' ) : ( is_string( $mobile_video_src ) ? $mobile_video_src : '' );
       @endphp
-      @if ( ! empty( $_video_url ) )
+      @if ( ! empty( $_m_video_url ) )
         <video
-          src="{{ esc_url( $_video_url ) }}"
+          src="{{ esc_url( $_m_video_url ) }}"
           preload="none"
           autoplay
           playsinline
           loop
           muted
           class="hidden h-full w-full object-cover max-767:block"
-          @if ( is_array( $_video ) && ! empty( $_video['width'] ) )  width="{{ absint( $_video['width'] ) }}"  @endif
-          @if ( is_array( $_video ) && ! empty( $_video['height'] ) ) height="{{ absint( $_video['height'] ) }}" @endif
         ></video>
+      @endif
+    @else
+      @if ( is_array( $mobile_image_src ) && ! empty( $mobile_image_src['url'] ) )
+        <img
+          src="{{ esc_url( $mobile_image_src['url'] ) }}"
+          alt="{{ esc_attr( $mobile_image_src['alt'] ?? 'Hero background' ) }}"
+          @if ( ! empty( $mobile_image_src['width'] ) )  width="{{ absint( $mobile_image_src['width'] ) }}"  @endif
+          @if ( ! empty( $mobile_image_src['height'] ) ) height="{{ absint( $mobile_image_src['height'] ) }}" @endif
+          class="hidden h-full w-full object-cover max-767:block"
+          loading="eager"
+        >
+      @elseif ( is_string( $mobile_image_src ) && $mobile_image_src !== '' )
+        <img
+          src="{{ esc_url( $mobile_image_src ) }}"
+          alt="Hero background"
+          class="hidden h-full w-full object-cover max-767:block"
+          loading="eager"
+        >
       @endif
     @endif
 

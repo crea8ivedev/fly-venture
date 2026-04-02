@@ -34,7 +34,10 @@
                   @include('partials.section.page-content.image_with_content_section', ['content' => $content, 'groupData' => $groupData])
             @elseif ($content->layout === 'what_sets_us_apart_section')
                   @include('partials.section.page-content.what_sets_us_apart_section', ['content' => $content, 'groupData' => $groupData])
-
+            @elseif ($content->layout === 'general_content')
+                  @include('partials.section.page-content.general_content', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'blog_listing')
+                  @include('partials.section.page-content.blog_listing', ['content' => $content, 'groupData' => $groupData])
             @endif
         @endif
     @endforeach
