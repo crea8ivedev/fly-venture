@@ -154,7 +154,7 @@
 
         {{-- Short Description --}}
         @if ( ! empty( $content->banner_short_description ) && is_scalar( $content->banner_short_description ) )
-          <div class="content white mt-20">
+          <div class="content white mt-15">
             {!! wp_kses_post( $content->banner_short_description )  !!}
           </div>
         @endif

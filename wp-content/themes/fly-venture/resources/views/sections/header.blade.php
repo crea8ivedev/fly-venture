@@ -1,4 +1,4 @@
-<header class="site-header" id="site-header">
+<header class="site-header{{ ((is_single() && !is_singular('tour')) || is_404()) ? ' header-relative' : '' }}" id="site-header">
   <div class="announcement-bar" aria-label="Announcements">
     <div class="flex flex-wrap justify-between items-center px-60 max-1199:px-0">
 
@@ -74,7 +74,7 @@
             <img
               src="{{ esc_url($header_logo['url']) }}"
               alt="{{ esc_attr($header_logo['alt'] ?? get_bloginfo('name')) }}"
-              class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover"
+              class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover xl:pb-16"
               height="60"
               width="280"
             >

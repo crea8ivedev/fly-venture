@@ -732,7 +732,7 @@ function flyventure_ajax_blog_listing(): void {
                 'permalink'   => get_permalink( $post_id ),
                 'author'      => get_the_author_meta( 'display_name', $post->post_author ),
                 'author_url'  => get_author_posts_url( $post->post_author ),
-                'date'        => get_the_date( '', $post_id ),
+                'date'        => get_the_date( 'M j, Y', $post_id ),
                 'date_time'   => get_the_date( 'c', $post_id ),
                 'category'    => $cat ? [
                     'name' => $cat->name,
@@ -742,7 +742,7 @@ function flyventure_ajax_blog_listing(): void {
                     'url' => wp_get_attachment_image_url( $thumb_id, 'large' ) ?: '',
                     'alt' => get_post_meta( $thumb_id, '_wp_attachment_image_alt', true ) ?: get_the_title( $post_id ),
                 ] : null,
-                'excerpt'     => get_the_excerpt( $post_id ),
+                'excerpt'     => wp_trim_words( wp_strip_all_tags( get_the_excerpt( $post_id ) ), 20, '...' ),
             ];
         }
     }

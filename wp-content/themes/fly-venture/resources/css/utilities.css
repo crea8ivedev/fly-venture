@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-980 max-1199:h-856 overflow-hidden ;
+  @apply relative h-880 max-1441:h-756 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -40,7 +40,7 @@
   }
 }
 .hero-content-wrap {
-  @apply relative h-full z-2 pt-180  max-1199:pt-109  flex items-center justify-between gap-40 ;
+  @apply relative h-full z-2 pt-154  max-1199:pt-109  flex items-center justify-between gap-40 ;
 }
 
 .hero-content-left {
@@ -51,14 +51,17 @@
 }
 
 .hero-rating {
-  @apply inline-flex items-center gap-10 rounded-[5px] bg-black/50 px-20 py-14 mb-20;
+  @apply inline-flex items-center gap-10 rounded-[5px] bg-black/50 px-14 py-10 mb-18;
+}
+.hero-rating p {
+  @apply text-body-3 leading-16
 }
 
 .hero-stars {
   @apply flex items-center gap-8 max-767:gap-7 max-767:px-4;
 }
 .hero-stars img{
-  @apply w-full h-full object-cover
+  @apply w-full h-full object-cover max-w-15
 }
 
 
@@ -70,7 +73,7 @@
 }
 
 .hero-stats {
-  @apply mt-44 max-1023:mt-24 flex items-center gap-60 max-1199:gap-30  max-767:gap-25;
+  @apply mt-30 max-1023:mt-24 flex items-center gap-60 max-1199:gap-30  max-767:gap-25;
 }
 .inner-hero-section .hero-content-left .content{
   @apply max-w-728
@@ -82,7 +85,7 @@
   @apply text-center
 }
 .hero-section .btn{
-  @apply max-1199:text-body-3 max-1199:leading-14 max-1199:py-16
+  @apply text-body-1 max-1199:text-body-3 max-1199:leading-14 py-16
 }
 .hero-section .btn-white {
   @apply max-767:py-10 max-767:px-20
@@ -94,7 +97,7 @@
   @apply max-1199:py-12
 }
 .hero-stat-item h3 {
-  @apply text-heading-1 tracking-normal font-semibold leading-78 max-1600:text-heading-tablet-1 max-1600:leading-60 max-1199:text-[36px] max-1199:leading-42 text-white;
+  @apply text-heading-2 tracking-normal font-semibold leading-50 max-1600:text-heading-tablet-1 max-1600:leading-60 max-1199:text-[36px] max-1199:leading-42 text-white;
 }
 
 .hero-stat-item p {
@@ -1294,7 +1297,7 @@ body.fv-popup-open {
   @apply flex-1;
 }
 .blog-listing-wrapper .select-wrapper form.filter select {
-  @apply cursor-pointer appearance-none w-full pl-5 bg-[url(/wp-content/themes/flylock/public/build/assets/drop-down-red-arrow-xq-X-wC6.svg)] bg-[100%] bg-no-repeat;
+  @apply cursor-pointer appearance-none w-full pl-5 bg-none;
 }
 .blog-listing-wrapper .search-input-wrapper {
   @apply relative before:left-20 before:h-20 before:w-20 max-md:before:w-16 max-md:before:h-16 before:content-[""] before:bg-[url(../images/search-icon.svg)] before:absolute before:top-2/4 before:bg-no-repeat before:bg-contain;
@@ -1313,6 +1316,33 @@ body.fv-popup-open {
 .blog-listing-wrapper .search-input-wrapper input {
   @apply border border-[#eeeeee] w-full pl-54 rounded-sm border-solid px-20 py-18.5 max-md:py-12 text-black;
 }
+
+/* blog-pagination */
+.blog-pagination {
+  @apply flex items-center justify-center flex-wrap gap-[6px] mt-[30px] sm:gap-[8px] sm:mt-[40px] lg:gap-[10px] lg:mt-[50px] xl:gap-10 xl:mt-66;
+}
+.blog-pagination .blog-page-btn {
+  @apply min-w-60 h-65 px-12 rounded-[4px] border border-[#eeeeee] text-base text-black font-medium cursor-pointer transition-colors duration-200 bg-white text-black/50 hover:bg-blue hover:text-white hover:border-blue disabled:opacity-40 disabled:cursor-not-allowed          /* Mobile */
+         min-w-[40px] h-[45px] px-[8px] text-[14px] sm:min-w-[50px] sm:h-[55px] sm:px-[10px] sm:text-[15px] lg:min-w-[60px] lg:h-[60px] lg:px-[12px] lg:text-base xl:min-w-60 xl:h-65 xl:px-12;;
+}
+
+.blog-page-btn.blog-page-prev span, .blog-page-btn.blog-page-next span {
+  @apply hidden;
+}
+
+.blog-pagination .blog-page-btn.active {
+  @apply bg-blue text-white border-blue;
+}
+
+.blog-page-btn.blog-page-prev,
+.blog-page-btn.blog-page-next {
+  @apply min-w-[70px] sm:min-w-[85px] lg:min-w-[95px] xl:min-w-100;
+}
+
+.blog-page-btn.blog-page-prev[data-page="0"], .blog-page-btn.blog-page-next[disabled] {
+  @apply hidden;
+}
+
 
 /* employment-openings-start */
 
@@ -1478,6 +1508,209 @@ body.fv-popup-open {
 .general-content-section .general-content-description p strong{
   @apply font-semibold text-blue
 }
+
 article.category-blog{
   @apply py-100 max-1023:py-60 max-575:py-40
+}
+
+.blog-single__inner .blog-single__content p:first-child{
+  @apply  bg-[#F5F9FC] p-24 rounded-lg
+}
+.blog-single__inner .blog-single__content hr {
+  @apply my-44 max-1023:my-24 border-t-1 border-t-blue border-0
+}
+.blog-single__inner .wp-block-image.size-large img {
+  @apply rounded-lg w-full shadow-[0px_0px_16px_rgba(0,0,0,0.16)]
+}
+.blog-single__inner .wp-block-image{
+  @apply mt-24 mb-20
+}
+.blog-single__inner .wp-block-image img {
+  @apply min-h-350 max-h-350 object-cover w-full h-full block
+}
+.blog-single__inner .blog-single__content h2 {
+  @apply text-heading-tablet-2 tracking-[-0.02em] leading-38 font-bold text-blue max-1199:text-heading-4 max-1199:leading-30 max-767:text-heading-mobile-2 max-767:leading-24  mb-24
+}
+.blog-single__inner .blog-single__content .wp-block-column h2 {
+  @apply text-heading-4 leading-32 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25 mb-10
+}
+.blog-single__inner .blog-single__content .wp-block-column{
+  @apply m-0!
+}
+.blog-single__inner .blog-single__content .wp-block-columns-is-layout-flex{
+  @apply gap-44 mb-0! max-1023:gap-30
+}
+@media (max-width:780px) {
+  .blog-single__inner .blog-single__content .wp-block-columns-is-layout-flex{
+  @apply gap-0
+}
+}
+.blog-single__inner .blog-single__content p + h2 {
+  @apply mt-24
+}
+.blog-single__inner .btn-flex .btn {
+  @apply px-32 py-16 text-body-3 rounded-lg leading-16 max-575:px-20;
+}
+
+.blog-single__inner .btn-b-white {
+  @apply text-black border py-14 border-transparent hover:text-white;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #F79808 0%, #E26216 100%) border-box;
+}
+
+.blog-single__inner .btn-b-white::before {
+  background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
+}
+.blog-single__inner .h2 {
+  @apply max-1199:text-heading-tablet-2 max-1199:leading-38 max-767:text-heading-mobile-2 max-767:leading-28
+}
+
+.error-404-section img {
+  @apply block w-full max-w-100 h-auto mx-auto max-992:max-w-65
+}
+.error-404-section h1 {
+  @apply text-[98px]! leading-116! max-1199:text-heading-1! max-1199:leading-78! text-blue! font-bold text-center
+}
+.blog-single__meta {
+  @apply flex items-center gap-10 flex-wrap justify-center max-w-fit mx-auto;
+}
+.blog-single__meta .blog-single__author{
+ @apply flex items-center gap-6  justify-center text-body-2 leading-24 text-black;
+}
+.blog-single__meta .blog-single__author a , .blog-single__meta .blog-single__author time{
+  @apply text-black text-body-2 leading-24 font-medium;
+}
+.blog-single__meta .blog-single__author a{
+  @apply hover:text-orange;
+}
+
+
+
+/* ============================================
+   POPULAR GIFT CARD AMOUNTS SECTION
+   ============================================ */
+
+.gift-section-head {
+    @apply flex flex-col items-center text-center gap-20 mb-66 max-1199:mb-44 max-767:mb-32;
+}
+
+.gift-section-icon img {
+    @apply xl:max-w-90 xl:max-h-100 max-w-50 max-h-50;
+}
+
+.gift-card-tab-nav {
+    @apply flex items-center p-8 bg-white border border-blue border-solid rounded-lg gap-10;
+}
+
+.gift-card-tab-btn {
+    @apply text-[14px] px-32 py-12 max-sm:px-14 rounded-lg font-worksans font-semibold uppercase text-black bg-transparent border-0 cursor-pointer transition-all duration-300;
+    text-box-trim: trim-both;
+}
+
+.gift-card-tab-btn.active,
+.gift-card-tab-btn:hover {
+    @apply bg-blue text-white;
+}
+
+.gift-card-panel {
+    @apply flex flex-col items-center gap-66 max-1199:gap-44 max-767:gap-32;
+}
+
+.gift-card-panel-intro {
+    @apply font-worksans font-normal text-body-2 leading-24 text-black text-center max-w-1200;
+}
+
+.gift-card-panel-intro strong {
+    @apply font-bold text-blue;
+}
+
+.gift-cards-grid {
+    @apply grid gap-x-45 gap-y-65 grid-cols-3 w-full max-[1439px]:grid-cols-2 max-575:grid-cols-1 max-1199:gap-24 max-767:gap-16;
+}
+
+.gift-card-item {
+  @apply relative aspect-[570/380];
+}
+
+.gift-card-stamp-img {
+  @apply w-full h-full object-cover;
+}
+
+.gift-card-gradient-overlay {
+  @apply absolute inset-0 w-full h-full pointer-events-none block z-[1];
+}
+
+.gift-card-price {
+  @apply absolute bg-white rounded-full font-bold text-blue leading-normal whitespace-nowrap z-[2]
+
+         top-[16px] left-[16px] px-[16px] py-[8px] text-[16px]
+
+         sm:top-[20px] sm:left-[20px] sm:px-[18px] sm:py-[10px] sm:text-[18px]
+
+         lg:top-[28px] lg:left-[28px] lg:px-[24px] lg:py-[12px] lg:text-[24px];
+}
+
+.gift-card-info {
+  @apply absolute flex flex-col z-[2]
+         bottom-[16px] left-[18px] right-[18px] gap-[12px]
+
+         sm:bottom-[20px] sm:left-[20px] sm:right-[20px] sm:gap-[16px]
+
+         lg:bottom-[28px] lg:left-[28px] lg:right-[28px] lg:gap-[20px];
+}
+
+.gift-card-tour-name {
+  @apply font-worksans font-semibold text-white m-0
+         text-[14px] leading-[18px]
+         sm:text-[16px] sm:leading-[22px]
+         lg:text-[20px] lg:leading-[28px];
+}
+
+.gift-card-panel-footer {
+    @apply font-worksans font-normal text-body-2 leading-24 text-black text-center max-w-1200;
+}
+
+.gift-card-panel-footer strong {
+    @apply font-bold text-blue;
+}
+
+.gift-card-panel-actions {
+    @apply flex items-center gap-16 flex-wrap justify-center;
+}
+
+.gift-card-item {
+  @apply object-cover w-full h-full;
+  mask-image: url('../images/gift-card-city-tampa.svg');
+  -webkit-mask-image: url('../images/gift-card-city-tampa.svg');
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.gift-card-item {
+    @apply relative;
+}
+
+.gift-card-item::before {
+    @apply content-[""] absolute left-0 top-0 w-full h-full;
+    background: linear-gradient(180deg, rgba(40, 114, 163, 0) 17.21%, #2872A3 100%);
+}
+
+.ctm-popular-gift .btn {
+  @apply px-32 py-16 text-body-3 rounded-lg leading-16 max-575:px-20;
+}
+
+.gift-card-panel .btn-b-white {
+  @apply text-black border py-15 border-transparent hover:text-white w-fit;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #F79808 0%, #E26216 100%) border-box;
+}
+
+.gift-card-panel .btn-b-white::before {
+  background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
 }

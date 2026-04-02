@@ -9,27 +9,27 @@
 
 <article @php(post_class())>
 
-  {{-- Featured Image --}}
-  @if(!empty($thumbnail_url))
-    <div class="blog-single__thumbnail">
-      <img
-        src="{{ esc_url($thumbnail_url) }}"
-        alt="{{ esc_attr($thumbnail_alt) }}"
-        class="w-full h-full object-cover"
-      >
-    </div>
-  @endif
   <div class="container-fluid">
     <div class="blog-single__inner max-w-1200 mx-auto ">
+      {{-- Featured Image --}}
+      @if(!empty($thumbnail_url))
+        <div class="blog-single__thumbnail">
+          <img
+            src="{{ esc_url($thumbnail_url) }}"
+            alt="{{ esc_attr($thumbnail_alt) }}"
+            class="w-full h-full object-cover rounded-lg min-h-550 max-h-550 max-1023:max-h-350 max-1023:min-h-350 max-575:min-h-300 max-575:max-h-300 mb-24"
+          >
+        </div>
+      @endif
 
       {{-- Category --}}
-      @if(!empty($category))
+      {{-- @if(!empty($category))
         <div class="blog-single__category">
           <a href="{{ esc_url(get_category_link($category->term_id)) }}" class="blog-category-link">
             {{ esc_html($category->name) }}
           </a>
         </div>
-      @endif
+      @endif --}}
 
       {{-- Title --}}
       <div class="title title-blue blog-single__title text-center">
@@ -39,20 +39,38 @@
       </div>
 
       {{-- Meta: Author & Date --}}
-      <div class="blog-single__meta">
+      <div class="blog-single__meta my-24">
         <span class="blog-single__author">
+        <img src="@asset('resources/images/author-icon.svg')" alt="Author Icon">
           <a href="{{ esc_url(get_author_posts_url(get_the_author_meta('ID'))) }}">
             {{ esc_html(get_the_author()) }}
           </a>
         </span>
-        <time class="blog-single__date" datetime="{{ esc_attr(get_post_time('c', true)) }}">
-          {{ get_the_date() }}
-        </time>
+        <span class="blog-single__author">
+          <img src="@asset('resources/images/date-icon.svg')" alt="Date Icon">
+          <time class="blog-single__date" datetime="{{ esc_attr(get_post_time('c', true)) }}">
+            {!! get_the_date() !!}
+          </time>
+        </span>
+        <div class="blog-single__author">
+        <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon">
+          <a href="{{ esc_url(get_category_link($category->term_id)) }}" class="blog-category-link">
+            {!! $category->name !!}
+          </a>
+        </div>
       </div>
 
       {{-- Content --}}
       <div class="blog-single__content e-content">
         @php(the_content())
+      </div>
+      <div class="btn-flex flex flex-wrap gap-16 justify-center mt-24">
+        <a href="#" class="btn btn-orange" aria-label="Book Your Flight" role="link">
+          Book Your Flight
+        </a>
+         <a href="#" class="btn btn-b-white" aria-label="Book Your Flight" role="link">
+          View All Tampa Tours
+        </a>
       </div>
 
       {{-- Pagination (multi-page posts) --}}

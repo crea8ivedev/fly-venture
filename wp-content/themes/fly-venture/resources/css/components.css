@@ -10,7 +10,7 @@
 
 /* button */
 .btn {
-  @apply inline-flex gap-8 cursor-pointer items-center justify-center rounded-lg border-0 text-[20px] max-1199:text-body-3 max-1199:leading-16 font-semibold tracking-[0.04em] leading-23 uppercase transition-all duration-300 ease-in-out;
+  @apply inline-flex gap-8 cursor-pointer items-center justify-center rounded-lg border-0 text-[20px] max-1441:text-body-1 max-1441:py-16 max-1199:text-body-3 max-1199:leading-16 font-semibold tracking-[0.04em] leading-23 uppercase transition-all duration-300 ease-in-out;
 }
 .btn-b-white {
   @apply text-white hover:text-black relative bg-transparent border-white border-3 border-solid inline-flex items-center px-32 py-16 justify-center text-center transition-all duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden;
@@ -30,7 +30,7 @@
 }
 
 .btn-blue {
-  @apply text-white  relative   inline-flex items-center px-40 py-20 justify-center text-center transition-all duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden hover:text-blue;
+  @apply text-white  relative   inline-flex items-center px-40 py-20 max-1441:py-16 max-1441:px-35 justify-center text-center transition-all duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden hover:text-blue;
   background: linear-gradient(90deg, #2872A3 0%, #336E95 100%);
 }
 .btn-blue::before{
@@ -53,7 +53,7 @@
 }
 
 .btn-orange {
-  @apply text-white relative inline-flex items-center px-40 py-20 max-1199:px-32 max-1199:py-16 justify-center text-center shadow-none rounded-lg z-1 overflow-hidden;
+  @apply text-white relative inline-flex items-center px-40 py-20 max-1441:py-16 max-1441:px-35 max-1199:px-32 max-1199:py-16 justify-center text-center shadow-none rounded-lg z-1 overflow-hidden;
   background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
 }
 .btn-orange::before {

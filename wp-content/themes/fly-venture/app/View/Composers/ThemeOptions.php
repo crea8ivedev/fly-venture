@@ -22,6 +22,12 @@ class ThemeOptions extends Composer
 
         return [
 
+            // 404
+            'error_image'       => get_field('error_image', 'option') ?: null,
+            'error_pre_heading' => get_field('error_pre_heading', 'option') ?: null,
+            'error_heading'     => get_field('error_heading', 'option') ?: null,
+            'go_home_button'    => get_field('go_home_button', 'option') ?: null,
+
             // Header
             'header_logo' => $header['header_logo'] ?? null,
             'announcement_text' => $header['announcement_text'] ?? null,

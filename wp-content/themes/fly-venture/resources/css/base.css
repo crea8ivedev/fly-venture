@@ -39,7 +39,7 @@ a:hover {
 }
 
 p {
-  @apply font-worksans text-body-2 leading-24 tracking-[0.045em]
+  @apply font-worksans text-body-2 leading-24;
 }
 
 b {
@@ -103,7 +103,7 @@ h3,
 
 h4,
 .h4 {
-  @apply text-heading-4 leading-29 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25;
+  @apply text-heading-4 leading-32 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25;
 }
 
 h5,

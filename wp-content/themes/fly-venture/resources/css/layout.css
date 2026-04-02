@@ -1,8 +1,42 @@
 .site-header {
   @apply fixed top-0 left-0 z-50  w-full bg-black/50 backdrop-blur-sm ;
 }
-
-
+.header-relative {
+  @apply relative bg-white backdrop-blur-none shadow-[0px_4px_16px_rgba(0,0,0,0.16)];
+}
+.header-relative .menu-toggle svg path {
+  @apply fill-black
+}
+.header-relative .main-navigation .menu li.menu-item-has-children>a::after{
+  @apply bg-[url(../images/down-arrow-black.svg)]
+}
+.header-relative .announcement-slider .swiper-slide p ,  .header-relative .announcement-bar .right-side-social .phone a {
+  @apply text-black
+}
+.header-relative  .announcement-bar .right-side-social .phone img{
+  @apply invert-100
+}
+.header-relative .site-logo img{
+  filter: brightness(0) saturate(100%) invert(42%) sepia(20%) saturate(1646%) hue-rotate(161deg) brightness(89%) contrast(89%);
+}
+.header-relative .announcement-slider .swiper-slide p .btn-white{
+  @apply bg-blue text-white ;
+}
+.header-relative .announcement-slider .swiper-slide p .btn-white::before{
+  @apply bg-orange;
+}
+.header-relative  .main-navigation .menu li>.submenu-wrapper ul{
+  @apply bg-[#F5F9FC] backdrop-blur-none
+}
+.header-relative .main-navigation .sub-menu > li a{
+  @apply  hover:text-orange! text-black!
+}
+.header-relative .header-row nav{
+  @apply border-t-blue
+}
+.header-relative .main-navigation .menu>li a{
+  @apply text-black
+}
 .site-header .main-header {
   @apply  max-1199:pb-0 ;
 }
@@ -17,9 +51,12 @@
   }
   }
 
-.site-header.is-sticky .main-header {
+.site-header.is-sticky .main-header  , .header-relative.is-sticky .main-header{
   animation: smoothScroll 1s forwards;
   -webkit-animation: smoothScroll 1s forwards;
+}
+.header-relative.is-sticky {
+  @apply sticky
 }
 /* .announcement-bar.is-sticky {
   @apply hidden
@@ -29,7 +66,7 @@
   -webkit-animation: smoothScroll 1s forwards;
 }
 .announcement-bar {
-  @apply relative overflow-hidden whitespace-nowrap pt-20 pb-18  ;
+  @apply relative overflow-hidden whitespace-nowrap pt-10 pb-12  ;
 }
 
 .announcement-slider {
@@ -134,7 +171,7 @@
   @apply text-white text-body-2 leading-19 font-worksans relative font-medium uppercase ;
 }
 .main-navigation .menu > li{
-  @apply leading-23 pt-26 pb-34 pl-33 max-1199:p-0!;
+  @apply leading-23 pt-26 pb-24 pl-33 max-1199:p-0!;
 }
 .main-navigation .menu > li:first-child{
   @apply pl-0
