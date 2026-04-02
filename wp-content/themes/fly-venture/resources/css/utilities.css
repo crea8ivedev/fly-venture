@@ -1343,6 +1343,10 @@ body.fv-popup-open {
   @apply hidden;
 }
 
+.blogs .popular-tour-card-body h4 {
+  @apply max-1199:text-[24px] max-1199:leading-30 max-992:text-xl max-992:leading-26;
+}
+
 
 /* employment-openings-start */
 
