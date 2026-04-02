@@ -636,7 +636,7 @@
   @apply max-w-605;
 }
 .inner-hero-section{
-  @apply relative h-740 max-2000:h-640 pb-60 max-1199:h-auto overflow-hidden ;
+  @apply relative h-740 max-2000:h-640  max-1199:h-auto overflow-hidden ;
 }
 .inner-hero-section .hero-content-wrap  {
   @apply pt-170 max-1199:pt-115;
