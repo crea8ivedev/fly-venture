@@ -81,8 +81,8 @@
   @apply flex items-center;
   width: max-content;
   will-change: transform;
-  animation: announcementMarquee 45s linear infinite;
-  -webkit-animation: announcementMarquee 45s linear infinite;
+  animation: announcementMarquee 90s linear infinite;
+  -webkit-animation: announcementMarquee 90s linear infinite;
 }
 
 .announcement-slider.is-marquee .swiper-slide {
@@ -261,11 +261,11 @@
 
 /* footer-start */
 .site-footer {
-  @apply bg-[#343434] pt-60 max-1023:pt-40;
+  @apply bg-[#343434] pt-60 max-1023:pt-40 relative;
 }
 
 .footer-top {
-  @apply flex max-1023:flex-wrap justify-between gap-35 gap-y-25 border-0 border-b-1 border-white/20 pb-30 max-1023:pb-24 ;
+  @apply flex max-1023:flex-wrap justify-between gap-35 gap-y-25 border-0 border-b-1 border-white/20 pb-30 max-1023:pb-24 max-767:pr-40;
 }
 .footer-col .title{
   @apply pt-5 relative max-1199:py-3

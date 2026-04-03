@@ -2,7 +2,8 @@
   $thumbnail_id  = get_post_thumbnail_id();
   $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
   $thumbnail_alt = $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : get_the_title();
-
+  $button_1 = get_field('button_1');
+  $button_2 = get_field('button_2');
   $categories = get_the_category();
   $category   = ! empty($categories) ? $categories[0] : null;
 @endphp
@@ -52,26 +53,38 @@
             {!! get_the_date() !!}
           </time>
         </span>
-        <div class="blog-single__author">
-        <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon">
-          <a href="{{ esc_url(get_category_link($category->term_id)) }}" class="blog-category-link">
-            {!! $category->name !!}
-          </a>
-        </div>
+        @if(!empty($categories))
+  <div class="blog-single__author">
+    <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon">
+
+    @foreach($categories as $cat)
+      <a href="{{ esc_url(get_category_link($cat->term_id)) }}" class="blog-category-link">
+        {{ esc_html($cat->name) }}
+      </a>@if(!$loop->last)/ @endif
+    @endforeach
+
+  </div>
+@endif
       </div>
 
       {{-- Content --}}
       <div class="blog-single__content e-content">
-        @php(the_content())
+        {!! the_content() !!}
       </div>
-      <div class="btn-flex flex flex-wrap gap-16 justify-center mt-24">
-        <a href="#" class="btn btn-orange" aria-label="Book Your Flight" role="link">
-          Book Your Flight
-        </a>
-         <a href="#" class="btn btn-b-white" aria-label="Book Your Flight" role="link">
-          View All Tampa Tours
-        </a>
-      </div>
+      @if($button_1 || $button_2)
+        <div class="btn-flex flex flex-wrap gap-16 justify-center mt-24">
+          @if($button_1)
+            <a href="{{ esc_url($button_1['url']) }}" class="btn btn-orange" aria-label="{{ esc_attr($button_1['title']) }}" target="{{ $button_1['target'] ?: '_self' }}" role="link">
+              {{ $button_1['title'] }}
+            </a>
+          @endif
+          @if($button_2)
+            <a href="{{ esc_url($button_2['url']) }}" class="btn btn-b-white" aria-label="{{ esc_attr($button_2['title']) }}" target="{{ $button_2['target'] ?: '_self' }}" role="link">
+              {!! $button_2['title'] !!}
+            </a>
+          @endif
+        </div>
+      @endif
 
       {{-- Pagination (multi-page posts) --}}
       @if($pagination())

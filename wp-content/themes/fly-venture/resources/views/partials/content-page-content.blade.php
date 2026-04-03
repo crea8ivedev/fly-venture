@@ -38,6 +38,20 @@
                   @include('partials.section.page-content.general_content', ['content' => $content, 'groupData' => $groupData])
             @elseif ($content->layout === 'blog_listing')
                   @include('partials.section.page-content.blog_listing', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'gift_card_section')
+                  @include('partials.section.page-content.gift_card_section', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'icon_cards_section')
+                  @include('partials.section.page-content.icon_cards_section', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'current_openings')
+                  @include('partials.section.page-content.current_openings', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'influencer_requirements')
+                  @include('partials.section.page-content.influencer_requirements', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'gender_reveal_package')
+                  @include('partials.section.page-content.gender_reveal_package', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'how_it_works')
+                  @include('partials.section.page-content.how_it_works', ['content' => $content, 'groupData' => $groupData])
+            @elseif ($content->layout === 'highlights')
+                  @include('partials.section.page-content.highlights', ['content' => $content, 'groupData' => $groupData])
             @endif
         @endif
     @endforeach

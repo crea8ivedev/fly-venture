@@ -33,7 +33,7 @@
         <div class="filter-bar">
           <div class="sr-sorting">
             <label for="blog-category-filter">Filter by:</label>
-            <select class="blog-category-select w-[80%] select-category" id="blog-category-filter" aria-label="{{ esc_attr__('Filter by category', 'sage') }}">
+            <select class="blog-category-select select-category" id="blog-category-filter" aria-label="{{ esc_attr__('Filter by category', 'sage') }}">
               <option value="0">All</option>
               @foreach($categories as $cat)
                 <option value="{{ esc_attr($cat->term_id) }}">
@@ -62,7 +62,7 @@
 
     {{-- Posts Grid --}}
     <div class="tempa-tour-wrap border-0 pt-66 max-1023:py-40">
-      <div class="tempa-tours-grid blog-listing-grid grid grid-cols-3 max-992:grid-cols-2 max-575:grid-cols-1 gap-45 max-[1200px]:gap-20 items-center" id="blog-listing-grid">
+      <div class="tempa-tours-grid blog-listing-grid grid grid-cols-3 max-1199:grid-cols-2 max-575:grid-cols-1 gap-45 max-[1200px]:gap-20 items-center" id="blog-listing-grid">
 
         @if(!empty($posts))
           @foreach($posts as $post)
@@ -70,13 +70,13 @@
             <div class="popular-tour-card">
               <div class="popular-tour-card-media">
                 @if(!empty($post['thumbnail']['url']))
-                  <img
+                <a href="{!! esc_url($post['permalink']) !!}"><img
                     src="{{ esc_url($post['thumbnail']['url']) }}"
                     alt="{{ esc_attr($post['thumbnail']['alt']) }}"
                     height="250"
                     width="375"
                     loading="lazy"
-                  >
+                  ></a>
                 @endif
 
                 @if(!empty($post['category']))
@@ -86,7 +86,7 @@
 
               <div class="popular-tour-card-body">
                 <div class="top-content">
-                  <h4>{{ esc_html($post['title']) }}</h4>
+                <a href="{!! esc_url($post['permalink']) !!}"><h4>{{ esc_html($post['title']) }}</h4></a>
 
                   <div class="popular-tour-metas">
                     <div class="flex gap-10 items-center mb-16">

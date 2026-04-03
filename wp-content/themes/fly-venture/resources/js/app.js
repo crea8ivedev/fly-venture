@@ -83,4 +83,10 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('scroll', toggleStickyButton, { passive: true });
         toggleStickyButton(); // Check initial state
     }
+    const btn = document.querySelector('.btn-back-top');
+    if (btn) {
+        btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });

@@ -117,6 +117,7 @@ class TourSingle extends Composer
                 'perPersonText'      => $priceBlock['per_person_text']       ?? '',
                 'selectPriceTag'     => $priceBlock['select_price_tag']      ?? [],
                 'selectBookingTag'   => $priceBlock['select_booking_tag']    ?? [],
+                'select_booking_tag_2'   => $priceBlock['select_booking_tag_2']    ?? [],
                 'tooltipForPriceTag' => $priceBlock['tooltip_for_price_tag'] ?? '',
             ],
             'flightInfo'   => [

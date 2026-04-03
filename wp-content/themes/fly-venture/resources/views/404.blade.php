@@ -5,7 +5,7 @@
     <div class="container-fluid text-center">
       <div class="flex flex-col justify-center items-center ">
         @if (!empty($error_image) && is_array($error_image))
-          <div class="error-image">
+          <div class="error-image mb-10">
             <img
               src="{{ esc_url($error_image['url']) }}"
               alt="{{ esc_attr($error_image['alt'] ?? '') }}"

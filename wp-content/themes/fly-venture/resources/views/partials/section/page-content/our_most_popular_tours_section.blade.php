@@ -11,7 +11,9 @@
                   $allCategories[$term->slug] = [
                       'name' => $term->name,
                       'link' => get_term_link($term),
+                      
                   ];
+                  
               }
           }
       }

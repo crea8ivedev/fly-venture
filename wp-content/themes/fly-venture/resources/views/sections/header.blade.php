@@ -1,4 +1,4 @@
-<header class="site-header{{ ((is_single() && !is_singular('tour')) || is_404()) ? ' header-relative' : '' }}" id="site-header">
+<header class="site-header{{ ((is_single() && !is_singular('tours')) || is_404()) ? ' header-relative' : '' }}" id="site-header">
   <div class="announcement-bar" aria-label="Announcements">
     <div class="flex flex-wrap justify-between items-center px-60 max-1199:px-0">
 
