@@ -86,7 +86,7 @@
 
               <div class="popular-tour-card-body">
                 <div class="top-content">
-                <a href="{!! esc_url($post['permalink']) !!}"><h4>{{ esc_html($post['title']) }}</h4></a>
+                <a href="{!! esc_url($post['permalink']) !!}"><h4>{!! ($post['title']) !!}</h4></a>
 
                   <div class="popular-tour-metas">
                     <div class="flex gap-10 items-center mb-16">

@@ -2,8 +2,8 @@
   $thumbnail_id  = get_post_thumbnail_id();
   $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
   $thumbnail_alt = $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : get_the_title();
-  $button_1 = get_field('button_1');
-  $button_2 = get_field('button_2');
+  $book_flight_button = get_field('book_flight_button');
+  $view_tours_buttons = get_field('view_tours_button') ?: [];
   $categories = get_the_category();
   $category   = ! empty($categories) ? $categories[0] : null;
 @endphp
@@ -71,18 +71,20 @@
       <div class="blog-single__content e-content">
         {!! the_content() !!}
       </div>
-      @if($button_1 || $button_2)
+      @if($book_flight_button || !empty($view_tours_buttons))
         <div class="btn-flex flex flex-wrap gap-16 justify-center mt-24">
-          @if($button_1)
-            <a href="{{ esc_url($button_1['url']) }}" class="btn btn-orange" aria-label="{{ esc_attr($button_1['title']) }}" target="{{ $button_1['target'] ?: '_self' }}" role="link">
-              {{ $button_1['title'] }}
+          @if($book_flight_button)
+            <a href="{{ esc_url($book_flight_button['url']) }}" class="btn btn-orange" aria-label="{{ esc_attr($book_flight_button['title']) }}" target="{{ $book_flight_button['target'] ?: '_self' }}" role="link">
+              {{ $book_flight_button['title'] }}
             </a>
           @endif
-          @if($button_2)
-            <a href="{{ esc_url($button_2['url']) }}" class="btn btn-b-white" aria-label="{{ esc_attr($button_2['title']) }}" target="{{ $button_2['target'] ?: '_self' }}" role="link">
-              {!! $button_2['title'] !!}
-            </a>
-          @endif
+          @foreach($view_tours_buttons as $item)
+            @if(!empty($item['add_button']))
+              <a href="{{ esc_url($item['add_button']['url']) }}" class="btn btn-b-white" aria-label="{{ esc_attr($item['add_button']['title']) }}" target="{{ $item['add_button']['target'] ?: '_self' }}" role="link">
+                {{ $item['add_button']['title'] }}
+              </a>
+            @endif
+          @endforeach
         </div>
       @endif
 
