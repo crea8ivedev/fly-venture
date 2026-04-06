@@ -66,11 +66,11 @@
   @apply opacity-100
 }
 
-.title-white h1 , .title-white h2 , .title-white h3 , .title-white h4 , .title-white h5 , .title-white h6 , .title-white .h1 , .title-white .h2, .title-white .h3, .title-white .h4 , .title-white .h5 , .title-white .h6 {
+.title-white h1 , .title-white h2 , .title-white h4 , .title-white h4 , .title-white h5 , .title-white h6 , .title-white .h1 , .title-white .h2, .title-white .h4, .title-white .h4 , .title-white .h5 , .title-white .h6 {
   @apply text-white
 }
 
-.title-blue h1 , .title-blue h2 , .title-blue h3 , .title-blue h4 , .title-blue h5 , .title-blue h6 , .title-blue .h1 , .title-blue .h2, .title-blue .h3, .title-blue .h4 , .title-blue .h5 , .title-blue .h6 {
+.title-blue h1 , .title-blue h2 , .title-blue h4 , .title-blue h4 , .title-blue h5 , .title-blue h6 , .title-blue .h1 , .title-blue .h2, .title-blue .h4, .title-blue .h4 , .title-blue .h5 , .title-blue .h6 {
   @apply text-blue
 }
 
