@@ -15,8 +15,8 @@
             <div class="title text-center text-blue">
                 <a href="{!! get_permalink() !!}"><h4>{!! get_the_title() !!}</h4></a>
             </div>
-            <div class="content text-center ">
-                <p>{!! get_the_excerpt() !!}</p>
+            <div class="content text-center">
+                <p>{!! wp_trim_words(get_the_excerpt(), 25, '...') !!}</p>
             </div>
         </div>
         <div class="popular-tour-btns inline-flex! w-full event-item-btn pt-[16px] flex flex-wrap justify-center gap-[20px]">
