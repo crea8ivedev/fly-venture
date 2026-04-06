@@ -85,7 +85,7 @@
 
                 @if ( ! empty( $_s_title ) )
                   <div class="title title-blue">
-                    <h4>{{ is_scalar( $_s_title ) ? $_s_title : '' }}</h4>
+                    <h4>{!! is_scalar( $_s_title ) ? $_s_title : '' !!}</h4>
                   </div>
                 @endif
 

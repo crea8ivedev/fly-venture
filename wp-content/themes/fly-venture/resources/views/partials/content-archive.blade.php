@@ -86,13 +86,13 @@
                   </a>
                 @endif
                 @if(!empty($post['category']))
-                  <span class="popular-tour-pill">{{ esc_html($post['category']['name']) }}</span>
+                  <span class="popular-tour-pill">{!! $post['category']['name'] !!}</span>
                 @endif
               </div>
 
               <div class="popular-tour-card-body">
                 <div class="top-content">
-                  <a href="{!! esc_url($post['permalink']) !!}"><h4>{{ esc_html($post['title']) }}</h4></a>
+                  <a href="{!! esc_url($post['permalink']) !!}"><h4>{!! $post['title'] !!}</h4></a>
 
                   <div class="popular-tour-metas">
                     <div class="flex gap-10 items-center mb-16">

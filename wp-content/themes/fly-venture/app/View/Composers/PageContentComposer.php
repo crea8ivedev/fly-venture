@@ -189,7 +189,7 @@ class PageContentComposer extends Composer
                         'add_steps'     => $content['add_steps'] ?? null,
 
                         'id' => $content['id'],
-                        'extra_class' => $content['extra_class'],
+                        'class' => $content['class'] ?? null,
                         'hide_section' => $content['hide_section'],
                     ];
                     continue;
@@ -203,7 +203,7 @@ class PageContentComposer extends Composer
                         'add_highlights'     => $content['add_highlights'] ?? null,
 
                         'id' => $content['id'],
-                        'extra_class' => $content['extra_class'],
+                        'class' => $content['class'] ?? null,
                         'hide_section' => $content['hide_section'],
                     ];
                     continue;

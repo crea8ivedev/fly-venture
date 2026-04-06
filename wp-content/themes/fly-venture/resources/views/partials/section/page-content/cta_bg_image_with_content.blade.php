@@ -58,7 +58,9 @@
 
         {{-- Description --}}
         @if ( ! empty( $content->cta_iwc_short_desciption ) )
-            {!! wp_kses_post( $content->cta_iwc_short_desciption ) !!}
+        <div class="content">
+            {!! $content->cta_iwc_short_desciption !!}
+        </div>
         @endif
 
         {{-- CTA Button --}}

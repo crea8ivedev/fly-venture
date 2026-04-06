@@ -69,7 +69,7 @@
               <div class="employment-card-section global-list">
                 @if(!empty($opening['job_title']))
                   <div class="title title-blue employment-card-title">
-                    <h3>{{ $opening['job_title'] }}</h3>
+                    <h4>{{ $opening['job_title'] }}</h4>
                   </div>
                 @endif
 
@@ -85,7 +85,7 @@
                 <div class="employment-card-section global-list">
                   @if(!empty($opening['required_skills_heading']))
                     <div class="title title-blue employment-card-title">
-                      <h3>{{ $opening['required_skills_heading'] }}</h3>
+                      <h4>{{ $opening['required_skills_heading'] }}</h4>
                     </div>
                   @endif
                   <div class="content">
@@ -99,7 +99,7 @@
                 <div class="employment-card-section global-list">
                   @if(!empty($opening['preferred_skills_heading']))
                     <div class="title title-blue employment-card-title">
-                      <h3>{{ $opening['preferred_skills_heading'] }}</h3>
+                      <h4>{{ $opening['preferred_skills_heading'] }}</h4>
                     </div>
                   @endif
                   <div class="content">

@@ -171,7 +171,7 @@
             @foreach ( $content->inner_counter_repeater as $_row )
               <div class="hero-stat-item">
                 @if ( ! empty( $_row['number'] ) )
-                  <h3>{{ is_scalar( $_row['number'] ) ? $_row['number'] : '' }}</h3>
+                  <h4>{{ is_scalar( $_row['number'] ) ? $_row['number'] : '' }}</h4>
                 @endif
                 @if ( ! empty( $_row['text'] ) )
                   <p>{{ is_scalar( $_row['text'] ) ? $_row['text'] : '' }}</p>

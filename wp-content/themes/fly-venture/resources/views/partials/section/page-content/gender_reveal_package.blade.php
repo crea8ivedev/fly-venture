@@ -76,7 +76,7 @@
 
                 <div class="package-price">
                     <div class="title title-blue">
-                        <h3 id="selected-county-price">{{ esc_html($default_county['county_price'] ?? '') }}</h3>
+                        <h4 id="selected-county-price">{{ esc_html($default_county['county_price'] ?? '') }}</h4>
                     </div>
                 </div>
 

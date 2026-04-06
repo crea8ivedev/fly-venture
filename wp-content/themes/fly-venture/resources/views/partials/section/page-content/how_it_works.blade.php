@@ -1,6 +1,5 @@
-@if (isset($content->hide_section) && $content->hide_section == 'no')
-    <section class="how-it-works-section py-100 max-1199:py-60 max-767:py-40 @if ($content->extra_class) {!! $content->extra_class !!} @endif"
-            @if ($content->id) id="{!! $content->id !!}" @endif>
+@if ($content->hide_section !== 'yes')
+    <section id="{!! $content->id ?? '' !!}" class="how-it-works-section py-100 max-1199:py-60 max-767:py-40 {!! $content->class ?? '' !!}">
         <div class="container-fluid">
             <div class="flex flex-col gap-44 items-center">
 

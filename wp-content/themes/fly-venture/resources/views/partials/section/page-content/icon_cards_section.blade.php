@@ -39,10 +39,12 @@
       @if(!empty($content->icon_cards))
         <div class="grid grid-cols-5 gap-24 max-1440:grid-cols-3 max-992:gap-16 max-767:grid-cols-2 max-575:grid-cols-1">
           @foreach($content->icon_cards as $card)
-            <article class="group cursor-pointer h-full flex min-h-140 flex-col justify-center items-center shadow-[0px_0px_16px_rgba(40,114,163,0.16)] rounded-[10px] border border-blue bg-white p-24 text-center transition-all duration-300 hover:bg-blue">
+            <article class="group cursor-pointer h-full flex min-h-140 flex-col justify-center items-center shadow-[0px_0px_16px_rgba(40,114,163,0.16)] rounded-[10px] border border-blue bg-white p-24 text-center transition-all duration-300 
+hover:bg-blue active:bg-blue focus:bg-blue">
 
               @if(!empty($card['card_icon']))
-                <div class="mb-20 flex h-100 w-100 items-center justify-center rounded-full bg-[#F5F9FC] transition-all duration-300 group-hover:bg-white">
+                <div class="mb-20 flex h-100 w-100 items-center justify-center rounded-full bg-[#F5F9FC] transition-all duration-300 
+group-hover:bg-white group-active:bg-white group-focus:bg-white">
                   <img
                     class="max-w-48"
                     src="{{ esc_url($card['card_icon']['url']) }}"
@@ -54,13 +56,15 @@
               @endif
 
               @if(!empty($card['title']))
-                <h4 class="mb-20 font-bold text-blue! transition-all duration-300 group-hover:text-white!">
+                <h4 class="mb-20 font-bold text-blue! transition-all duration-300 
+group-hover:text-white! group-active:text-white! group-focus:text-white!">
                   {{ $card['title'] }}
                 </h4>
               @endif
 
               @if(!empty($card['ic_description']))
-                <div class="text-black leading-24! transition-all duration-300 group-hover:text-white">
+                <div class="text-black leading-24! transition-all duration-300 
+group-hover:text-white group-active:text-white group-focus:text-white">
                   {!! $card['ic_description'] !!}
                 </div>
               @endif

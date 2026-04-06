@@ -1,5 +1,5 @@
 @php
-  $section_classes = 'blogs blog-listing-wrapper blog-listing-section pt-80 pb-100 max-1023:py-40';
+  $section_classes = 'blogs blog-listing-wrapper blog-listing-section py-100 max-1023:py-40';
 
   if (!empty($content->hide_section) && $content->hide_section !== 'no') {
       $section_classes .= ' hidden';

@@ -244,9 +244,7 @@ $show_popup = !empty($popup_image['url'])
           </button>
           {{-- Lead Text --}}
           @if(!empty($popup_content_1))
-          <p class="fv-offer-popup__lead" id="fv-offer-popup-title">
-            {{ wp_strip_all_tags($popup_content_1) }}
-          </p>
+            {!! ($popup_content_1) !!}
           @endif
 
           {{-- Coupon Block --}}

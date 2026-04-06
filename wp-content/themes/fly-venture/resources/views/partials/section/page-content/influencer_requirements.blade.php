@@ -16,7 +16,7 @@
             width="{{ $content->ip_icon['width'] ?? '' }}"
             height="{{ $content->ip_icon['height'] ?? '' }}"
             alt="{{ esc_attr($content->ip_icon['alt'] ?? '') }}"
-            class="max-1023:max-w-50 max-1023:max-h-50"
+            class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50"
           >
         </div>
       @endif
