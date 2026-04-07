@@ -5,7 +5,7 @@
                 <div class="common-head fadeText">
                     @if (!empty($content->highlights_icon))
                         <div class="common-head-icon" aria-hidden="true">
-                            <img src="{!! $content->highlights_icon['url'] !!}" width="68" height="100" alt="{!! $content->highlights_icon['alt'] !!}">
+                            <img src="{!! $content->highlights_icon['url'] !!}" width="68" height="100" alt="{!! $content->highlights_icon['alt'] !!}" loading="lazy">
                         </div>
                     @endif
                     @if (!empty($content->title))
@@ -24,7 +24,7 @@
                         @foreach ($content->add_highlights as $add_highlights)
                             <div class="feature-card">
                                 @if ($add_highlights['image'])
-                                    <img src="{!! $add_highlights['image']['url'] !!}" alt="{!! $add_highlights['image']['alt'] !!}" class="feature-card__img">
+                                    <img src="{!! $add_highlights['image']['url'] !!}" alt="{!! $add_highlights['image']['alt'] !!}" class="feature-card__img" loading="lazy">
                                     <div class="feature-card__overlay">
                                         <h4 class="feature-card__title">{!! $add_highlights['title'] !!}</h4>
                                         {!! $add_highlights['description'] !!}

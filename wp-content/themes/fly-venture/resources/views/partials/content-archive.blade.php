@@ -6,6 +6,7 @@
       alt="Archive banner background"
       class="h-full w-full object-cover"
       loading="eager"
+      fetchpriority="high"
     >
   </div>
   <div class="hero-overlay"></div>

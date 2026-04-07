@@ -49,9 +49,9 @@
           src="{{ esc_url( $_d_img['url'] ) }}"
           alt="{{ esc_attr( $_d_img['alt'] ?? 'Hero background' ) }}"
           @if ( ! empty( $_d_img['width'] ) )  width="{{ absint( $_d_img['width'] ) }}"  @endif
-          @if ( ! empty( $_d_img['height'] ) ) height="{{ absint( $_d_img['height'] ) }}" @endif
           class="h-full w-full object-cover desktop-img max-767:hidden!"
           loading="eager"
+          fetchpriority="high"
         >
       @elseif ( is_string( $_d_img ) && $_d_img !== '' )
         <img
@@ -59,6 +59,7 @@
           alt="Hero background"
           class="h-full w-full object-cover desktop-img max-767:hidden!"
           loading="eager"
+          fetchpriority="high"
         >
       @endif
     @endif
@@ -97,6 +98,7 @@
           @if ( ! empty( $mobile_image_src['height'] ) ) height="{{ absint( $mobile_image_src['height'] ) }}" @endif
           class="hidden h-full w-full object-cover max-767:block"
           loading="eager"
+          fetchpriority="high"
         >
       @elseif ( is_string( $mobile_image_src ) && $mobile_image_src !== '' )
         <img
@@ -104,6 +106,7 @@
           alt="Hero background"
           class="hidden h-full w-full object-cover max-767:block"
           loading="eager"
+          fetchpriority="high"
         >
       @endif
     @endif
@@ -135,6 +138,7 @@
                       height="16"
                       width="17"
                       alt="star"
+                      loading="lazy"
                     >
                   </li>
                 @endfor

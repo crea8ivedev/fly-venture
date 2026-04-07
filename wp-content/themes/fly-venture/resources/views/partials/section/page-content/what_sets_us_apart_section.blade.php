@@ -39,6 +39,7 @@
               width="{{ absint( $icon['width'] ) }}"
               height="{{ absint( $icon['height'] ) }}"
               alt="{{ esc_attr( $icon['alt'] ?: $icon['title'] ) }}"
+              loading="lazy"
             >
           </div>
         @endif

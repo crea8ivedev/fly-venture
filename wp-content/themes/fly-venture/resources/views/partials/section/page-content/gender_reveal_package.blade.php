@@ -46,9 +46,10 @@
                                     width="{{ !empty($icon['width']) ? absint($icon['width']) : 90 }}"
                                     height="{{ !empty($icon['height']) ? absint($icon['height']) : 100 }}"
                                     alt="{{ esc_attr($icon['alt'] ?? '') }}"
+                                    loading="lazy"
                                 >
                             @elseif(is_string($icon) && $icon !== '')
-                                <img src="{{ esc_url($icon) }}" width="90" height="100" alt="">
+                                <img src="{{ esc_url($icon) }}" width="90" height="100" alt="" loading="lazy">
                             @endif
                         </div>
                     @endif

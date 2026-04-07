@@ -7,6 +7,7 @@
                 width="400" 
                 height="340" 
                 class="max-w-full w-full h-auto aspect-[1.18/1] object-cover rounded-[8px] shadow-shadowWhiteBtn"
+                loading="lazy"
             >
         </a>
     </div>

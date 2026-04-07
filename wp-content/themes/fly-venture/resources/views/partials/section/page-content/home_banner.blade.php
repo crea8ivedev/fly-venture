@@ -73,6 +73,7 @@
         @if ( $desktop_image['height'] ) height="{{ $desktop_image['height'] }}" @endif
         class="h-full w-full object-cover destop-img max-767:hidden!"
         loading="eager"
+        fetchpriority="high"
       >
 
     @endif
@@ -101,6 +102,7 @@
         @if ( $mobile_image['height'] ) height="{{ $mobile_image['height'] }}" @endif
         class="hidden h-full w-full object-cover max-767:block"
         loading="eager"
+        fetchpriority="high"
       >
 
     @endif
@@ -132,6 +134,7 @@
                       height="16"
                       width="17"
                       alt="star"
+                      loading="lazy"
                     >
                   </li>
                 @endfor

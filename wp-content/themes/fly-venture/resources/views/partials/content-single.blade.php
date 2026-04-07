@@ -19,6 +19,8 @@
             src="{{ esc_url($thumbnail_url) }}"
             alt="{{ esc_attr($thumbnail_alt) }}"
             class="w-full h-full object-cover rounded-lg min-h-550 max-h-550 max-1023:max-h-350 max-1023:min-h-350 max-575:min-h-300 max-575:max-h-300 mb-24"
+            loading="eager"
+            fetchpriority="high"
           >
         </div>
       @endif
@@ -42,20 +44,20 @@
       {{-- Meta: Author & Date --}}
       <div class="blog-single__meta my-24">
         <span class="blog-single__author">
-        <img src="@asset('resources/images/author-icon.svg')" alt="Author Icon">
+        <img src="@asset('resources/images/author-icon.svg')" alt="Author Icon" loading="lazy">
           <a href="{{ esc_url(get_author_posts_url(get_the_author_meta('ID'))) }}">
             {{ esc_html(get_the_author()) }}
           </a>
         </span>
         <span class="blog-single__author">
-          <img src="@asset('resources/images/date-icon.svg')" alt="Date Icon">
+          <img src="@asset('resources/images/date-icon.svg')" alt="Date Icon" loading="lazy">
           <time class="blog-single__date" datetime="{{ esc_attr(get_post_time('c', true)) }}">
             {!! get_the_date() !!}
           </time>
         </span>
         @if(!empty($categories))
   <div class="blog-single__author">
-    <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon">
+    <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon" loading="lazy">
 
     @foreach($categories as $cat)
       <a href="{{ esc_url(get_category_link($cat->term_id)) }}" class="blog-category-link">

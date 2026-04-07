@@ -20,18 +20,17 @@
 }
 
 .btn-white {
-    @apply text-blue relative bg-white inline-flex items-center px-28 py-14 justify-center text-center transition-all max-1199:text-body-2! max-1199:leading-19! duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden;
+    @apply text-blue hover:text-white relative bg-white  inline-flex items-center px-28 py-14 justify-center text-center transition-all max-1199:text-body-2! max-1199:leading-19! duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden;
 }
 .btn-white::before{
     @apply content-[''] absolute top-0 right-0 w-0 h-full bg-blue -z-1 transition-all duration-300 delay-75;
 }
-@media (hover: hover) {
-    .btn-white:hover {
-        @apply text-white opacity-100;
-    }
-    .btn-white:hover::before{
-        @apply w-full left-0;
-    }
+.btn-white:hover::before{
+    @apply  w-full left-0
+}
+
+.btn-white:hover {
+    @apply text-white! opacity-100!;
 }
 
 .btn-blue {

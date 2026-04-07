@@ -1559,7 +1559,7 @@ body.fv-popup-open {
 }
 
 .features-grid__container .feature-card {
-  @apply aspect-[4/3] shadow-[0px_0px_16px_rgba(0,0,0,0.16)];
+  @apply shadow-[0px_0px_16px_rgba(0,0,0,0.16)];
 }
 
 .feature-card {

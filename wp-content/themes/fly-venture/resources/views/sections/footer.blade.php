@@ -223,7 +223,7 @@ $show_popup = !empty($popup_image['url'])
       </div>
       <div class="btn-back-top cursor-pointer flex items-center gap-10 top-135 max-767:top-[unset] max-767:bottom-260 -rotate-90 absolute -right-30 ">
         <span>Back to fly</span>
-        <img src="@asset('resources/images/back-to-fly.svg')" class="rotate-90" height="40" width="40" alt="Back to fly">
+        <img src="@asset('resources/images/back-to-fly.svg')" class="rotate-90" height="40" width="40" alt="Back to fly" loading="lazy">
       </div>
     </div>
 

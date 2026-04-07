@@ -8,7 +8,7 @@
                     @if (!empty($content->works_icon))
                         <div class="how-it-works-icon">
                             <img src="{!! $content->works_icon['url'] !!}" width="100" height="83"
-                                alt="{!! $content->works_icon['url'] !!}">
+                                alt="{!! $content->works_icon['url'] !!}" loading="lazy">
                         </div>
                     @endif
                     @if (!empty($content->title))
@@ -31,7 +31,7 @@
                             @if ($add_steps['image'])
                                 <div class="step-image-wrap">
                                     <img src="{!! $add_steps['image']['url'] !!}" width="212" height="212"
-                                        alt="{!! $add_steps['image']['alt'] !!}">
+                                        alt="{!! $add_steps['image']['alt'] !!}" loading="lazy">
                                 </div>
                             @endif
 
@@ -57,7 +57,7 @@
                         {{-- Arrow (not after last item) --}}
                         @if (!$loop->last)
                             <div class="step-arrow {!! $loop->index % 2 != 0 ? 'step-arrow-flip' : '' !!}" aria-hidden="true">
-                                <img src="@asset('resources/images/how-it-works-arrow.svg')" width="187" height="120" alt="">
+                                <img src="@asset('resources/images/how-it-works-arrow.svg')" width="187" height="120" alt="" loading="lazy">
                             </div>
                         @endif
                     @endforeach

@@ -38,7 +38,7 @@
         <section class="hero-section inner-hero-section single-tour-hero">
             @if (!empty($image))
                 <div class="hero-bg">
-                    <img src="{!! $image['url'] !!}" alt="{!! $image['url'] !!}" class="h-full w-full object-cover desktop-img max-767:hidden!" loading="eager">
+                    <img src="{!! $image['url'] !!}" alt="{!! $image['url'] !!}" class="h-full w-full object-cover desktop-img max-767:hidden!" loading="eager" fetchpriority="high">
                 </div>
             @endif
             <div class="hero-overlay"></div>

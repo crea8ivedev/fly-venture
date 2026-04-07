@@ -82,7 +82,7 @@
 
       @if ( ! empty( $icon_url ) )
         <div class="common-head-icon" aria-hidden="true">
-          <img src="{{ esc_url( $icon_url ) }}" width="68" height="100" alt="section icon">
+          <img src="{{ esc_url( $icon_url ) }}" width="68" height="100" alt="section icon" loading="lazy">
         </div>
       @endif
 
@@ -190,7 +190,7 @@
             @if ( ! empty( $thumbnail ) )
             
               <img src="{{ esc_url( $thumbnail ) }}" height="250" width="375"
-                   alt="{{ esc_attr( $_tour->post_title ) }}">
+                   alt="{{ esc_attr( $_tour->post_title ) }}" loading="lazy">
            
             @endif
             @if ( ! empty( $badgeLabel ) )
@@ -267,7 +267,7 @@
                   <small><strong>{{ esc_html( $durationLabel ) }}</strong></small>
                   @if ( ! empty( $duration ) )
                     <div class="time mt-6 inline-flex gap-6 items-center">
-                      <img src="{{ esc_url( $clock_uri ) }}" height="18" width="18" alt="clock">
+                      <img src="{{ esc_url( $clock_uri ) }}" height="18" width="18" alt="clock" loading="lazy">
                       <strong>{{ esc_html( $duration ) }} min</strong>
                     </div>
                   @endif
