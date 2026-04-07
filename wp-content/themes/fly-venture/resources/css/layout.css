@@ -264,6 +264,11 @@
   @apply bg-[url(../images/graident-down.svg)] ;
 }
 
+/* Submenu toggle button (mobile only) */
+.submenu-toggle {
+  @apply hidden;
+}
+
 /* footer-start */
 .site-footer {
   @apply bg-[#343434] pt-60 max-1023:pt-40 relative;
@@ -449,6 +454,27 @@
     .main-navigation .menu li.submenu-open a::before {
       @apply hidden;
     }
+
+  /* Hide the ::after arrow on the link; show the dedicated toggle button instead */
+  .main-navigation .menu li.menu-item-has-children > a::after {
+    @apply hidden;
+  }
+
+  .main-navigation .menu li.menu-item-has-children > a {
+    @apply pr-30;
+  }
+
+  .submenu-toggle {
+    @apply flex items-center justify-center absolute right-0 top-0 h-40 w-40 bg-transparent border-0 cursor-pointer;
+    background-image: url(../images/down-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px 6px;
+  }
+
+  .submenu-open > .submenu-toggle {
+    background-image: url(../images/graident-down.svg);
+  }
 
   .main-navigation .menu li .submenu-wrapper ul li a {
     @apply px-16 py-8;

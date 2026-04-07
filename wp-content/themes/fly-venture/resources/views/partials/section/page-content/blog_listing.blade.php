@@ -47,7 +47,7 @@ $categories = get_categories(['hide_empty' => true, 'orderby' => 'name', 'order'
         <div class="search-input-wrapper">
           <label for="blog-search-input" class="visually-hidden">Search</label>
           <input type="search" id="blog-search-input" placeholder="Search here" value="" class="blog-search-input"
-            aria-label="{{ esc_attr__('Search blog posts', 'sage') }}">
+            aria-label="{!! esc_attr__('Search blog posts', 'sage') !!}">
         </div>
       </div>
     </div>

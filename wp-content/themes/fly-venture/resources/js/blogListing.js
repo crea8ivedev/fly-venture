@@ -47,7 +47,7 @@ const initBlogListing = () => {
       </a>
       <div class="popular-tour-card-body">
         <div class="top-content">
-          <a href="${post.permalink}"><h4>${escHtml(post.title)}</h4></a>
+          <a href="${post.permalink}"><h4>${post.title}</h4></a>
           <div class="popular-tour-metas">
             <div class="flex gap-10 items-center mb-16">
               <div class="flex items-center gap-6 w-1/2">

@@ -20,21 +20,41 @@ export const initHeader = () => {
     const menuItems = document.querySelectorAll('.main-navigation .menu > li');
     let isMobile = window.innerWidth < 1200;
 
+    // Inject a dedicated toggle button after each parent menu item's link
+    menuItems.forEach((menuItem) => {
+      const submenuWrapper = menuItem.querySelector('.submenu-wrapper');
+      if (submenuWrapper) {
+        const link = menuItem.querySelector(':scope > a');
+        if (link && !menuItem.querySelector('.submenu-toggle')) {
+          const toggleBtn = document.createElement('button');
+          toggleBtn.className = 'submenu-toggle';
+          toggleBtn.type = 'button';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          link.insertAdjacentElement('afterend', toggleBtn);
+        }
+      }
+    });
+
     const updateSubmenuBehavior = () => {
       isMobile = window.innerWidth < 1200;
 
       menuItems.forEach((menuItem) => {
         const submenuWrapper = menuItem.querySelector('.submenu-wrapper');
+        const toggleBtn = menuItem.querySelector('.submenu-toggle');
 
         if (submenuWrapper) {
           // Remove existing event listeners
           menuItem.removeEventListener('mouseenter', handleMouseEnter);
           menuItem.removeEventListener('mouseleave', handleMouseLeave);
-          menuItem.removeEventListener('click', handleClick);
+          if (toggleBtn) {
+            toggleBtn.removeEventListener('click', handleClick);
+          }
 
           if (isMobile) {
-            // Mobile: click to toggle
-            menuItem.addEventListener('click', handleClick);
+            // Mobile: only the toggle button opens/closes the submenu
+            if (toggleBtn) {
+              toggleBtn.addEventListener('click', handleClick);
+            }
           } else {
             // Desktop: hover to show/hide
             menuItem.addEventListener('mouseenter', handleMouseEnter);
@@ -59,12 +79,9 @@ export const initHeader = () => {
     };
 
     const handleClick = (e) => {
-      const menuItem = e.currentTarget;
-      const submenuWrapper = menuItem.querySelector('.submenu-wrapper');
-
-      if (submenuWrapper) {
-        e.preventDefault();
-        e.stopPropagation(); // Prevent event bubbling
+      e.stopPropagation();
+      const menuItem = e.currentTarget.closest('li');
+      if (menuItem) {
         menuItem.classList.toggle('submenu-open');
       }
     };
