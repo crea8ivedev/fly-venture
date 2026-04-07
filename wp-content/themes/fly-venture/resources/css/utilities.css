@@ -999,7 +999,7 @@ body.fv-popup-open {
   @apply  bg-blue text-white rounded-lg;
 }
 .tour-overview-section .tab-nav ul{
-  @apply flex max-[1900px]:overflow-x-auto whitespace-nowrap gap-20 max-1600:gap-18 max-1199:gap-10;
+  @apply flex max-[1900px]:overflow-x-auto whitespace-nowrap gap-20 max-[1900px]:gap-18 max-1199:gap-10;
 }
 .tour-overview-section .tab-content p + p {
   @apply mt-20

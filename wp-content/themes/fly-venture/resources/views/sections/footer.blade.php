@@ -254,10 +254,10 @@ $show_popup = !empty($popup_image['url'])
           <div class="code-tikit">
             <div class="fv-offer-popup__code-wrap">
               @if(!empty($coupon_block_title))
-              <small>{{ esc_html($coupon_block_title) }}</small>
+              <small>{!! $coupon_block_title !!}</small>
               @endif
               @if(!empty($coupon_code))
-              <strong>{{ esc_html($coupon_code) }}</strong>
+              <strong>{!! $coupon_code !!}</strong>
               @endif
             </div>
           </div>
@@ -266,7 +266,7 @@ $show_popup = !empty($popup_image['url'])
           {{-- Note Text --}}
           @if(!empty($popup_content_2))
           <p class="fv-offer-popup__note">
-            {{ wp_strip_all_tags($popup_content_2) }}
+            {!! $popup_content_2 !!}
           </p>
           @endif
 
@@ -276,7 +276,7 @@ $show_popup = !empty($popup_image['url'])
             aria-label="{{ esc_attr($popup_button_title) }}"
             target="{{ in_array($popup_button_target, ['_blank', '_self', '_parent', '_top']) ? esc_attr($popup_button_target) : '_self' }}"
             @if($popup_button_target==='_blank' ) rel="noopener noreferrer" @endif>
-            {{ esc_html($popup_button_title) }}
+            {!! $popup_button_title !!}
           </a>
           @endif
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
 
 const initAnimations = () => {
@@ -21,8 +20,6 @@ const initAnimations = () => {
       easing: (t) => 1 - Math.pow(1 - t, 3)
     }
   );
-  console.log('lenis:init');
-
   // Sync Lenis with GSAP ScrollTrigger
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => {
@@ -36,7 +33,6 @@ const initAnimations = () => {
   // Fade Text Animation (Reusable)
   // -----------------------------
   const fadeTexts = gsap.utils.toArray('.fadeText');
-  console.log('fadeText:count', fadeTexts.length);
 
   fadeTexts.forEach((el) => {
     gsap.fromTo(

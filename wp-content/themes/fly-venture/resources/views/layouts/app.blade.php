@@ -4,16 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        window.YONDER__CLIENT_CODE = "974";
-    </script>
-    <script src="https://widget.yonderhq.com/loader.js"></script>
+
+    {{-- Preconnect to third-party origins --}}
+    <link rel="preconnect" href="https://widget.yonderhq.com">
+    <link rel="preconnect" href="https://fareharbor.com">
+    <link rel="dns-prefetch" href="https://widget.yonderhq.com">
+    <link rel="dns-prefetch" href="https://fareharbor.com">
+
     @php(do_action('get_header'))
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
+    {{-- Yonder widget: defer so it doesn't block rendering --}}
+    <script>window.YONDER__CLIENT_CODE = "974";</script>
+    <script src="https://widget.yonderhq.com/loader.js" defer></script>
 </head>
 
 <body @php(body_class())>
@@ -43,7 +48,7 @@
     @php(do_action('get_footer'))
     @php(wp_footer())
 
-    <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes"></script>
+    <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes" defer></script>
 </body>
 
 </html>
