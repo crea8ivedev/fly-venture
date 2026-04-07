@@ -811,3 +811,36 @@ function my_login_logo_url()
     return esc_url(home_url('/'));
 }
 add_filter('login_headerurl', 'my_login_logo_url');
+
+
+/* Start Speed Optimization */
+
+/* Defer non-critical CSS */
+add_filter('style_loader_tag', function ($tag, $handle) {
+    $critical = ['app']; // Skip your critical CSS here
+    if (in_array($handle, $critical)) return $tag;
+
+    $tag = str_replace(" type='text/css'", '', $tag);
+    $tag = str_replace(" media='all'", " media='none' onload=\"if(media!='all')media='all'\"", $tag);
+    $tag = str_replace(" media='screen'", " media='none' onload=\"if(media!='screen')media='screen'\"", $tag);
+    return $tag;
+}, 10, 2);
+
+/* // Remove unused styles on homepage */
+add_action('wp_enqueue_scripts', function () {
+    if (is_front_page() && is_home()) {
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_style('wc-block-style');
+        wp_dequeue_style('feed-style');
+    }
+}, 100);
+
+/* // Remove version query strings */
+function ts_remove_cssjs_ver($src) {
+    return strpos($src, '?ver=') !== false ? remove_query_arg('ver', $src) : $src;
+}
+add_filter('style_loader_src', 'ts_remove_cssjs_ver', 10, 2);
+add_filter('script_loader_src', 'ts_remove_cssjs_ver', 10, 2);
+
+/* End Speed Optimization */

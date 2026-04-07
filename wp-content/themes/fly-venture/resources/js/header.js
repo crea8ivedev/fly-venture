@@ -119,6 +119,35 @@ export const initHeader = () => {
     window.addEventListener('scroll', toggleStickyHeader, { passive: true });
   }
 
+  // Announcement countdown timer — targets the empty <span> placed inside announcement_text
+  const announcementItems = document.querySelectorAll('.announcement-item[data-countdown-end]');
+  if (announcementItems.length) {
+    // ACF returns "DD/MM/YYYY H:MM am/pm" — parse manually for cross-browser reliability
+    const rawEnd = announcementItems[0].dataset.countdownEnd;
+    const [datePart, timePart, period] = rawEnd.split(' ');
+    const [day, month, year] = datePart.split('/').map(Number);
+    const [rawHour, minute]  = timePart.split(':').map(Number);
+    const hour = period?.toLowerCase() === 'pm' && rawHour !== 12 ? rawHour + 12
+               : period?.toLowerCase() === 'am' && rawHour === 12 ? 0
+               : rawHour;
+    const endTime = new Date(year, month - 1, day, hour, minute).getTime();
+    const spans   = [...announcementItems].map(el => el.querySelector('span')).filter(Boolean);
+    const pad     = (n) => String(n).padStart(2, '0');
+
+    const tick = () => {
+      const diff = endTime - Date.now();
+      const text = diff <= 0
+        ? '00d 00h 00m 00s'
+        : `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h ${pad(Math.floor((diff % 3600000) / 60000))}m ${pad(Math.floor((diff % 60000) / 1000))}s`;
+
+      spans.forEach(span => { span.textContent = text; });
+
+      if (diff > 0) setTimeout(tick, 1000);
+    };
+
+    tick();
+  }
+
   if (headerElement && menuToggleButton) {
     const closeMenu = () => {
       headerElement.classList.remove('menu-open');

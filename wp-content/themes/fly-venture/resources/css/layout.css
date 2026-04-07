@@ -188,6 +188,18 @@
   @apply content-[''] absolute -bottom-4 h-1 left-0 w-0 bg-lightorange rounded-xs transition-all duration-300 delay-75;
 }
 
+.main-navigation .menu li > .submenu-wrapper > ul li a {
+  @apply relative;
+}
+
+.main-navigation .menu li > .submenu-wrapper > ul li a::before {
+  @apply content-[''] absolute -bottom-4 left-0 w-0 h-1 bg-lightorange rounded-[2px] transition-all duration-300 delay-75;
+}
+
+.main-navigation .menu li > .submenu-wrapper > ul li.current-menu-item a::before {
+  @apply w-full;
+}
+
 /* Submenu styles */
 .main-navigation .menu li {
   @apply relative;
@@ -239,10 +251,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-emphasis-color: transparent;
-}
-
-.main-navigation .menu li ul li a::before {
-  @apply hidden;
 }
 
 .main-navigation .menu li ul li:first-child a {
@@ -451,9 +459,6 @@
   .main-navigation .menu li.submenu-open > .submenu-wrapper {
     @apply opacity-100 visible relative;
   }
-    .main-navigation .menu li.submenu-open a::before {
-      @apply hidden;
-    }
 
   /* Hide the ::after arrow on the link; show the dedicated toggle button instead */
   .main-navigation .menu li.menu-item-has-children > a::after {

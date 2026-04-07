@@ -32,6 +32,7 @@ class ThemeOptions extends Composer
             'header_logo' => $header['header_logo'] ?? null,
             'announcement_text' => $header['announcement_text'] ?? null,
             'announcement_button' => $header['announcement_button'] ?? null,
+            'announcement_end_time' => $header['announcement_end_time'] ?? null,
             'header_phone_number' => $header['header_phone_number'] ?? null,
             'header_book_your_flight_button' => $header['header_book_your_flight_button'] ?? null,
 
