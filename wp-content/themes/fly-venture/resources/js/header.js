@@ -136,9 +136,13 @@ export const initHeader = () => {
 
     const tick = () => {
       const diff = endTime - Date.now();
+      const days    = Math.floor(diff / 86400000);
+      const hours   = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
       const text = diff <= 0
-        ? '00d 00h 00m 00s'
-        : `${pad(Math.floor(diff / 86400000))}d ${pad(Math.floor((diff % 86400000) / 3600000))}h ${pad(Math.floor((diff % 3600000) / 60000))}m ${pad(Math.floor((diff % 60000) / 1000))}s`;
+        ? '00h 00m 00s'
+        : (days > 0 ? `${pad(days)}d ` : '') + `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
 
       spans.forEach(span => { span.textContent = text; });
 

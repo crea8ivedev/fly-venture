@@ -75,9 +75,9 @@
         @if(!empty($posts))
           @foreach($posts as $post)
             <div class="popular-tour-card">
+               <a href="{!! esc_url($post['permalink']) !!}">
               <div class="popular-tour-card-media">
                 @if(!empty($post['thumbnail']['url']))
-                  <a href="{!! esc_url($post['permalink']) !!}">
                     <img
                       src="{{ esc_url($post['thumbnail']['url']) }}"
                       alt="{{ esc_attr($post['thumbnail']['alt']) }}"
@@ -85,12 +85,13 @@
                       width="375"
                       loading="lazy"
                     >
-                  </a>
+                  
                 @endif
                 @if(!empty($post['category']))
                   <span class="popular-tour-pill">{!! $post['category']['name'] !!}</span>
                 @endif
               </div>
+              </a>
 
               <div class="popular-tour-card-body">
                 <div class="top-content">

@@ -188,18 +188,6 @@
   @apply content-[''] absolute -bottom-4 h-1 left-0 w-0 bg-lightorange rounded-xs transition-all duration-300 delay-75;
 }
 
-.main-navigation .menu li > .submenu-wrapper > ul li a {
-  @apply relative;
-}
-
-.main-navigation .menu li > .submenu-wrapper > ul li a::before {
-  @apply content-[''] absolute -bottom-4 left-0 w-0 h-1 bg-lightorange rounded-[2px] transition-all duration-300 delay-75;
-}
-
-.main-navigation .menu li > .submenu-wrapper > ul li.current-menu-item a::before {
-  @apply w-full;
-}
-
 /* Submenu styles */
 .main-navigation .menu li {
   @apply relative;
@@ -244,6 +232,15 @@
 .main-navigation .menu li ul li a {
   @apply text-white text-body-2 font-medium leading-19 uppercase block px-28 py-8  relative;
 }
+.main-navigation .menu li ul li {
+  @apply px-28 py-8;
+}
+.main-navigation .menu li ul li a {
+  @apply p-0!
+}
+.main-navigation .menu li ul{
+  @apply py-10! max-1199:py-0!
+}
 .main-navigation .menu li ul li a:hover{
   @apply font-medium;
  background: linear-gradient(180deg, #F79808 0%, #E26216 100%);
@@ -251,6 +248,22 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-emphasis-color: transparent;
+}
+
+.main-navigation .menu li ul li a::before {
+  @apply hidden;
+}
+
+.main-navigation .menu li ul li.current-menu-item > a::before {
+  @apply block w-full content-[''] absolute -bottom-4 h-1 left-0 bg-lightorange rounded-xs;
+}
+
+.main-navigation .menu li ul li.current-menu-item > a {
+  @apply font-bold;
+  background: linear-gradient(180deg, #F79808 0%, #E26216 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .main-navigation .menu li ul li:first-child a {
@@ -459,6 +472,9 @@
   .main-navigation .menu li.submenu-open > .submenu-wrapper {
     @apply opacity-100 visible relative;
   }
+    .main-navigation .menu li.submenu-open a::before {
+      @apply hidden;
+    }
 
   /* Hide the ::after arrow on the link; show the dedicated toggle button instead */
   .main-navigation .menu li.menu-item-has-children > a::after {
@@ -470,7 +486,7 @@
   }
 
   .submenu-toggle {
-    @apply flex items-center justify-center absolute right-0 top-0 h-40 w-40 bg-transparent border-0 cursor-pointer;
+    @apply flex items-center justify-center absolute right-0 top-0 h-25 w-25 bg-transparent border-0 cursor-pointer;
     background-image: url(../images/down-arrow.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -481,15 +497,15 @@
     background-image: url(../images/graident-down.svg);
   }
 
-  .main-navigation .menu li .submenu-wrapper ul li a {
+  .main-navigation .menu li .submenu-wrapper ul li  {
     @apply px-16 py-8;
   }
 
-  .main-navigation .menu li .submenu-wrapper ul li:first-child a {
+  .main-navigation .menu li .submenu-wrapper ul li:first-child  {
     @apply pt-16;
   }
 
-  .main-navigation .menu li .submenu-wrapper ul li:last-child a {
+  .main-navigation .menu li .submenu-wrapper ul li:last-child  {
     @apply pb-8;
   }
   .hero-side-cta {
@@ -508,4 +524,11 @@
   .announcement-slider .swiper-slide p span {
     @apply mr-0 ml-4;
   }
+}
+
+.main-navigation .menu li ul li.current-menu-item a::before{
+  @apply block!
+}
+.main-navigation .menu li.current-menu-item>a{
+  @apply relative w-fit
 }
