@@ -244,7 +244,9 @@ $show_popup = !empty($popup_image['url'])
           </button>
           {{-- Lead Text --}}
           @if(!empty($popup_content_1))
-            {!! ($popup_content_1) !!}
+            <div id="fv-offer-popup-title">{!! ($popup_content_1) !!}</div>
+          @else
+            <span id="fv-offer-popup-title" class="sr-only">Offer popup</span>
           @endif
 
           {{-- Coupon Block --}}

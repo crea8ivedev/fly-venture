@@ -38,6 +38,7 @@
 
   <!-- popular-tours-start -->
 <section
+  id="{{ $content->id ?? '' }}"
   class="popular-tours-wrap  pt-80 pb-100 max-1023:py-40 bg-[#F5F9FC] overflow-hidden"
   data-ajax-url="{{ esc_url(admin_url('admin-ajax.php')) }}"
   data-ajax-nonce="{{ esc_attr(wp_create_nonce('flyventure_popular_tours')) }}"

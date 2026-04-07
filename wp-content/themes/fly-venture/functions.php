@@ -304,12 +304,15 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
     ob_start();
     ?>
     <div class="popular-tour-card swiper-slide" data-city="<?php echo esc_attr($citySlug); ?>">
+        <a href="<?php echo get_permalink( $tour->ID ); ?>">
         <div class="popular-tour-card-media">
+            
             <img
                 src="<?php echo esc_url($thumbnail); ?>"
                 height="250"
                 width="375"
                 alt="<?php echo esc_attr($tour->post_title); ?>">
+           
             <div class="popular-tour-badge">
                 <?php if (!empty($tour_icon['url'])) : ?>
                     <img
@@ -321,12 +324,16 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
                 <span><?php echo esc_html($badgeLabel); ?></span>
             </div>
-            <span class="popular-tour-pill"><?php echo esc_html($cityName); ?></span>
+            <span class
+            ="popular-tour-pill"><?php echo esc_html($cityName); ?></span>
         </div>
+         </a>
 
         <div class="popular-tour-card-body">
             <div class="top-content">
+                <a href="<?php echo get_permalink( $tour->ID ); ?>">
                 <h4><?php echo esc_html($tour->post_title); ?></h4>
+                </a>
                 <div class="popular-tour-meta">
                     <div>
                         <?php if (!empty($originalPrice)) : ?>
@@ -756,3 +763,51 @@ function flyventure_ajax_blog_listing(): void {
         'found_posts'   => (int) $query->found_posts,
     ] );
 }
+
+
+/*** Admin Login ***/
+function login_logo()
+{
+    echo '<style type="text/css">
+        #login { padding: 10% 0 0; position: relative; z-index: 9;}
+        body{background-image: url(' .
+        get_bloginfo('template_directory') .
+        '/resources/images/backend.webp) !important;background-size: cover !important; position: relative; background-position: 45%; background-repeat: no-repeat; }
+        body::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%;background: rgb(222 222 222 / 80%); opacity: 0.8; }
+        p a{color:#000;}
+        .privacy-policy-page-link a{color:#000;}
+        h1 a{background-image: url(' .
+        get_bloginfo('template_directory') .
+        '/resources/images/logo-3.png) !important;background-size: 95% !important; width:80% !important;margin: 0 auto !important; box-shadow: none !important; height: 140px !important; margin: 20px auto !important; box-shadow: none !important;height: 98px !important; background-size: contain !important;}
+        #nav a{color:#000 !important;}
+        #backtoblog a{color:#000 !important;}
+        .wp-core-ui .button-primary {
+            background: #000;
+            border-color: #000;
+            color: #ffffff;
+            text-decoration: none;
+            text-shadow: none;
+        }.wp-core-ui .button-secondary {
+            color: #ffffff;}
+        .wp-core-ui .button-primary:hover {
+            background: #ffffff;
+            border-color: #000;
+            color: #000;
+        }input[type=password]:focus,input[type=text]:focus,input[type=checkbox]:focus{border-color: #000;
+            box-shadow: 0 0 0 1px #000;
+            outline: 2px solid transparent;}
+            .login #backtoblog a:hover, .login #nav a:hover, .login h1 a:hover {
+    color: #ffffff !important;
+}
+    .privacy-policy-page-link a:hover {
+    color: #ffffff !important;
+}
+        </style>';
+}
+add_action('login_head', 'login_logo');
+
+function my_login_logo_url()
+{
+    return esc_url(home_url('/'));
+}
+add_filter('login_headerurl', 'my_login_logo_url');

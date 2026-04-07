@@ -54,11 +54,26 @@
           </a>
         </div>
 
-        <div class="btn-custom">
+        {{-- <div class="btn-custom">
           <a href="{{ $book_flight_url }}" class="btn btn-orange" aria-label="{{ $book_flight_title }}" role="link">
             {{ $book_flight_title }}
           </a>
+        </div> --}}
+        @php
+          $header_btn = $header_book_your_flight_button ?? [];
+          $header_btn_url = $header_btn['url'] ?? '';
+          $header_btn_title = $header_btn['title'] ?? '';
+          $header_btn_target = $header_btn['target'] ?? '_self';
+        @endphp
+        @if(!empty($header_btn_url) && !empty($header_btn_title))
+        <div class="btn-custom">
+          <a href="{{ esc_url($header_btn_url) }}" class="btn btn-orange" aria-label="{{ esc_attr($header_btn_title) }}" role="link"
+            target="{{ in_array($header_btn_target, ['_blank', '_self', '_parent', '_top']) ? esc_attr($header_btn_target) : '_self' }}"
+            @if($header_btn_target === '_blank') rel="noopener noreferrer" @endif>
+            {{ esc_html($header_btn_title) }}
+          </a>
         </div>
+        @endif
 
       </div>
 

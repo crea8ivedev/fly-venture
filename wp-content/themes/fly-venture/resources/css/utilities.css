@@ -528,7 +528,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.83%, rgba(0, 0, 0, 0.75) 100%);
 }
 .popular-tour-card-body .bottom-content{
-  @apply mt-48 max-767:mt-20;
+  @apply mt-48 max-1441:mt-20;
 }
 
 .popular-tour-card-media img {
@@ -664,15 +664,19 @@
 }
 
 .inner-hero-section .hero-rating {
-  @apply inline-flex items-center rounded-[5px] bg-black/50 gap-[6px] px-[12px] py-[8px] mb-[12px] sm:gap-[8px] sm:px-[16px] sm:py-[10px] sm:mb-[14px] lg:gap-10 lg:px-20 lg:py-14 lg:mb-18;
+  @apply inline-flex items-center gap-10 rounded-[5px] bg-black/50 px-14 py-10;
 }
 
 .inner-hero-section .hero-rating p {
-  @apply text-[12px] leading-[18px] text-[14px] leading-[20px];
+  @apply text-body-3 leading-16;
+}
+
+.inner-hero-section .hero-stars {
+  @apply flex items-center gap-8 max-767:gap-7 max-767:px-4;
 }
 
 .inner-hero-section .hero-stars img {
-  @apply w-full h-full object-cover max-w-[16px] lg:max-w-18;
+  @apply w-full h-full object-cover max-w-15;
 }
 /* adventure section start */
 
@@ -988,14 +992,14 @@ body.fv-popup-open {
 }
 
 .tour-overview-section .tab-nav .tab-btn{
-  @apply py-20 px-24 text-body-2 leading-19 max-1441:py-16 max-1441:px-20 max-1199:text-body-3 max-1199:py-12 max-1199:px-16 max-767:px-10 max-767:py-8 font-medium text-black uppercase cursor-pointer;
+  @apply py-20 px-24 text-body-2 leading-19 max-[1900px]:py-12 max-[1900px]:px-16 max-[1900px]:text-body-4 max-1199:py-10 max-1199:px-14 max-767:px-10 max-767:py-8 font-medium text-black uppercase cursor-pointer;
 }
 
 .tour-overview-section .tab-nav .tab-btn.active {
   @apply  bg-blue text-white rounded-lg;
 }
 .tour-overview-section .tab-nav ul{
-  @apply flex overflow-x-auto whitespace-nowrap gap-20 max-1199:gap-10  ;
+  @apply flex max-[1900px]:overflow-x-auto whitespace-nowrap gap-20 max-1600:gap-18 max-1199:gap-10;
 }
 .tour-overview-section .tab-content p + p {
   @apply mt-20
@@ -1240,8 +1244,11 @@ body.fv-popup-open {
 .requirement-grid-wrap .box .title{
   @apply text-center
 }
+.requirement-grid-wrap .box .title h2{
+  @apply max-1199:text-heading-mobile-2 max-1199:leading-28;
+}
 .requirement-grid-wrap .box .global-list ul {
-  @apply mt-4 gap-20 max-1023:gap-15
+  @apply mt-4 gap-20 max-1199:gap-15
 }
 
 
@@ -1249,6 +1256,10 @@ body.fv-popup-open {
 
 .how-it-works-section {
     @apply bg-[#F5F9FC];
+}
+
+.how-it-works-section.how-it-works-small {
+  @apply bg-transparent;
 }
 
 .how-it-works-header {
@@ -1561,9 +1572,10 @@ body.fv-popup-open {
 
 
 /* terma-condition-page */
-.general-content-section .general-content-description h4{
+.general-content-section .general-content-description h3, .general-content-section .general-content-description h4 {
   @apply text-blue font-bold text-heading-2 leading-59 tracking-[-0.02em] max-1600:text-heading-mobile-1 max-1600:leading-40 max-1199:text-heading-tablet-2 max-1199:leading-38 max-767:text-[26px] max-767:leading-28 mb-20 mt-66 max-1023:mt-40 first:mt-0
 }
+
 .general-content-section .general-content-description p strong{
   @apply font-semibold text-blue
 }

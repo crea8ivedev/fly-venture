@@ -27,7 +27,7 @@ const initBlogListing = () => {
 
   const buildPostCard = (post) => {
     const thumb = post.thumbnail
-      ? `<img src="${post.thumbnail.url}" alt="${escAttr(post.thumbnail.alt)}" height="250" width="375" loading="lazy">`
+      ? `<a href="${post.permalink}" aria-label="${escAttr(post.title)}"><img src="${post.thumbnail.url}" alt="${escAttr(post.thumbnail.alt)}" height="250" width="375" loading="lazy"></a>`
       : '';
 
     const pill = post.category
@@ -45,7 +45,7 @@ const initBlogListing = () => {
       </div>
       <div class="popular-tour-card-body">
         <div class="top-content">
-          <h4>${escHtml(post.title)}</h4>
+          <a href="${post.permalink}"><h4>${escHtml(post.title)}</h4></a>
           <div class="popular-tour-metas">
             <div class="flex gap-10 items-center mb-16">
               <div class="flex items-center gap-6 w-1/2">

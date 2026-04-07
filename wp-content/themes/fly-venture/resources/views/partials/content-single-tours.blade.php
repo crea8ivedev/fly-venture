@@ -147,7 +147,7 @@
         {{-- Featured Image (desktop) --}}
         @if (!empty($hero['featuredImageUrl']))
             <img src="{{ esc_url($hero['featuredImageUrl']) }}" alt="{{ esc_attr($hero['title'] ?? 'Hero background') }}"
-                class="h-full w-full object-cover desktop-img max-767:hidden!" loading="eager">
+                class="h-full w-full object-cover desktop-img" loading="eager">
         @endif
 
     </div>

@@ -185,10 +185,13 @@
           }
         @endphp
         <div class="popular-tour-card" data-city="{{ esc_attr( $citySlug ) }}">
+          <a href="{!! esc_url(get_permalink( $_tour->ID )) !!}">
           <div class="popular-tour-card-media">
             @if ( ! empty( $thumbnail ) )
+            
               <img src="{{ esc_url( $thumbnail ) }}" height="250" width="375"
                    alt="{{ esc_attr( $_tour->post_title ) }}">
+           
             @endif
             @if ( ! empty( $badgeLabel ) )
               <div class="popular-tour-badge">
@@ -206,11 +209,11 @@
               <span class="popular-tour-pill">{{ $cityName }}</span>
             @endif
           </div>
+           </a>
 
           <div class="popular-tour-card-body">
             <div class="top-content">
-              <h4>{{ $_tour->post_title }}</h4>
-
+              <a href="{!! esc_url(get_permalink( $_tour->ID )) !!}"><h4>{!! $_tour->post_title !!}</h4></a>
               <div class="popular-tour-meta">
                 <div>
                   @if ( ! empty( $originalPrice ) )

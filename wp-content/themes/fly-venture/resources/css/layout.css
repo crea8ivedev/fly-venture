@@ -193,8 +193,13 @@
   @apply relative;
 }
 
+/* Prevent FOUC: hide raw WordPress sub-menus before JS wraps them in .submenu-wrapper */
+.main-navigation .menu > li > ul {
+  @apply hidden;
+}
+
 .main-navigation .menu li > .submenu-wrapper {
-  @apply absolute right-0 top-full  opacity-0 invisible transition-all duration-300 ease-in-out z-50 p-0 m-0 transform ;
+  @apply hidden absolute right-0 top-full  opacity-0 invisible transition-all duration-300 ease-in-out z-50 p-0 m-0 transform ;
 }
 
 .main-navigation .menu li > .submenu-wrapper > ul {
@@ -206,11 +211,11 @@
  }
 
 .main-navigation .menu li:hover > .submenu-wrapper {
-  @apply opacity-100 visible translate-y-0;
+  @apply flex flex-col opacity-100 visible translate-y-0;
 }
 
 .main-navigation .menu li.submenu-open > .submenu-wrapper {
-  @apply opacity-100 visible translate-y-0;
+  @apply flex flex-col opacity-100 visible translate-y-0;
 }
 
 /* Disable hover effects on mobile */

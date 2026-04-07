@@ -2,7 +2,7 @@
 <section class="hero-section inner-hero-section archive-hero-section">
   <div class="hero-bg">
     <img
-      src="@asset('resources/images/photo-sunset.webp')"
+      src="@asset('resources/images/backend.webp')"
       alt="Archive banner background"
       class="h-full w-full object-cover"
       loading="eager"
@@ -38,8 +38,8 @@
       <div class="select-wrapper">
         <div class="filter-bar">
           <div class="sr-sorting">
-            <label for="blog-category-filter">Filter by:</label>
-            <select class="blog-category-select select-category" id="blog-category-filter" aria-label="{{ esc_attr__('Filter by category', 'sage') }}">
+            <label for="blog-category-filter">Filter By:</label>
+            <select class="blog-category-select select-category" id="blog-category-filter" aria-label="{!! esc_attr__('Filter By category', 'sage') !!}">
               <option value="0">All</option>
               @foreach($categories as $cat)
                 <option value="{{ esc_attr($cat->term_id) }}" {{ $activeCatId === $cat->term_id ? 'selected' : '' }}>
@@ -68,7 +68,8 @@
 
     {{-- Posts Grid --}}
     <div class="tempa-tour-wrap border-0 pt-66 max-1023:py-40">
-      <div class="tempa-tours-grid blog-listing-grid grid grid-cols-3 max-1199:grid-cols-2 max-575:grid-cols-1 gap-45 max-[1200px]:gap-20 items-center" id="blog-listing-grid">
+      <p class="blog-listing-empty" {{ !empty($posts) ? 'hidden' : '' }} style="text-align:center;padding:40px 0;">{{ esc_html__('No any blogs were found here', 'sage') }}</p>
+      <div class="tempa-tours-grid blog-listing-grid grid grid-cols-3 max-1199:grid-cols-2 max-575:grid-cols-1 gap-45 max-[1200px]:gap-20 items-center" id="blog-listing-grid" {{ empty($posts) ? 'hidden' : '' }}>
 
         @if(!empty($posts))
           @foreach($posts as $post)
@@ -129,8 +130,6 @@
               </div>
             </div>
           @endforeach
-        @else
-          <p class="blog-listing-empty col-span-3">{{ esc_html__('No posts found.', 'sage') }}</p>
         @endif
 
       </div>

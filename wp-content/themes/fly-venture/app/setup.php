@@ -208,7 +208,7 @@ add_action('init', function () {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => ['slug' => 'tours'],
+        'rewrite'            => ['slug' => 'tours', 'with_front' => false],
         'capability_type'    => 'post',
         'has_archive'        => true,   // Enables /tours/ archive URL.
         'hierarchical'       => false,
@@ -349,3 +349,55 @@ add_action('init', function () {
     ]);
 
 });
+
+// =========================================================================
+// Tours: category-based permalink  /{category-slug}/{tour-slug}/
+// e.g. /tampa-helicopter-tours/tampa-skyline-helicopter-intro/
+// =========================================================================
+
+/**
+ * Replace the default /tours/{slug}/ with /{category-slug}/{tour-slug}/
+ */
+add_filter('post_type_link', function (string $permalink, \WP_Post $post): string {
+    if ($post->post_type !== 'tours') {
+        return $permalink;
+    }
+
+    $terms = get_the_terms($post->ID, 'tour_category');
+    $category_slug = (!is_wp_error($terms) && !empty($terms)) ? $terms[0]->slug : 'tours';
+
+    // Swap /tours/{slug}/ → /{category-slug}/{slug}/
+    return preg_replace('#/tours/([^/]+)/?$#', '/' . $category_slug . '/$1/', $permalink);
+}, 10, 2);
+
+/**
+ * Add rewrite rules for each tour_category slug so WP can resolve
+ * /{category-slug}/{tour-slug}/ back to the correct tours post.
+ * Runs on init (after taxonomies are registered) and on save_post/edited_term
+ * so new categories are picked up without a manual flush.
+ */
+add_action('init', function () {
+    $terms = get_terms([
+        'taxonomy'   => 'tour_category',
+        'hide_empty' => false,
+        'fields'     => 'slugs',
+    ]);
+
+    if (is_wp_error($terms) || empty($terms)) {
+        return;
+    }
+
+    $category_pattern = implode('|', array_map('preg_quote', (array) $terms));
+
+    add_rewrite_rule(
+        '^(' . $category_pattern . ')/([^/]+)/?$',
+        'index.php?post_type=tours&name=$matches[2]',
+        'top'
+    );
+}, 20);
+
+// Re-register rules when a tour is saved or a tour_category term changes.
+add_action('save_post_tours',       function () { flush_rewrite_rules(false); });
+add_action('created_tour_category', function () { flush_rewrite_rules(false); });
+add_action('edited_tour_category',  function () { flush_rewrite_rules(false); });
+add_action('deleted_tour_category', function () { flush_rewrite_rules(false); });
