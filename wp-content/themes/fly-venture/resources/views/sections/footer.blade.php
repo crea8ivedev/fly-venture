@@ -265,9 +265,9 @@ $show_popup = !empty($popup_image['url'])
 
           {{-- Note Text --}}
           @if(!empty($popup_content_2))
-          <p class="fv-offer-popup__note">
+          <div class="fv-offer-popup__note">
             {!! $popup_content_2 !!}
-          </p>
+          </div>
           @endif
 
           {{-- CTA Button --}}

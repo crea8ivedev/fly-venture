@@ -229,7 +229,7 @@
                     @if (!empty($hero['recommendedText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($check_green_uri) }}"
-                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16" loading="lazy">
+                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
                             <p>{!! wp_kses_post($hero['recommendedText']) !!}</p>
                         </div>
                     @endif
@@ -238,7 +238,7 @@
                     @if (!empty($hero['departsFromText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($map_pin_uri) }}" alt="{{ esc_attr__('location', 'fly-venture') }}"
-                                class="w-16 h-16" loading="lazy">
+                                class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
                             <p>{{ esc_html($hero['departsFromText']) }}
                                 @if (is_array($terms) && !empty($terms[0]->name))
                                     <span>{{ esc_html($terms[0]->name) }}</span>
@@ -251,7 +251,7 @@
                     @if (!empty($flightInfo['duration']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($clock_uri) }}" alt="{{ esc_attr__('duration', 'fly-venture') }}"
-                                class="w-16 h-16" loading="lazy">
+                                class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
                             <p><span>{{ esc_html($flightInfo['duration']) }}</span> minutes</p>
                         </div>
                     @endif

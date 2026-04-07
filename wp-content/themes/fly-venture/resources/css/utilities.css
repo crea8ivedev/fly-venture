@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-880 max-1441:h-756 overflow-hidden ;
+  @apply relative h-880 max-1441:h-650 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -40,7 +40,7 @@
   }
 }
 .hero-content-wrap {
-  @apply relative h-full z-2 pt-154 max-1441:pt-75 max-1199:pt-109  flex items-center justify-between gap-40 ;
+  @apply relative h-full z-2 pt-154 max-1441:pt-75 max-1199:pt-109 max-767:pt-70  flex items-center justify-between gap-40 ;
 }
 
 .hero-content-left {
@@ -271,7 +271,7 @@
   @apply transition-all duration-300 delay-100;
 }
 .why-choose-us-wrap .grid-container-left .box .content p{
-  @apply min-1023:leading-[1.6] min-1023:w-352;
+  @apply min-1023:leading-[1.6];
 }
 .why-choose-us-wrap .grid-container-left .box img {
   @apply  h-120;
@@ -468,7 +468,7 @@
 }
 
 .popular-tours-intro {
-  @apply max-w-538 max-1600:max-w-500 max-1441:max-w-400 max-1023:max-w-300 max-1023:max-w-full max-1023:items-center max-1023:text-center flex flex-col justify-center  w-fit max-1023:px-60 max-992:px-24 max-575:px-0;
+  @apply max-w-538 max-1600:max-w-500 max-1441:max-w-400 max-1023:max-w-300 max-1023:max-w-full max-1023:items-center max-1023:text-center flex flex-col justify-center  w-fit max-1023:px-60 max-992:px-24 max-575:px-16;
 }
 
 .popular-tours-intro .icon img {
@@ -480,7 +480,7 @@
 }
 
 .popular-tour-tabs button {
-  @apply  px-32 max-1441:px-20 py-12 text-body-3 cursor-pointer leading-16 tracking-[0.04em] font-normal uppercase  text-black rounded-lg transition-all duration-300;
+  @apply  px-32 max-1441:px-20 max-575:px-16 py-12 text-body-3 cursor-pointer leading-16 tracking-[0.04em] font-normal uppercase  text-black rounded-lg transition-all duration-300;
 }
 
 .popular-tour-tabs button.active {
@@ -556,7 +556,7 @@
 }
 
 .popular-tour-card-body {
-  @apply p-24 flex flex-col justify-between h-full;
+  @apply p-24 max-575:p-20 flex flex-col justify-between h-full;
 }
 
 .popular-tour-card-body h4 {
@@ -564,11 +564,11 @@
 }
 
 .popular-tour-meta {
-  @apply grid grid-cols-2 gap-16;
+  @apply grid grid-cols-2 gap-16 max-[389px]:gap-10;
 }
 
 .popular-tour-meta > div {
-  @apply border border-[#EEEEEE] mb-16 rounded-[10px] flex flex-col justify-center px-16 py-12 max-575:px-12;
+  @apply border border-[#EEEEEE] mb-16 rounded-[10px] flex flex-col justify-center px-16 py-12 max-575:px-10;
 }
 .popular-tour-card-body p + p{
   @apply mt-12
@@ -587,11 +587,11 @@
   @apply text-body-2 leading-19 text-black font-normal;
 }
 .popular-tour-meta strong {
-  @apply block text-blue text-[22px] leading-26 ;
+  @apply block text-blue text-[22px] leading-26 max-575:text-xl;
 }
 
 .popular-tour-meta .best-price-tag {
-  @apply inline-flex items-center w-fit font-medium justify-center gap-4 mt-6 text-body-3 leading-16 text-[#116029] bg-[#D4FED1] rounded-sm px-8 py-4 max-575:gap-3;
+  @apply inline-flex items-center w-fit font-medium justify-center gap-4 mt-6 text-body-3 leading-16 max-575:text-[12px] text-[#116029] bg-[#D4FED1] rounded-sm px-8 py-4 max-575:gap-3;
 }
 .popular-tour-meta .best-price-tag img {
   @apply max-575:max-w-10
@@ -604,7 +604,7 @@
 }
 
 .popular-tour-btns {
-  @apply  grid grid-cols-2 gap-16;
+  @apply  grid grid-cols-2 gap-16 max-[389px]:gap-10;
 }
 
 .popular-tour-btns .btn {
@@ -985,10 +985,18 @@ body.fv-popup-open {
   @apply text-blue font-bold uppercase;
 }
 .tour-overview-section .higlited-nav p{
-  @apply text-black font-medium
+  @apply text-black font-medium max-1441:text-sm;
 }
 .tour-overview-section h2{
   @apply max-1199:text-heading-tablet-2 max-767:text-heading-mobile-2
+}
+
+.tour-overview-section .rating-svg {
+  @apply max-1441:gap-4;
+}
+
+.tour-overview-section .rating-svg svg {
+  @apply max-1441:w-14 max-1441:h-14;
 }
 
 .tour-overview-section .tab-nav .tab-btn{
@@ -1014,7 +1022,12 @@ body.fv-popup-open {
 .tour-overview-section .tab-content li::before {
   @apply content-[''] absolute left-0 top-8 h-8 w-8 rounded-full bg-blue;
 }
-.tour-overview-section .tab-content li strong{
+
+.tour-overview-section .tab-content li h3 strong, .tour-overview-section .tab-content li h3 {
+  @apply relative text-body-2 leading-24 text-black;
+}
+
+.tour-overview-section .tab-content li strong {
   @apply font-semibold
 }
 
@@ -1043,7 +1056,7 @@ body.fv-popup-open {
   @apply text-heading-5 max-1199:text-body-2
 }
 .tour-overview-section .popular-tour-meta strong{
-  @apply text-heading-tablet-2 leading-38 max-1199:text-heading-4 max-1199:leading-30
+  @apply text-heading-tablet-2 leading-38 max-1199:text-heading-4 max-1199:leading-30 max-575:text-xl;
 }
 .tour-overview-section .popular-tour-meta .normal-tag{
   @apply text-body-1 leading-21 max-1199:text-body-2 max-1199:leading-19
@@ -1798,4 +1811,7 @@ article.type-post {
 
 .btn-back-top span {
   @apply block  text-white font-medium text-body-2 leading-24;
+}
+.fv-offer-popup__note p {
+  @apply mb-10 text-white text-heading-4 leading-28 font-normal max-1023:text-heading-5 max-1023:leading-24 ;
 }

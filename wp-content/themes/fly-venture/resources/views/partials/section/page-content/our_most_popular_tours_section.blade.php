@@ -35,6 +35,9 @@
   $firstCategoryTarget = !empty($firstButton['target']) ? $firstButton['target']          : '_self';
   $selectedToursAttr = !empty($selectedTourIds) ? implode(',', $selectedTourIds) : '';
 @endphp
+@if(current_user_can('administrator'))
+  <!-- DEBUG firstCategory: {{ $firstCategory }} | firstButton: {{ json_encode($content->view_all_st_pete_tours_button) }} -->
+@endif
 
   <!-- popular-tours-start -->
 <section
