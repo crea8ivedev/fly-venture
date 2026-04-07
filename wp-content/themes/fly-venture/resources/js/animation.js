@@ -29,6 +29,18 @@ const initAnimations = () => {
 
   ScrollTrigger.addEventListener('refresh', () => lenis.resize());
 
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const hash = anchor.getAttribute('href');
+      if (hash === '#') return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { offset: 0 });
+    });
+  });
+
   // -----------------------------
   // Fade Text Animation (Reusable)
   // -----------------------------

@@ -40,7 +40,7 @@
   }
 }
 .hero-content-wrap {
-  @apply relative h-full z-2 pt-154  max-1199:pt-109  flex items-center justify-between gap-40 ;
+  @apply relative h-full z-2 pt-154 max-1441:pt-75 max-1199:pt-109  flex items-center justify-between gap-40 ;
 }
 
 .hero-content-left {
@@ -650,10 +650,10 @@
   @apply max-w-605;
 }
 .inner-hero-section{
-  @apply relative h-740 max-2000:h-640  max-1199:h-640 overflow-hidden ;
+  @apply relative h-740 max-2000:h-640  max-1199:h-640 max-767:h-520 overflow-hidden ;
 }
 .inner-hero-section .hero-content-wrap  {
-  @apply pt-146 max-1199:pt-115;
+  @apply pt-146 max-1441:pt-75 max-1199:pt-115 max-767:pt-70;
 }
 .inner-hero-section .hero-stats{
   @apply mt-24
