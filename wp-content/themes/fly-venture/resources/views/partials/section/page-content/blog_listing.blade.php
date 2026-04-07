@@ -42,7 +42,6 @@ $categories = get_categories(['hide_empty' => true, 'orderby' => 'name', 'order'
           </div>
         </div>
       </div>
-
       <div class="search-form">
         <div class="search-input-wrapper">
           <label for="blog-search-input" class="visually-hidden">Search</label>
