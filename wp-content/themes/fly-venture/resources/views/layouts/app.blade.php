@@ -11,14 +11,34 @@
     <link rel="dns-prefetch" href="https://widget.yonderhq.com">
     <link rel="dns-prefetch" href="https://fareharbor.com">
 
+    {{-- LCP resource preloads (injected by section templates via @push) --}}
+    @stack('preload')
+
     @php(do_action('get_header'))
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Yonder widget: defer so it doesn't block rendering --}}
-    <script>window.YONDER__CLIENT_CODE = "974";</script>
-    <script src="https://widget.yonderhq.com/loader.js" defer></script>
+    {{-- Yonder widget: load after first user interaction to avoid blocking LCP --}}
+    <script>
+      window.YONDER__CLIENT_CODE = "974";
+      (function () {
+        var loaded = false;
+        function loadYonder() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://widget.yonderhq.com/loader.js';
+          s.async = true;
+          document.head.appendChild(s);
+        }
+        ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function (e) {
+          window.addEventListener(e, loadYonder, { once: true, passive: true });
+        });
+        // Fallback: load after 5 s even without interaction
+        setTimeout(loadYonder, 5000);
+      })();
+    </script>
 </head>
 
 <body @php(body_class())>
@@ -48,7 +68,24 @@
     @php(do_action('get_footer'))
     @php(wp_footer())
 
-    <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes" defer></script>
+    {{-- FareHarbor: load after first user interaction --}}
+    <script>
+      (function () {
+        var loaded = false;
+        function loadFH() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://fareharbor.com/embeds/api/v1/?autolightframe=yes';
+          s.async = true;
+          document.body.appendChild(s);
+        }
+        ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function (e) {
+          window.addEventListener(e, loadFH, { once: true, passive: true });
+        });
+        setTimeout(loadFH, 5000);
+      })();
+    </script>
 </body>
 
 </html>

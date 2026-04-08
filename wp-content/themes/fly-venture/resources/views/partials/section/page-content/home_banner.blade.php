@@ -45,6 +45,15 @@
     $poster_image = $resolve_media( $content->poster_image ?? null );
   @endphp
 
+  {{-- Preload LCP resource (poster image for video, or hero image) as early as possible --}}
+  @push('preload')
+    @if ( $desktop_type === 'video' && $desktop_video && $poster_image )
+      <link rel="preload" as="image" href="{{ esc_url( $poster_image['url'] ) }}" fetchpriority="high">
+    @elseif ( $desktop_type === 'image' && $desktop_image )
+      <link rel="preload" as="image" href="{{ esc_url( $desktop_image['url'] ) }}" fetchpriority="high">
+    @endif
+  @endpush
+
   <div class="hero-bg">
 
     {{-- ===== DESKTOP ===== --}}
@@ -60,7 +69,8 @@
           playsinline
           loop
           muted
-          preload="metadata"
+          preload="none"
+          fetchpriority="high"
         ></video>
 
     @elseif ( $desktop_type === 'image' && $desktop_image )
