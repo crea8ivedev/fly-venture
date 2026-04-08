@@ -1864,3 +1864,7 @@ article.type-post {
 .YONDER_APP__wrapper .YONDER_APP__display-button {
   @apply max-767:bottom-100!;
 }
+
+.ti-widget.ti-goog.ti-disable-font .ti-reviews-container {
+  @apply max-575:mx-16!;
+}

@@ -597,7 +597,7 @@
                                 @endphp
                                 @if (!empty($featureText))
                                     <div
-                                        class="flex items-center gap-8 max-1441:gap-4 text-sm max-1441:text-body-3 font-medium leading-24 text-[#008236]">
+                                        class="flex items-center gap-8 max-1441:gap-4 max-1680:text-body-3 font-medium leading-24 text-[#008236]">
                                         @if ($featureIconUrl)
                                             <img data-src="{{ $featureIconUrl }}" data-sizes="auto" alt="{{ $featureIconAlt }}"
                                                 class="w-20 h-20 max-1680:w-16 max-1680:h-16 lazyload">

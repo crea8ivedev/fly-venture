@@ -858,7 +858,7 @@ function ppav_clean_wysiwyg_nbsp( $value, $post_id, $field ) {
     }
 
     // Decode HTML entities first, then remove non-breaking spaces
-    $value = str_replace( ' ', ' ', $value );         // encoded form
+    $value = str_replace( '&nbsp;', ' ', $value );         // encoded form
     $value = str_replace( "\xc2\xa0", ' ', $value );       // UTF-8 byte form
     $value = str_replace( "\u{00A0}", ' ', $value );       // Unicode form
 
