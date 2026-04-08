@@ -396,7 +396,7 @@
 }
 
 .footer-bottom {
-  @apply py-25 text-center max-1199:px-16;
+  @apply py-25 text-center max-1199:px-16 max-575:px-0;
 }
 
 .footer-bottom {
@@ -404,8 +404,8 @@
 }
 
 .footer-bottom p {
-  @apply m-0 text-white/90 font-normal text-body-2 leading-30 max-1199:leading-19;
-}
+  @apply m-0 text-white/90 font-normal text-body-2 leading-30 max-1199:leading-19 max-575:text-sm max-575:leading-20;
+} 
 .footer-bottom p  a {
   @apply text-white/90 font-normal text-body-2 leading-30 max-1199:leading-19 hover:text-orange;
 }
