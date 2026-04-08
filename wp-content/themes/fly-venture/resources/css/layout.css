@@ -486,6 +486,10 @@
     @apply pr-30;
   }
 
+  .has-submenu-toggle {
+    @apply relative;
+  }
+
   .submenu-toggle {
     @apply flex items-center justify-center absolute right-0 top-0 h-25 w-25 bg-transparent border-0 cursor-pointer;
     background-image: url(../images/down-arrow.svg);

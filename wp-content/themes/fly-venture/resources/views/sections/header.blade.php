@@ -93,6 +93,7 @@
               class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover xl:pb-16"
               height="60"
               width="280"
+              loading="eager"
             >
           @else
             <img
@@ -101,6 +102,7 @@
               class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover"
               height="60"
               width="280"
+              loading="eager"
             >
           @endif
         </a>
