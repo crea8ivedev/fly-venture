@@ -74,7 +74,7 @@
             @if ( ! empty( $button['url'] ) && ! empty( $button['title'] ) )
               <div class="adventure-cta">
 
-             <a  href="{{ esc_url( $button['url'] ) }}"
+             <a href="{!! esc_url( $button['url'] ) !!}"
                 class="btn btn-orange"
                 role="link"
                 target="{{ esc_attr( $button['target'] ?: '_self' ) }}"

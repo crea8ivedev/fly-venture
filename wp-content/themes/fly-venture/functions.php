@@ -311,8 +311,6 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
                 src="<?php echo esc_url($thumbnail); ?>"
                 height="250"
                 width="375"
-                loading="lazy"
-                decoding="async"
                 alt="<?php echo esc_attr($tour->post_title); ?>">
            
             <div class="popular-tour-badge">
@@ -581,7 +579,7 @@ function flyventure_render_tampa_tour_card( $tour ): string {
     <div class="popular-tour-card" data-city="<?php echo esc_attr( $citySlug ); ?>">
         <div class="popular-tour-card-media">
             <?php if ( ! empty( $thumbnail ) ) : ?>
-                <img src="<?php echo esc_url( $thumbnail ); ?>" height="250" width="375" loading="lazy" decoding="async" alt="<?php echo esc_attr( $tour->post_title ); ?>">
+                <img src="<?php echo esc_url( $thumbnail ); ?>" height="250" width="375" alt="<?php echo esc_attr( $tour->post_title ); ?>">
             <?php endif; ?>
             <?php if ( ! empty( $badgeLabel ) ) : ?>
                 <div class="popular-tour-badge">
@@ -817,67 +815,28 @@ add_filter('login_headerurl', 'my_login_logo_url');
 
 /* Start Speed Optimization */
 
-/* Remove unnecessary WordPress head items */
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'wp_generator');
-remove_action('wp_head', 'wp_shortlink_wp_head');
-remove_action('wp_head', 'feed_links', 2);
-remove_action('wp_head', 'feed_links_extra', 3);
-remove_action('wp_head', 'rest_output_link_wp_head');
-remove_action('wp_head', 'wp_oembed_add_discovery_links');
-
-/* Dequeue unused styles and scripts sitewide */
-add_action('wp_enqueue_scripts', function () {
-    wp_dequeue_style('wp-block-library');
-    wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('global-styles');
-    wp_dequeue_style('classic-theme-styles');
-    wp_dequeue_style('wc-block-style');
-    wp_dequeue_style('feed-style');
-    wp_dequeue_script('wp-embed');
-    if (!is_user_logged_in()) {
-        wp_dequeue_style('dashicons');
-    }
-}, 100);
-
-/* Add loading="lazy" and decoding="async" to images in post content */
-add_filter('the_content', function ($content) {
-    if (!is_string($content) || empty($content)) {
-        return $content;
-    }
-    $content = preg_replace(
-        '/<img(?![^>]*\bloading=)([^>]*?)(\/?>)/',
-        '<img loading="lazy" decoding="async"$1$2',
-        $content
-    );
-    return $content;
-});
-
-/* Add loading="lazy" to wp_get_attachment_image() calls */
-add_filter('wp_get_attachment_image_attributes', function ($attr) {
-    if (!isset($attr['loading'])) {
-        $attr['loading'] = 'lazy';
-    }
-    if (!isset($attr['decoding'])) {
-        $attr['decoding'] = 'async';
-    }
-    return $attr;
-});
-
 /* Defer non-critical CSS */
 add_filter('style_loader_tag', function ($tag, $handle) {
-    $critical = ['app'];
-    if (in_array($handle, $critical)) {
-        return $tag;
-    }
+    $critical = ['app']; // Skip your critical CSS here
+    if (in_array($handle, $critical)) return $tag;
+
     $tag = str_replace(" type='text/css'", '', $tag);
     $tag = str_replace(" media='all'", " media='none' onload=\"if(media!='all')media='all'\"", $tag);
     $tag = str_replace(" media='screen'", " media='none' onload=\"if(media!='screen')media='screen'\"", $tag);
     return $tag;
 }, 10, 2);
 
-/* Remove version query strings */
+/* // Remove unused styles on homepage */
+add_action('wp_enqueue_scripts', function () {
+    if (is_front_page() && is_home()) {
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_style('wc-block-style');
+        wp_dequeue_style('feed-style');
+    }
+}, 100);
+
+/* // Remove version query strings */
 function ts_remove_cssjs_ver($src) {
     return strpos($src, '?ver=') !== false ? remove_query_arg('ver', $src) : $src;
 }

@@ -32,11 +32,11 @@
       </div>
 
 
-      {{-- @if (!empty($go_home_title))
-        <a href="{{ $go_home_url }}" target="{{ $go_home_target }}" class="btn btn-orange go-home-btn" aria-label="{{ $go_home_title }}" role="link">
+      @if (!empty($go_home_title))
+        <a href="{!! esc_url($go_home_url) !!}" target="{{ $go_home_target }}" class="btn btn-orange go-home-btn" aria-label="{{ $go_home_title }}" role="link">
           {{ $go_home_title }}
         </a>
-      @endif --}}
+      @endif 
 
     </div>
   </section>

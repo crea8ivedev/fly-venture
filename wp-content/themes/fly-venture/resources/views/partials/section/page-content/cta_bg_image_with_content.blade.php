@@ -69,7 +69,7 @@
           <div class="btn-custom mt-25">
             @if ( is_array( $_link ) && ! empty( $_link['url'] ) )
               <a
-                href="{{ esc_url( $_link['url'] ) }}"
+                href="{!! esc_url( $_link['url'] ) !!}"
                 class="btn btn-orange"
                 aria-label="{{ esc_attr( $_link['title'] ?? 'Book your flight' ) }}"
                 role="link"

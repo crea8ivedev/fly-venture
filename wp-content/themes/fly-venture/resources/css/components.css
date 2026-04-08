@@ -87,7 +87,7 @@
 
 .content p,
 .content a {
-  @apply font-worksans font-normal text-body-2 leading-24 m-0 p-0 block;
+  @apply font-worksans font-normal text-body-2 leading-24 max-575:text-sm max-575:leading-20 m-0 p-0 block;
 }
 .content a {
   @apply duration-300 ease-linear text-blue hover:text-orange;
@@ -110,7 +110,7 @@
 
 
 .global-list ul li {
-  @apply relative w-fit m-0 p-0 pl-22 max-1023:pl-18 text-black text-body-2 leading-24 font-worksans font-normal;
+  @apply relative w-fit m-0 p-0 pl-22 max-1023:pl-18 text-black text-body-2 leading-24 max-575:text-sm max-575:leading-20 font-worksans font-normal;
 }
 
 .global-list ul li:before {

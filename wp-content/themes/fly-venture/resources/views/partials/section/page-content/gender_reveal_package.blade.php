@@ -83,7 +83,7 @@
 
                 @if(!empty($btn) && is_array($btn) && !empty($btn['url']))
                     <a
-                        href="{{ esc_url($btn['url']) }}"
+                        href="{!! esc_url($btn['url']) !!}"
                         class="btn btn-orange w-max"
                         role="link"
                         target="{{ esc_attr($btn['target'] ?? '_self') }}"

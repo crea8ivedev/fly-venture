@@ -39,7 +39,7 @@ a:hover {
 }
 
 p {
-  @apply font-worksans text-body-2 leading-24;
+  @apply font-worksans text-body-2 leading-24 max-575:text-sm max-575:leading-20;
 }
 
 b {
@@ -87,12 +87,12 @@ h6,
 
 h1,
 .h1 {
-  @apply text-heading-1 tracking-[-0.02em] leading-78 max-1600:text-heading-tablet-1 max-1600:leading-60 max-1199:text-heading-mobile-1 max-1199:leading-44 max-575:text-[36px] ;
+  @apply text-heading-1 tracking-[-0.02em] leading-78 max-1600:text-heading-tablet-1 max-1600:leading-60 max-1199:text-heading-mobile-1 max-1199:leading-44 max-575:text-[34px] max-575:leading-40;
 }
 
 h2,
 .h2 {
-  @apply text-heading-2 leading-59 tracking-[-0.02em] max-1600:text-heading-mobile-1 max-1600:leading-40 max-1023:text-heading-mobile-2 max-1023:leading-28;
+  @apply text-heading-2 leading-59 tracking-[-0.02em] max-1600:text-heading-mobile-1 max-1600:leading-40 max-1023:text-heading-mobile-2 max-1023:leading-28 max-575:text-heading-mobile-3 max-575:leading-26;
 }
 
 h3,
@@ -103,7 +103,7 @@ h3,
 
 h4,
 .h4 {
-  @apply text-heading-4 leading-32 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25;
+  @apply text-heading-4 leading-32 tracking-[-0.02em] max-1199:text-heading-tablet-4 max-1199:leading-25 max-575:text-heading-tablet-5 max-575:leading-24;
 }
 
 h5,

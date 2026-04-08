@@ -2,9 +2,10 @@
   @apply fixed top-0 left-0 z-50  w-full bg-black/50 backdrop-blur-sm ;
 }
 .header-relative {
-  @apply relative bg-white backdrop-blur-none shadow-[0px_4px_16px_rgba(0,0,0,0.16)];
+  @apply relative;
+  /* bg-white backdrop-blur-none shadow-[0px_4px_16px_rgba(0,0,0,0.16)] */
 }
-.header-relative .menu-toggle svg path {
+/* .header-relative .menu-toggle svg path {
   @apply fill-black
 }
 .header-relative .main-navigation .menu li.menu-item-has-children>a::after{
@@ -36,7 +37,7 @@
 }
 .header-relative .main-navigation .menu>li a{
   @apply text-black
-}
+} */
 .site-header .main-header {
   @apply  max-1199:pb-0 ;
 }

@@ -1,10 +1,6 @@
 import Swiper from 'swiper/bundle';
 
 export const initGalleryGrid = () => {
-    if (typeof Swiper !== 'function') {
-        return;
-    }
-
     const galleries = document.querySelectorAll('.garely-grid');
 
     galleries.forEach((gallery) => {

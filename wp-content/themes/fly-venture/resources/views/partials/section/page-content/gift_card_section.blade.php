@@ -148,7 +148,7 @@
         <div class="gift-card-panel-actions">
           @if(!empty($tab_button))
             <a
-              href="{{ esc_url($tab_button['url']) }}"
+              href="{!! esc_url($tab_button['url']) !!}"
               class="btn btn-orange"
               target="{{ $tab_button['target'] ?: '_self' }}"
             >{{ esc_html($tab_button['title']) }}</a>

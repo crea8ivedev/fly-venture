@@ -1,17 +1,11 @@
-
-
-/*global, Swiper*/
 import Swiper from 'swiper/bundle';
+
 export const initSliders = () => {
   const sliders = {
     announcement: null,
     partners: null,
     customExperience: null,
   };
-
-  if (typeof Swiper !== 'function') {
-    return sliders;
-  }
 
   const announcementSliderElement = document.querySelector('.announcement-slider');
   const partnerSliderElement = document.querySelector('.partner-logo-slider');

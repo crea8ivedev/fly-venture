@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-880 max-1441:h-650 overflow-hidden ;
+  @apply relative h-880 max-1441:h-700 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -237,7 +237,7 @@
 }
 
 .experience-card-content p {
-  @apply  text-white/50 text-body-2 leading-19;
+  @apply  text-white/50 text-body-2 leading-19 max-575:text-sm max-575:leading-20;
 }
 
 .custom-experience-progress.swiper-pagination-progressbar {
@@ -277,7 +277,7 @@
   @apply  h-120;
 }
 .why-choose-us-wrap .grid-container-left .box h4{
-  @apply max-1023:text-heading-4 max-1023:leading-[26px];
+  @apply max-1023:text-heading-4 max-1023:leading-[26px] max-575:text-heading-mobile-3 max-575:leading-26;
 }
 .why-choose-us-wrap .grid-container-left .box:hover img {
   filter: brightness(0) saturate(100%) invert(90%) sepia(84%) saturate(0%) hue-rotate(183deg) brightness(106%) contrast(100%);
@@ -387,7 +387,7 @@
 }
 
 .bundle-save-content .pretitle span {
-  @apply mt-16 text-blue text-[36px] leading-42 max-1199:text-heading-4 max-1199:leading-28;
+  @apply mt-16 text-blue text-[36px] leading-42 max-1199:text-heading-4 max-1199:leading-28 max-575:text-heading-mobile-3 max-575:leading-26;
 }
 
 /* full-img-conatent-start */
@@ -528,7 +528,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.83%, rgba(0, 0, 0, 0.75) 100%);
 }
 .popular-tour-card-body .bottom-content{
-  @apply mt-48 max-1441:mt-20;
+  @apply mt-48 max-1441:mt-20 max-575:mt-14 max-575:mb-14 last:mb-0;
 }
 
 .popular-tour-card-media img {
@@ -552,15 +552,15 @@
 
 
 .popular-tour-pill {
-  @apply absolute left-24 bottom-24 bg-white rounded-full z-2 text-blue text-[18px] leading-21 font-semibold px-16 py-8;
+  @apply absolute left-24 bottom-24 bg-white rounded-full z-2 text-blue text-[18px] leading-21 max-575:text-sm max-575:leading-18 font-semibold px-16 py-8 max-575:px-12 max-575:py-6;
 }
 
 .popular-tour-card-body {
-  @apply p-24 max-575:p-20 flex flex-col justify-between h-full;
+  @apply p-24 max-575:p-18 flex flex-col justify-between h-full;
 }
 
 .popular-tour-card-body h4 {
-  @apply text-black text-[28px] font-semibold leading-33 mb-16;
+  @apply text-black text-[28px] max-575:text-[20px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
 }
 
 .popular-tour-meta {
@@ -568,13 +568,13 @@
 }
 
 .popular-tour-meta > div {
-  @apply border border-[#EEEEEE] mb-16 rounded-[10px] flex flex-col justify-center px-16 py-12 max-575:px-10;
+  @apply border border-[#EEEEEE] mb-16 max-575:mb-14 rounded-[10px] flex flex-col justify-center px-16 py-12 max-575:px-10 max-575:py-10;
 }
 .popular-tour-card-body p + p{
   @apply mt-12
 }
 .popular-tour-card-body p{
-  @apply leading-19
+  @apply leading-19 max-575:text-sm;
 }
 
 .popular-tour-meta small {
@@ -587,7 +587,7 @@
   @apply text-body-2 leading-19 text-black font-normal;
 }
 .popular-tour-meta strong {
-  @apply block text-blue text-[22px] leading-26 max-575:text-xl;
+  @apply block text-blue text-[22px] leading-26 max-575:text-lg;
 }
 
 .popular-tour-meta .best-price-tag {
@@ -608,11 +608,11 @@
 }
 
 .popular-tour-btns .btn {
-  @apply px-30 py-16 text-body-3 rounded-lg leading-16 max-575:px-20;
+  @apply px-30 py-16 text-body-3 rounded-lg leading-16 max-575:px-20 max-575:h-fit max-575:py-12;
 }
 
 .popular-tour-btns .btn-b-white {
-  @apply text-black border py-14 border-transparent hover:text-white;
+  @apply text-black border py-14 border-transparent hover:text-white max-575:py-12;
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(90deg, #F79808 0%, #E26216 100%) border-box;
@@ -622,7 +622,11 @@
   background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
 }
 .popular-tour-rating {
-  @apply mt-20 text-body-2 text-black leading-19 font-medium inline-flex items-center gap-15;
+  @apply mt-20 max-575:mt-14 text-body-2 max-575:text-sm text-black leading-19 font-medium inline-flex items-center gap-15;
+}
+
+.popular-tour-rating svg {
+  @apply max-575:w-14 max-575:h-14;
 }
 
 .popular-tour-progress {
@@ -650,7 +654,7 @@
   @apply max-w-605;
 }
 .inner-hero-section{
-  @apply relative h-740 max-2000:h-640  max-1199:h-640 max-767:h-520 overflow-hidden ;
+  @apply relative h-740 max-2000:h-640  max-1199:h-640 max-767:h-550 overflow-hidden ;
 }
 .inner-hero-section .hero-content-wrap  {
   @apply pt-146 max-1441:pt-75 max-1199:pt-115 max-767:pt-70;
@@ -719,7 +723,7 @@
   @apply mt-20;
 }
 .adventure-section .content ul {
-  @apply list-disc pt-20 flex flex-col text-left gap-28;
+  @apply list-disc pt-20 flex flex-col text-left gap-28 max-575:gap-24;
 }
 .adventure-section .content ul li {
   @apply relative pl-24 flex flex-col gap-8
@@ -1169,7 +1173,7 @@ body.fv-popup-open {
 }
 
 .package-map-content .title h2 {
-    @apply tracking-[-0.02em] leading-59 max-1600:leading-40 max-1023:leading-28;
+    @apply tracking-[-0.02em] leading-59 max-1600:leading-40 max-1023:leading-28 max-575:text-heading-mobile-3 max-575:leading-26;
 }
 
 .county-row {
@@ -1243,7 +1247,7 @@ body.fv-popup-open {
 
 /* requirement-grid-start */
 .requirement-grid-wrap .box {
-  @apply bg-white transition-all duration-300 ease-in-out shadow-[0px_0px_16px_rgba(0,0,0,0.16)] max-w-500 max-1441:max-w-400 max-1023:max-w-[48%] max-767:max-w-full max-767:w-full  border-2 border-transparent rounded-lg p-60 max-1441:p-32 max-1023:p-22 flex flex-col gap-20 max-767:p-20 cursor-pointer;
+  @apply bg-white transition-all duration-300 ease-in-out shadow-[0px_0px_16px_rgba(0,0,0,0.16)] max-w-500 max-1441:max-w-400 max-1023:max-w-[48%] max-767:max-w-full max-767:w-full  border-2 border-transparent rounded-lg p-60 max-1441:p-32 max-1023:p-22 flex flex-col gap-20 max-767:p-20 max-575:gap-15 cursor-pointer;
 }
 .requirement-grid-wrap .box:hover {
   @apply  border-blue;
@@ -1258,10 +1262,10 @@ body.fv-popup-open {
   @apply text-center
 }
 .requirement-grid-wrap .box .title h2{
-  @apply max-1199:text-heading-mobile-2 max-1199:leading-28;
+  @apply max-1199:text-heading-mobile-2 max-1199:leading-28 max-575:text-heading-mobile-3 max-575:leading-26;
 }
 .requirement-grid-wrap .box .global-list ul {
-  @apply mt-4 gap-20 max-1199:gap-15
+  @apply mt-4 gap-20 max-1199:gap-15 max-575:gap-10;
 }
 
 

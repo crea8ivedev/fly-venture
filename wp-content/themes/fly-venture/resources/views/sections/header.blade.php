@@ -19,7 +19,7 @@
               <p class="announcement-item" @if(!empty($announcement_end_time)) data-countdown-end="{{ esc_attr($announcement_end_time) }}" @endif>
                 {!! wp_kses_post($announcement_text) !!}
                 @if(!empty($announcement_url) && !empty($announcement_title))
-                  <a href="{{ $announcement_url }}" class="btn-white" aria-label="{{ $announcement_title }}" role="link">
+                  <a href="{!! esc_url($announcement_url) !!}" class="btn-white" aria-label="{{ $announcement_title }}" role="link">
                     {{ $announcement_title }}
                   </a>
                 @endif
@@ -68,7 +68,7 @@
         @endphp
         @if(!empty($header_btn_url) && !empty($header_btn_title))
         <div class="btn-custom">
-          <a href="{{ esc_url($header_btn_url) }}" class="btn btn-orange" aria-label="{{ esc_attr($header_btn_title) }}" role="link"
+          <a href="{!! esc_url($header_btn_url) !!}" class="btn btn-orange" aria-label="{{ esc_attr($header_btn_title) }}" role="link"
             target="{{ in_array($header_btn_target, ['_blank', '_self', '_parent', '_top']) ? esc_attr($header_btn_target) : '_self' }}"
             @if($header_btn_target === '_blank') rel="noopener noreferrer" @endif>
             {{ esc_html($header_btn_title) }}

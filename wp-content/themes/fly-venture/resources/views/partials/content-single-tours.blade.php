@@ -377,7 +377,7 @@
                                                             <p>{!! wp_kses_post($locDesc) !!}</p>
                                                         @endif
                                                         @if (!empty($locLink['url']))
-                                                            <a href="{{ esc_url($locLink['url']) }}" class="blue-link"
+                                                            <a href="{!! esc_url($locLink['url']) !!}" class="blue-link"
                                                                 role="link"
                                                                 @if (($locLink['target'] ?? '') === '_blank') target="_blank"
                               rel="noopener noreferrer" @endif>{{ esc_html($locLink['title'] ?? __('Get Directions', 'fly-venture')) }}</a>

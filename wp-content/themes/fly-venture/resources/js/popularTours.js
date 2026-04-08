@@ -14,7 +14,7 @@ const normalizeCity = (value) => {
 const initPopularTours = () => {
   const section = document.querySelector('.popular-tours-wrap');
 
-  if (!section || typeof Swiper !== 'function') {
+  if (!section) {
     return;
   }
 

@@ -55,7 +55,7 @@ const setItemState = (item, isOpen, withAnimation) => {
 };
 
 const initFAQ = () => {
-  const section = document.querySelector('.faq-wrapper');
+  const section = document.querySelector('.faq-list');
 
   if (!section) {
     return;

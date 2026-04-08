@@ -102,6 +102,7 @@
                 </defs>
               </svg>
               @endif
+
               @if ( ! empty( $btn_rating ) )
                 <span>{{ $btn_rating }}</span>
               @endif
@@ -110,7 +111,11 @@
             </a>
           </div>
         @endif
-
+        
+        @if ( ! empty( $content->rs_short_code ) )
+          {!! do_shortcode($content->rs_short_code) !!}
+        @endif
+        
       </div>
     </div>
   </div>

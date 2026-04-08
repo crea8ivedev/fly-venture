@@ -175,7 +175,7 @@
             {{-- Book Your Flight --}}
             @if ( is_array($book_link) && !empty($book_link['url']) )
               <a
-                href="{{ esc_url($book_link['url']) }}"
+                href="{!! esc_url($book_link['url']) !!}"
                 class="btn btn-orange"
                 aria-label="{{ esc_attr($book_link['title'] ?? 'Book Your Flight') }}"
                 @if(!empty($book_link['target'])) target="{{ esc_attr($book_link['target']) }}" @endif
@@ -188,7 +188,7 @@
             {{-- View Tours --}}
             @if ( is_array($view_link) && !empty($view_link['url']) )
               <a
-                href="{{ esc_url($view_link['url']) }}"
+                href="{!! esc_url($view_link['url']) !!}"
                 class="btn btn-blue"
                 aria-label="{{ esc_attr($view_link['title'] ?? 'View Tours') }}"
                 @if(!empty($view_link['target'])) target="{{ esc_attr($view_link['target']) }}" @endif
