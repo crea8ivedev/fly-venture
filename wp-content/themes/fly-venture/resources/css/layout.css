@@ -498,9 +498,10 @@
     background-size: 12px 6px;
   }
 
-  .submenu-open > .submenu-toggle {
-    background-image: url(../images/graident-down.svg);
-  }
+.submenu-open .submenu-toggle {
+  @apply rotate-180;
+  background-image: url('../images/graident-down.svg');
+}
 
   .main-navigation .menu li .submenu-wrapper ul li  {
     @apply px-16 py-8;

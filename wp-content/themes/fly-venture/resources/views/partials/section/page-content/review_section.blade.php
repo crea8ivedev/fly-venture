@@ -37,7 +37,7 @@ $btn_link = ! empty( $btn_group['review_button_link'] ) && is_array( $btn_group[
   <div class="title-container">
     <div class="containers">
       <div class="flex flex-col justify-center items-center gap-40 text-center fadeText">
-        <div class="container-fluid flex flex-col justify-center items-center gap-45 max-1199:gap-30 text-center fadeText">
+        <div class="container-fluid flex flex-col justify-center items-center gap-20 text-center fadeText">
           {{-- Icon --}}
           @if ( ! empty( $content->rs_icon ) )
           @php( $_img = $content->rs_icon )
@@ -74,7 +74,7 @@ $btn_link = ! empty( $btn_group['review_button_link'] ) && is_array( $btn_group[
           {{-- Review Button — only renders when visibility is "show" and URL is present --}}
           @if ( ! empty( $btn_link['url'] ) )
           <div class="btn-custom">
-            <a href="{{ esc_url( $btn_link['url'] ) }}" class="btn-review"
+            <div class="btn-review"
               aria-label="{{ esc_attr( $btn_link['title'] ?? 'Reviews' ) }}" role="link" @if ( ! empty(
               $btn_link['target'] ) ) target="{{ esc_attr( $btn_link['target'] ) }}" @endif>
               @if($star_visibility)
@@ -97,7 +97,7 @@ $btn_link = ! empty( $btn_group['review_button_link'] ) && is_array( $btn_group[
               @endif
 
               {{ $btn_link['title'] ?? '' }}
-            </a>
+</div>
           </div>
           @endif
         </div>
