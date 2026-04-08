@@ -989,14 +989,14 @@ body.fv-popup-open {
   @apply text-blue font-bold uppercase;
 }
 .tour-overview-section .higlited-nav p{
-  @apply text-black font-medium max-1441:text-sm;
+  @apply text-black font-medium max-1680:text-sm;
 }
 .tour-overview-section h2{
   @apply max-1199:text-heading-tablet-2 max-767:text-heading-mobile-2
 }
 
 .tour-overview-section .rating-svg {
-  @apply max-1441:gap-4;
+  @apply max-1680:gap-4;
 }
 
 .tour-overview-section .rating-svg svg {

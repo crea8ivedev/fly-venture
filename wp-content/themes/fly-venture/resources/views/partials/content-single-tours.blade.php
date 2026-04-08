@@ -229,7 +229,7 @@
                     @if (!empty($hero['recommendedText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($check_green_uri) }}"
-                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($check_green_uri) }}" data-sizes="auto">
+                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16 max-1680:w-14 max-1680:h-14 lazyload" data-src="{{ esc_url($check_green_uri) }}" data-sizes="auto">
                             <p>{!! wp_kses_post($hero['recommendedText']) !!}</p>
                         </div>
                     @endif
@@ -238,7 +238,7 @@
                     @if (!empty($hero['departsFromText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($map_pin_uri) }}" alt="{{ esc_attr__('location', 'fly-venture') }}"
-                                class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($map_pin_uri) }}" data-sizes="auto">
+                                class="w-16 h-16 max-1680:w-14 max-1680:h-14 lazyload" data-src="{{ esc_url($map_pin_uri) }}" data-sizes="auto">
                             <p>{{ esc_html($hero['departsFromText']) }}
                                 @if (is_array($terms) && !empty($terms[0]->name))
                                     <span>{{ esc_html($terms[0]->name) }}</span>
@@ -251,7 +251,7 @@
                     @if (!empty($flightInfo['duration']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($clock_uri) }}" alt="{{ esc_attr__('duration', 'fly-venture') }}"
-                                class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($clock_uri) }}" data-sizes="auto">
+                                class="w-16 h-16 max-1680:w-14 max-1680:h-14 lazyload" data-src="{{ esc_url($clock_uri) }}" data-sizes="auto">
                             <p><span>{{ esc_html($flightInfo['duration']) }}</span> minutes</p>
                         </div>
                     @endif
@@ -440,7 +440,7 @@
             </div>
 
             {{-- ── Right sidebar ───────────────────────────────────────────────── --}}
-            <div class="lg:col-span-4 w-full lg:sticky top-100 pl-40 max-1441:pl-30 max-1023:pl-0">
+            <div class="lg:col-span-4 w-full lg:sticky top-100 pl-40 max-1680:pl-30 max-1023:pl-0">
                 <div
                     class="bg-white rounded-lg shadow-[0px_0px_16px_rgba(0,0,0,0.16)] border border-gray-100 p-40 max-1600:p-24 max-1199:p-20 w-full flex flex-col">
 
@@ -569,7 +569,7 @@
                     {{-- Passenger offer text --}}
                     @if (!empty($hero['passengerOfferText']))
                         <div
-                            class="text-black font-normal text-heading-5 leading-23 mt-14 max-1441:text-body-1 max-1199:text-body-2">
+                            class="text-black font-normal text-heading-5 leading-23 mt-14 max-1680:text-body-1 max-1199:text-body-2">
                             {{ esc_html($hero['passengerOfferText']) }}
                         </div>
                     @endif
@@ -588,7 +588,7 @@
                     {{-- Tour feature highlights --}}
                     @if (!empty($features))
                         <div
-                            class="grid grid-cols-2 gap-y-24 gap-x-10 mt-24 max-1365:grid-cols-1 max-1365:gap-y-10 max-1023:grid-cols-2 max-575:grid-cols-1">
+                            class="grid grid-cols-2 gap-y-24 gap-x-10 mt-24 max-1365:grid-cols-1 max-1680:gap-y-15 max-1365:gap-y-10 max-1023:grid-cols-2 max-575:grid-cols-1">
                             @foreach ($features as $feature)
                                 @php
                                     $featureIconUrl = esc_url($feature['icon']['url'] ?? '');
@@ -597,13 +597,13 @@
                                 @endphp
                                 @if (!empty($featureText))
                                     <div
-                                        class="flex items-center gap-8 max-1441:gap-4 text-body-2 max-1441:text-body-3 font-medium leading-24 text-[#008236]">
+                                        class="flex items-center gap-8 max-1441:gap-4 text-sm max-1441:text-body-3 font-medium leading-24 text-[#008236]">
                                         @if ($featureIconUrl)
                                             <img data-src="{{ $featureIconUrl }}" data-sizes="auto" alt="{{ $featureIconAlt }}"
-                                                class="w-20 h-20 lazyload">
+                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 lazyload">
                                         @else
                                             <img data-src="{{ esc_url($location_check_uri) }}" data-sizes="auto" alt=""
-                                                class="w-20 h-20 lazyload" aria-hidden="true">
+                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 lazyload" aria-hidden="true">
                                         @endif
                                         {!! wp_kses_post($featureText) !!}
                                     </div>
