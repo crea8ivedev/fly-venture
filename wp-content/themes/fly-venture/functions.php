@@ -844,3 +844,26 @@ add_filter('style_loader_src', 'ts_remove_cssjs_ver', 10, 2);
 add_filter('script_loader_src', 'ts_remove_cssjs_ver', 10, 2);
 
 /* End Speed Optimization */
+
+
+
+/**
+ * Remove   from ACF WYSIWYG fields on save
+ */
+add_filter( 'acf/update_value/type=wysiwyg', 'ppav_clean_wysiwyg_nbsp', 10, 3 );
+
+function ppav_clean_wysiwyg_nbsp( $value, $post_id, $field ) {
+    if ( empty( $value ) ) {
+        return $value;
+    }
+
+    // Decode HTML entities first, then remove non-breaking spaces
+    $value = str_replace( ' ', ' ', $value );         // encoded form
+    $value = str_replace( "\xc2\xa0", ' ', $value );       // UTF-8 byte form
+    $value = str_replace( "\u{00A0}", ' ', $value );       // Unicode form
+
+    // Optional: trim stray <p> </p> empty paragraph blocks
+    $value = preg_replace( '/<p[^>]>(\s| )<\/p>/', '', $value );
+
+    return trim( $value );
+}

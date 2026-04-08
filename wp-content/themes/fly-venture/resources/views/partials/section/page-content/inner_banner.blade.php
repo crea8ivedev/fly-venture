@@ -25,6 +25,15 @@
   {{-- Background --}}
   <div class="hero-bg">
 
+    {{-- Determine whether separate mobile media is configured --}}
+    @php
+      $mobile_has_video = ! empty( $content->background_video_mobile ) && ( is_array( $content->background_video_mobile ) ? ! empty( $content->background_video_mobile['url'] ) : true );
+      $mobile_has_image = ! empty( $content->background_image_mobile ) && ( is_array( $content->background_image_mobile ) ? ! empty( $content->background_image_mobile['url'] ) : true );
+      $has_separate_mobile = $mobile_has_video || $mobile_has_image;
+      // Desktop element is hidden on mobile only when a separate mobile element will be rendered
+      $_d_class = 'h-full w-full object-cover desktop-img' . ( $has_separate_mobile ? ' max-767:hidden!' : '' );
+    @endphp
+
     {{-- Desktop: Image or Video --}}
     @if ( ( $content->background_type_desktop ?? '' ) === 'video' )
       @php
@@ -39,7 +48,7 @@
           playsinline
           loop
           muted
-          class="h-full w-full object-cover desktop-img max-767:hidden!"
+          class="{{ $_d_class }}"
         ></video>
       @endif
     @else
@@ -49,7 +58,7 @@
           src="{{ esc_url( $_d_img['url'] ) }}"
           alt="{{ esc_attr( $_d_img['alt'] ?? 'Hero background' ) }}"
           @if ( ! empty( $_d_img['width'] ) )  width="{{ absint( $_d_img['width'] ) }}"  @endif
-          class="h-full w-full object-cover desktop-img max-767:hidden!"
+          class="{{ $_d_class }}"
           loading="eager"
           fetchpriority="high"
         >
@@ -57,57 +66,55 @@
         <img
           src="{{ esc_url( $_d_img ) }}"
           alt="Hero background"
-          class="h-full w-full object-cover desktop-img max-767:hidden!"
+          class="{{ $_d_class }}"
           loading="eager"
           fetchpriority="high"
         >
       @endif
     @endif
 
-    {{-- Mobile: Image or Video (falls back to desktop if mobile fields are empty) --}}
-    @php
-      $mobile_has_video = ! empty( $content->background_video_mobile ) && ( is_array( $content->background_video_mobile ) ? ! empty( $content->background_video_mobile['url'] ) : true );
-      $mobile_has_image = ! empty( $content->background_image_mobile ) && ( is_array( $content->background_image_mobile ) ? ! empty( $content->background_image_mobile['url'] ) : true );
-      $mobile_type      = ( $mobile_has_video || $mobile_has_image )
-          ? ( $content->background_type_mobile ?? '' )
-          : ( $content->background_type_desktop ?? '' );
-      $mobile_video_src = ( $mobile_has_video || $mobile_has_image ) ? ( $content->background_video_mobile ?? null ) : ( $content->background_video_desktop ?? null );
-      $mobile_image_src = ( $mobile_has_video || $mobile_has_image ) ? ( $content->background_image_mobile  ?? null ) : ( $content->background_image_desktop ?? null );
-    @endphp
-    @if ( $mobile_type === 'video' )
+    {{-- Mobile: Image or Video — only rendered when separate mobile media is configured --}}
+    @if ( $has_separate_mobile )
       @php
-        $_m_video_url = is_array( $mobile_video_src ) ? ( $mobile_video_src['url'] ?? '' ) : ( is_string( $mobile_video_src ) ? $mobile_video_src : '' );
+        $mobile_type      = $content->background_type_mobile ?? '';
+        $mobile_video_src = $content->background_video_mobile ?? null;
+        $mobile_image_src = $content->background_image_mobile ?? null;
       @endphp
-      @if ( ! empty( $_m_video_url ) )
-        <video
-          src="{{ esc_url( $_m_video_url ) }}"
-          preload="none"
-          autoplay
-          playsinline
-          loop
-          muted
-          class="hidden h-full w-full object-cover max-767:block"
-        ></video>
-      @endif
-    @else
-      @if ( is_array( $mobile_image_src ) && ! empty( $mobile_image_src['url'] ) )
-        <img
-          src="{{ esc_url( $mobile_image_src['url'] ) }}"
-          alt="{{ esc_attr( $mobile_image_src['alt'] ?? 'Hero background' ) }}"
-          @if ( ! empty( $mobile_image_src['width'] ) )  width="{{ absint( $mobile_image_src['width'] ) }}"  @endif
-          @if ( ! empty( $mobile_image_src['height'] ) ) height="{{ absint( $mobile_image_src['height'] ) }}" @endif
-          class="hidden h-full w-full object-cover max-767:block"
-          loading="eager"
-          fetchpriority="high"
-        >
-      @elseif ( is_string( $mobile_image_src ) && $mobile_image_src !== '' )
-        <img
-          src="{{ esc_url( $mobile_image_src ) }}"
-          alt="Hero background"
-          class="hidden h-full w-full object-cover max-767:block"
-          loading="eager"
-          fetchpriority="high"
-        >
+      @if ( $mobile_type === 'video' )
+        @php
+          $_m_video_url = is_array( $mobile_video_src ) ? ( $mobile_video_src['url'] ?? '' ) : ( is_string( $mobile_video_src ) ? $mobile_video_src : '' );
+        @endphp
+        @if ( ! empty( $_m_video_url ) )
+          <video
+            src="{{ esc_url( $_m_video_url ) }}"
+            preload="none"
+            autoplay
+            playsinline
+            loop
+            muted
+            class="hidden h-full w-full object-cover max-767:block"
+          ></video>
+        @endif
+      @else
+        @if ( is_array( $mobile_image_src ) && ! empty( $mobile_image_src['url'] ) )
+          <img
+            src="{{ esc_url( $mobile_image_src['url'] ) }}"
+            alt="{{ esc_attr( $mobile_image_src['alt'] ?? 'Hero background' ) }}"
+            @if ( ! empty( $mobile_image_src['width'] ) )  width="{{ absint( $mobile_image_src['width'] ) }}"  @endif
+            @if ( ! empty( $mobile_image_src['height'] ) ) height="{{ absint( $mobile_image_src['height'] ) }}" @endif
+            class="hidden h-full w-full object-cover max-767:block"
+            loading="eager"
+            fetchpriority="high"
+          >
+        @elseif ( is_string( $mobile_image_src ) && $mobile_image_src !== '' )
+          <img
+            src="{{ esc_url( $mobile_image_src ) }}"
+            alt="Hero background"
+            class="hidden h-full w-full object-cover max-767:block"
+            loading="eager"
+            fetchpriority="high"
+          >
+        @endif
       @endif
     @endif
 
