@@ -4,8 +4,8 @@ import laravel from 'laravel-vite-plugin'
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
 export default defineConfig({
-   // base: '/et/fly-venture/wp-content/themes/fly-venture/public/build/',
-   base: '/wp-content/themes/fly-venture/public/build/',
+  //base: '/et/fly-venture/wp-content/themes/fly-venture/public/build/',
+  base: '/wp-content/themes/fly-venture/public/build/',
   plugins: [
     tailwindcss(),
     laravel({
@@ -28,6 +28,29 @@ export default defineConfig({
       disableTailwindFontSizes: false,
     }),
   ],
+  build: {
+    // Raise warning threshold to reduce noise; actual splitting is handled below
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        // Split heavy vendor libs into separate chunks so they can be cached independently
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('gsap') || id.includes('lenis')) {
+              return 'vendor-gsap';
+            }
+            if (id.includes('swiper')) {
+              return 'vendor-swiper';
+            }
+            if (id.includes('jquery')) {
+              return 'vendor-jquery';
+            }
+            return 'vendor'; 
+          }
+        }
+      },
+    },
+  },
   resolve: {
     alias: {
       '@scripts': '/resources/js',
