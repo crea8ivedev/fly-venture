@@ -30,8 +30,12 @@ export const initHeader = () => {
           toggleBtn.className = 'submenu-toggle';
           toggleBtn.type = 'button';
           toggleBtn.setAttribute('aria-label', 'Toggle submenu');
-          link.insertAdjacentElement('afterend', toggleBtn);
-          menuItem.classList.add('has-submenu-toggle');
+
+          const inner = document.createElement('div');
+          inner.className = 'submenu-inner';
+          link.parentNode.insertBefore(inner, link);
+          inner.appendChild(link);
+          inner.appendChild(toggleBtn);
         }
       }
     });

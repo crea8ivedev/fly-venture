@@ -486,8 +486,8 @@
     @apply pr-30;
   }
 
-  .has-submenu-toggle {
-    @apply relative;
+  .submenu-inner {
+    @apply relative w-110;
   }
 
   .submenu-toggle {

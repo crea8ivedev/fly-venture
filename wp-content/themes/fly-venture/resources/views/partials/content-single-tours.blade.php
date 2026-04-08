@@ -167,7 +167,7 @@
                                 @for ($s = 0; $s < $rating_value; $s++)
                                     <li>
                                         <img src="{{ esc_url($star_uri) }}" height="16" width="17"
-                                            alt="star" loading="lazy">
+                                            alt="star" class="lazyload" data-src="{{ esc_url($star_uri) }}" data-sizes="auto">
                                     </li>
                                 @endfor
                             </ul>
@@ -229,7 +229,7 @@
                     @if (!empty($hero['recommendedText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($check_green_uri) }}"
-                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
+                                alt="{{ esc_attr__('recommended', 'fly-venture') }}" class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($check_green_uri) }}" data-sizes="auto">
                             <p>{!! wp_kses_post($hero['recommendedText']) !!}</p>
                         </div>
                     @endif
@@ -238,7 +238,7 @@
                     @if (!empty($hero['departsFromText']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($map_pin_uri) }}" alt="{{ esc_attr__('location', 'fly-venture') }}"
-                                class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
+                                class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($map_pin_uri) }}" data-sizes="auto">
                             <p>{{ esc_html($hero['departsFromText']) }}
                                 @if (is_array($terms) && !empty($terms[0]->name))
                                     <span>{{ esc_html($terms[0]->name) }}</span>
@@ -251,7 +251,7 @@
                     @if (!empty($flightInfo['duration']))
                         <div class="flex items-center gap-6">
                             <img src="{{ esc_url($clock_uri) }}" alt="{{ esc_attr__('duration', 'fly-venture') }}"
-                                class="w-16 h-16 max-1441:w-14 max-1441:h-14" loading="lazy">
+                                class="w-16 h-16 max-1441:w-14 max-1441:h-14 lazyload" data-src="{{ esc_url($clock_uri) }}" data-sizes="auto">
                             <p><span>{{ esc_html($flightInfo['duration']) }}</span> minutes</p>
                         </div>
                     @endif
@@ -274,8 +274,8 @@
                                     @endphp
                                     @if ($slideUrl)
                                         <div class="swiper-slide">
-                                            <img src="{{ $slideUrl }}" alt="{{ $slideAlt }}"
-                                                class="w-full h-full object-cover" loading="lazy">
+                                            <img data-src="{{ $slideUrl }}" data-sizes="auto" alt="{{ $slideAlt }}"
+                                                class="w-full h-full object-cover lazyload">
                                         </div>
                                     @endif
                                 @endforeach
@@ -292,8 +292,8 @@
                                     @endphp
                                     @if ($slideUrl)
                                         <div class="swiper-slide">
-                                            <img src="{{ $slideUrl }}" alt="{{ $slideAlt }}"
-                                                class="w-full max-639:h-full h-[calc(33.33%-8px)] max-1199:h-[calc(33.33%-8px)] object-cover rounded-lg" loading="lazy">
+                                            <img data-src="{{ $slideUrl }}" data-sizes="auto" alt="{{ $slideAlt }}"
+                                                class="w-full max-639:h-full h-[calc(33.33%-8px)] max-1199:h-[calc(33.33%-8px)] object-cover rounded-lg lazyload">
                                         </div>
                                     @endif
                                 @endforeach
@@ -363,9 +363,9 @@
                                                     <div class="title title-black">
                                                         <h4>
                                                             @if ($locIconUrl)
-                                                                <img src="{{ $locIconUrl }}"
+                                                                <img data-src="{{ $locIconUrl }}" data-sizes="auto"
                                                                     alt="{{ $locIconAlt }}" height="20"
-                                                                    width="20" loading="lazy">
+                                                                    width="20" class="lazyload">
                                                             @endif
                                                             {{ esc_html($locTitle) }}
                                                         </h4>
@@ -399,12 +399,13 @@
                                 @if (!empty($mapField['url']))
                                     {{-- ACF image field used as map graphic --}}
                                     <div class="map-img mt-24">
-                                        <img src="{{ esc_url($mapField['url']) }}"
+                                        <img data-src="{{ esc_url($mapField['url']) }}"
+                                            data-srcset="{{ wp_get_attachment_image_srcset($mapField['ID'] ?? 0) }}"
+                                            data-sizes="auto"
                                             alt="{{ esc_attr($mapField['alt'] ?? __('Route map', 'fly-venture')) }}"
                                             width="{{ absint($mapField['width'] ?? 1120) }}"
                                             height="{{ absint($mapField['height'] ?? 1324) }}"
-                                            class="h-full w-full rounded-lg"
-                                            loading="lazy">
+                                            class="h-full w-full rounded-lg lazyload">
                                     </div>
                                 @elseif (!empty($mapField['lat']) && !empty($mapField['lng']))
                                     {{-- ACF Google Map field --}}
@@ -473,8 +474,8 @@
                                     <div class="best-price-tag price-tag-item" style="<?php echo !empty($priceTags[0]['color']) ? 'background-color:' . esc_attr($priceTags[0]['color']) . ';' : ''; ?>">
 
                                         <?php if (!empty($priceTags[0]['icon_url'])) : ?>
-                                        <img src="<?php echo esc_url($priceTags[0]['icon_url']); ?>" height="14" width="14"
-                                            alt="<?php echo esc_attr($priceTags[0]['name']); ?>" loading="lazy">
+                                        <img data-src="<?php echo esc_url($priceTags[0]['icon_url']); ?>" height="14" width="14"
+                                            alt="<?php echo esc_attr($priceTags[0]['name']); ?>" class="lazyload" data-sizes="auto">
                                         <?php endif; ?>
 
                                         <span style="color:<?php echo esc_attr(sanitize_hex_color($priceTags[0]['text_color'])); ?>;"><?php echo esc_html($priceTags[0]['name']); ?></span>
@@ -503,8 +504,8 @@
                                     <div class="best-price-tag price-tag-item" style="<?php echo !empty($bookingTag[0]['color']) ? 'background-color:' . esc_attr($bookingTag[0]['color']) . ';' : ''; ?>">
 
                                         <?php if (!empty($bookingTag[0]['icon_url'])) : ?>
-                                        <img src="<?php echo esc_url($bookingTag[0]['icon_url']); ?>" height="14" width="14"
-                                            alt="<?php echo esc_attr($bookingTag[0]['name']); ?>" loading="lazy">
+                                        <img data-src="<?php echo esc_url($bookingTag[0]['icon_url']); ?>" height="14" width="14"
+                                            alt="<?php echo esc_attr($bookingTag[0]['name']); ?>" class="lazyload" data-sizes="auto">
                                         <?php endif; ?>
 
                                         <span style="color:<?php echo esc_attr(sanitize_hex_color($bookingTag[0]['text_color'])); ?>;"><?php echo esc_html($bookingTag[0]['name']); ?></span>
@@ -533,8 +534,8 @@
                                     <div class="best-price-tag price-tag-item" style="<?php echo !empty($bookingTag2[0]['color']) ? 'background-color:' . esc_attr($bookingTag2[0]['color']) . ';' : ''; ?>">
 
                                         <?php if (!empty($bookingTag2[0]['icon_url'])) : ?>
-                                        <img src="<?php echo esc_url($bookingTag2[0]['icon_url']); ?>" height="14" width="14"
-                                            alt="<?php echo esc_attr($bookingTag2[0]['name']); ?>" loading="lazy">
+                                        <img data-src="<?php echo esc_url($bookingTag2[0]['icon_url']); ?>" height="14" width="14"
+                                            alt="<?php echo esc_attr($bookingTag2[0]['name']); ?>" class="lazyload" data-sizes="auto">
                                         <?php endif; ?>
 
                                         <span style="color:<?php echo esc_attr(sanitize_hex_color($bookingTag2[0]['text_color'])); ?>;"><?php echo esc_html($bookingTag2[0]['name']); ?></span>
@@ -598,11 +599,11 @@
                                     <div
                                         class="flex items-center gap-8 max-1441:gap-4 text-body-2 max-1441:text-body-3 font-medium leading-24 text-[#008236]">
                                         @if ($featureIconUrl)
-                                            <img src="{{ $featureIconUrl }}" alt="{{ $featureIconAlt }}"
-                                                class="w-20 h-20" loading="lazy">
+                                            <img data-src="{{ $featureIconUrl }}" data-sizes="auto" alt="{{ $featureIconAlt }}"
+                                                class="w-20 h-20 lazyload">
                                         @else
-                                            <img src="{{ esc_url($location_check_uri) }}" alt=""
-                                                class="w-20 h-20" aria-hidden="true" loading="lazy">
+                                            <img data-src="{{ esc_url($location_check_uri) }}" data-sizes="auto" alt=""
+                                                class="w-20 h-20 lazyload" aria-hidden="true">
                                         @endif
                                         {!! wp_kses_post($featureText) !!}
                                     </div>
@@ -655,8 +656,8 @@
                 {{-- Background / media image --}}
                 @if ($ctaBgUrl)
                     <div class="full-img-conatent-media">
-                        <img src="{{ $ctaBgUrl }}" height="{{ $ctaBgH }}" width="{{ $ctaBgW }}"
-                            alt="{{ $ctaBgAlt }}" loading="lazy">
+                        <img data-src="{{ $ctaBgUrl }}" data-sizes="auto" height="{{ $ctaBgH }}" width="{{ $ctaBgW }}"
+                            alt="{{ $ctaBgAlt }}" class="lazyload">
                     </div>
                 @endif
 
@@ -690,8 +691,8 @@
                 {{-- Decorative icon --}}
                 @if ($ctaIconUrl)
                     <div class="full-img-conatent-icon" aria-hidden="true">
-                        <img src="{{ $ctaIconUrl }}" height="{{ $ctaIconH }}" width="{{ $ctaIconW }}"
-                            alt="{{ $ctaIconAlt }}" loading="lazy">
+                        <img data-src="{{ $ctaIconUrl }}" data-sizes="auto" height="{{ $ctaIconH }}" width="{{ $ctaIconW }}"
+                            alt="{{ $ctaIconAlt }}" class="lazyload">
                     </div>
                 @endif
 

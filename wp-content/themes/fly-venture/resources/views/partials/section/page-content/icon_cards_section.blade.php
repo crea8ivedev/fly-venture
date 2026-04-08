@@ -13,10 +13,13 @@
         @if(!empty($content->icon))
           <div class="section-badge-icon" aria-hidden="true">
             <img
-              src="{{ esc_url($content->icon['url']) }}"
+              data-src="{{ esc_url($content->icon['url']) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset($content->icon['ID'] ?? 0) }}"
+              data-sizes="auto"
               width="{{ $content->icon['width'] ?? 100 }}"
               height="{{ $content->icon['height'] ?? 98 }}"
               alt="{{ esc_attr($content->icon['alt'] ?? '') }}"
+              class="lazyload"
             >
           </div>
         @endif
@@ -46,8 +49,10 @@ hover:bg-blue active:bg-blue focus:bg-blue">
                 <div class="mb-20 flex h-100 w-100 items-center justify-center rounded-full bg-[#F5F9FC] transition-all duration-300 
 group-hover:bg-white group-active:bg-white group-focus:bg-white">
                   <img
-                    class="max-w-48"
-                    src="{{ esc_url($card['card_icon']['url']) }}"
+                    class="max-w-48 lazyload"
+                    data-src="{{ esc_url($card['card_icon']['url']) }}"
+                    data-srcset="{{ wp_get_attachment_image_srcset($card['card_icon']['ID'] ?? 0) }}"
+                    data-sizes="auto"
                     width="{{ $card['card_icon']['width'] ?? 100 }}"
                     height="{{ $card['card_icon']['height'] ?? 98 }}"
                     alt="{{ esc_attr($card['card_icon']['alt'] ?? '') }}"

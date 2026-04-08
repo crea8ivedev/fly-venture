@@ -129,6 +129,7 @@ class PageContentComposer extends Composer
                         'rs_desciption' => $content['rs_desciption'] ?? null,
                         'review_button' => $content['review_button'] ?? null, // (Group)
                         'rs_short_code' => $content['rs_short_code'] ?? null,
+                        'view_all_button' => $content['view_all_button'] ?? null,
                         'id' => $content['id'] ?? null,
                         'class' => $content['class'] ?? null,
                         'hide_section' => $content['hide_section'] ?? null,

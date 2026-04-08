@@ -46,7 +46,7 @@ $show_popup = !empty($popup_image['url'])
             <a href="{{ esc_url($link) }}" aria-label="{{ esc_attr($img['title'] ?? '') }}" target="_blank">
 
               <img src="{{ esc_url($img['url']) }}" alt="{{ esc_attr($img['title'] ?? '') }}"
-                width="{{ esc_attr($img['width'] ?? '') }}" height="{{ esc_attr($img['height'] ?? '') }}">
+                width="{{ esc_attr($img['width'] ?? '') }}" height="{{ esc_attr($img['height'] ?? '') }}" class="lazyload" data-src="{{ esc_url($img['url']) }}" data-sizes="auto">
 
             </a>
           </li>
@@ -72,8 +72,9 @@ $show_popup = !empty($popup_image['url'])
           <li>
             <div class="flex items-center gap-8">
               @if(!empty($footer_contact_details['phone_icon']['url']))
-              <img src="{{ esc_url($footer_contact_details['phone_icon']['url']) }}"
-                class="w-full mt-2 h-full object-cover max-w-24"
+              <img data-src="{{ esc_url($footer_contact_details['phone_icon']['url']) }}"
+                data-sizes="auto"
+                class="w-full mt-2 h-full object-cover max-w-24 lazyload"
                 width="{{ esc_attr($footer_contact_details['phone_icon']['width'] ?? '26') }}"
                 height="{{ esc_attr($footer_contact_details['phone_icon']['height'] ?? '26') }}"
                 alt="{{ esc_attr($footer_contact_details['phone_icon']['alt'] ?? 'phone-icon') }}">
@@ -91,8 +92,9 @@ $show_popup = !empty($popup_image['url'])
           <li>
             <div class="flex items-center gap-8">
               @if(!empty($footer_contact_details['email_icon']['url']))
-              <img src="{{ esc_url($footer_contact_details['email_icon']['url']) }}"
-                class="w-full mt-2 h-full object-cover max-w-24"
+              <img data-src="{{ esc_url($footer_contact_details['email_icon']['url']) }}"
+                data-sizes="auto"
+                class="w-full mt-2 h-full object-cover max-w-24 lazyload"
                 width="{{ esc_attr($footer_contact_details['email_icon']['width'] ?? '26') }}"
                 height="{{ esc_attr($footer_contact_details['email_icon']['height'] ?? '26') }}"
                 alt="{{ esc_attr($footer_contact_details['email_icon']['alt'] ?? 'mail-icon') }}">
@@ -119,7 +121,7 @@ $show_popup = !empty($popup_image['url'])
           <li>
             <div class="flex items-center gap-8">
               @if(!empty($address_icon_url))
-              <img src="{{ esc_url($address_icon_url) }}" class="w-full mt-2 h-full object-cover max-w-24"
+              <img data-src="{{ esc_url($address_icon_url) }}" data-sizes="auto" class="w-full mt-2 h-full object-cover max-w-24 lazyload"
                 width="{{ esc_attr($address_icon_meta['width'] ?? '26') }}"
                 height="{{ esc_attr($address_icon_meta['height'] ?? '26') }}"
                 alt="{{ esc_attr($footer_contact_details['address_label'] ?? 'address-icon') }}">
@@ -162,17 +164,17 @@ $show_popup = !empty($popup_image['url'])
 
         <a href="{{ home_url('/') }}" class="footer-logo max-1023:!hidden" aria-label="{{ get_bloginfo('name') }}">
           @if(!empty($footer_logo) && is_array($footer_logo) && !empty($footer_logo['url']))
-          <img src="{{ esc_url($footer_logo['url']) }}" width="{{ esc_attr($footer_logo['width'] ?? '') }}"
-            height="{{ esc_attr($footer_logo['height'] ?? '') }}" alt="{{ esc_attr(get_bloginfo('name')) }}">
+          <img data-src="{{ esc_url($footer_logo['url']) }}" data-srcset="{{ wp_get_attachment_image_srcset($footer_logo['ID'] ?? 0) }}" data-sizes="auto" width="{{ esc_attr($footer_logo['width'] ?? '') }}"
+            height="{{ esc_attr($footer_logo['height'] ?? '') }}" alt="{{ esc_attr(get_bloginfo('name')) }}" class="lazyload">
           @endif
         </a>
 
         <a href="{{ home_url('/') }}" class="mobile-footer-logo !hidden max-1023:!block"
           aria-label="{{ get_bloginfo('name') }}">
           @if(!empty($footer_logo_mobile) && is_array($footer_logo_mobile) && !empty($footer_logo_mobile['url']))
-          <img src="{{ esc_url($footer_logo_mobile['url']) }}"
+          <img data-src="{{ esc_url($footer_logo_mobile['url']) }}" data-srcset="{{ wp_get_attachment_image_srcset($footer_logo_mobile['ID'] ?? 0) }}" data-sizes="auto"
             width="{{ esc_attr($footer_logo_mobile['width'] ?? '') }}"
-            height="{{ esc_attr($footer_logo_mobile['height'] ?? '') }}" alt="{{ esc_attr(get_bloginfo('name')) }}">
+            height="{{ esc_attr($footer_logo_mobile['height'] ?? '') }}" alt="{{ esc_attr(get_bloginfo('name')) }}" class="lazyload">
           @endif
         </a>
 

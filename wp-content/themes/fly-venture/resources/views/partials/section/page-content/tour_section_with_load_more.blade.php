@@ -82,7 +82,7 @@
 
       @if ( ! empty( $icon_url ) )
         <div class="common-head-icon" aria-hidden="true">
-          <img src="{{ esc_url( $icon_url ) }}" width="68" height="100" alt="section icon" loading="lazy">
+          <img data-src="{{ esc_url( $icon_url ) }}" data-srcset="{{ wp_get_attachment_image_srcset( absint( $icon_id ) ) }}" data-sizes="auto" width="68" height="100" alt="section icon" class="lazyload">
         </div>
       @endif
 
@@ -189,18 +189,21 @@
           <div class="popular-tour-card-media">
             @if ( ! empty( $thumbnail ) )
             
-              <img src="{{ esc_url( $thumbnail ) }}" height="250" width="375"
-                   alt="{{ esc_attr( $_tour->post_title ) }}" loading="lazy">
+              <img data-src="{{ esc_url( $thumbnail ) }}" data-srcset="{{ wp_get_attachment_image_srcset( get_post_thumbnail_id( $_tour->ID ) ) }}" data-sizes="auto" height="250" width="375"
+                   alt="{{ esc_attr( $_tour->post_title ) }}" class="lazyload">
            
             @endif
             @if ( ! empty( $badgeLabel ) )
               <div class="popular-tour-badge">
                   <?php if (!empty($tour_icon['url'])) : ?>
                 <img
-                  src="<?php echo esc_url($tour_icon['url']); ?>"
+                  data-src="<?php echo esc_url($tour_icon['url']); ?>"
+                  data-srcset="<?php echo wp_get_attachment_image_srcset($tour_icon['ID'] ?? 0); ?>"
+                  data-sizes="auto"
                   height="14"
                   width="14"
-                  alt="<?php echo esc_attr($tour_icon['alt']); ?>">
+                  alt="<?php echo esc_attr($tour_icon['alt']); ?>"
+                  class="lazyload">
                 <?php endif; ?>
                 <span>{{ $badgeLabel }}</span>
               </div>
@@ -235,8 +238,8 @@
                            style="{{ ! empty( $tag['color'] ) ? 'background-color:' . esc_attr( $tag['color'] ) . ';' : '' }}">
 
                         @if ( ! empty( $tag['icon_url'] ) )
-                          <img src="{{ esc_url( $tag['icon_url'] ) }}" height="14" width="14"
-                               alt="{{ esc_attr( $tag['name'] ) }}">
+                          <img data-src="{{ esc_url( $tag['icon_url'] ) }}" data-sizes="auto" height="14" width="14"
+                               alt="{{ esc_attr( $tag['name'] ) }}" class="lazyload">
                         @endif
 
                         <span style="color:{{ esc_attr( $tag['text_color'] ) }};">
@@ -267,7 +270,7 @@
                   <small><strong>{{ esc_html( $durationLabel ) }}</strong></small>
                   @if ( ! empty( $duration ) )
                     <div class="time mt-6 inline-flex gap-6 items-center">
-                      <img src="{{ esc_url( $clock_uri ) }}" height="18" width="18" alt="clock" loading="lazy">
+                      <img data-src="{{ esc_url( $clock_uri ) }}" data-sizes="auto" height="18" width="18" alt="clock" class="lazyload">
                       <strong>{{ esc_html( $duration ) }} min</strong>
                     </div>
                   @endif

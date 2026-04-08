@@ -33,25 +33,27 @@
               @if ( ( is_array( $_img ) && ! empty( $_img['url'] ) ) || ( is_array( $_c_img ) && ! empty( $_c_img['url'] ) ) )
                 <span class="partner-logo-pair">
                   @if ( is_array( $_c_img ) && ! empty( $_c_img['url'] ) )
-                    <img
-                      class="partner-logo blue"
-                      src="{{ esc_url( $_c_img['url'] ) }}"
-                      alt="{{ esc_attr( $_c_img['alt'] ?? '' ) }}"
-                      @if ( ! empty( $_c_img['width'] ) )  width="{{ absint( $_c_img['width'] ) }}"  @endif
-                      @if ( ! empty( $_c_img['height'] ) ) height="{{ absint( $_c_img['height'] ) }}" @endif
-                      loading="lazy"
-                    >
+            <img
+              class="partner-logo blue lazyload"
+              data-src="{{ esc_url( $_c_img['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $_c_img['ID'] ?? 0 ) }}"
+              data-sizes="auto"
+              alt="{{ esc_attr( $_c_img['alt'] ?? '' ) }}"
+              @if ( ! empty( $_c_img['width'] ) )  width="{{ absint( $_c_img['width'] ) }}"  @endif
+              @if ( ! empty( $_c_img['height'] ) ) height="{{ absint( $_c_img['height'] ) }}" @endif
+            >
                   @endif
 
                   @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
-                    <img
-                      class="partner-logo color"
-                      src="{{ esc_url( $_img['url'] ) }}"
-                      alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                      @if ( ! empty( $_img['width'] ) )  width="{{ absint( $_img['width'] ) }}"  @endif
-                      @if ( ! empty( $_img['height'] ) ) height="{{ absint( $_img['height'] ) }}" @endif
-                      loading="lazy"
-                    >
+              <img
+              class="partner-logo color lazyload"
+              data-src="{{ esc_url( $_img['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+              data-sizes="auto"
+              alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
+              @if ( ! empty( $_img['width'] ) )  width="{{ absint( $_img['width'] ) }}"  @endif
+              @if ( ! empty( $_img['height'] ) ) height="{{ absint( $_img['height'] ) }}" @endif
+            >
                   @endif
                 </span>
               @endif

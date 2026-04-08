@@ -37,21 +37,22 @@
           <span class="faq-intro-icon mb-20 block" aria-hidden="true">
                         @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
               <img
-                src="{{ esc_url( $_img['url'] ) }}"
+                data-src="{{ esc_url( $_img['url'] ) }}"
+                data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                data-sizes="auto"
                 height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '100' }}"
                 width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '100' }}"
                 alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                class="w-full h-full object-cover max-w-100 max-h-100 max-1199:max-w-50 max-1199:max-h-50"
-                loading="lazy"
+                class="w-full h-full object-cover max-w-100 max-h-100 max-1199:max-w-50 max-1199:max-h-50 lazyload"
               >
             @elseif ( is_string( $_img ) && $_img !== '' )
               <img
-                src="{{ esc_url( $_img ) }}"
+                data-src="{{ esc_url( $_img ) }}"
+                data-sizes="auto"
                 height="100"
                 width="100"
                 alt=""
-                class="w-full h-full object-cover max-w-100 max-h-100 max-1199:max-w-50 max-1199:max-h-50"
-                loading="lazy"
+                class="w-full h-full object-cover max-w-100 max-h-100 max-1199:max-w-50 max-1199:max-h-50 lazyload"
               >
             @endif
                     </span>

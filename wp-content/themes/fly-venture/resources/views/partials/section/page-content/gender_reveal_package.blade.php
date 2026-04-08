@@ -42,14 +42,16 @@
                         <div class="adventure-icon" aria-hidden="true">
                             @if(is_array($icon) && !empty($icon['url']))
                                 <img
-                                    src="{{ esc_url($icon['url']) }}"
+                                    data-src="{{ esc_url($icon['url']) }}"
+                                    data-srcset="{{ wp_get_attachment_image_srcset($icon['ID'] ?? 0) }}"
+                                    data-sizes="auto"
                                     width="{{ !empty($icon['width']) ? absint($icon['width']) : 90 }}"
                                     height="{{ !empty($icon['height']) ? absint($icon['height']) : 100 }}"
                                     alt="{{ esc_attr($icon['alt'] ?? '') }}"
-                                    loading="lazy"
+                                    class="lazyload"
                                 >
                             @elseif(is_string($icon) && $icon !== '')
-                                <img src="{{ esc_url($icon) }}" width="90" height="100" alt="" loading="lazy">
+                                <img data-src="{{ esc_url($icon) }}" data-sizes="auto" width="90" height="100" alt="" class="lazyload">
                             @endif
                         </div>
                     @endif

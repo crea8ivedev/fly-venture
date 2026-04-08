@@ -35,11 +35,13 @@
         @if ( ! empty( $icon['url'] ) )
           <div class="section-badge-icon" aria-hidden="true">
             <img
-              src="{{ esc_url( $icon['url'] ) }}"
+              data-src="{{ esc_url( $icon['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $icon['ID'] ?? 0 ) }}"
+              data-sizes="auto"
               width="{{ absint( $icon['width'] ) }}"
               height="{{ absint( $icon['height'] ) }}"
               alt="{{ esc_attr( $icon['alt'] ?: $icon['title'] ) }}"
-              loading="lazy"
+              class="lazyload"
             >
           </div>
         @endif
@@ -73,11 +75,13 @@
               @if ( ! empty( $_s_icon['url'] ) )
                 <div class="apart-card-circle">
                   <img
-                    src="{{ esc_url( $_s_icon['url'] ) }}"
+                    data-src="{{ esc_url( $_s_icon['url'] ) }}"
+                    data-srcset="{{ wp_get_attachment_image_srcset( $_s_icon['ID'] ?? 0 ) }}"
+                    data-sizes="auto"
                     width="{{ absint( $_s_icon['width'] ) }}"
                     height="{{ absint( $_s_icon['height'] ) }}"
                     alt="{{ esc_attr( $_s_icon['alt'] ?: $_s_icon['title'] ) }}"
-                    loading="lazy"
+                    class="lazyload"
                   >
                 </div>
               @endif

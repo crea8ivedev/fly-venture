@@ -33,21 +33,22 @@
         <div class="icon">
           @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
             <img
-              src="{{ esc_url( $_img['url'] ) }}"
+              data-src="{{ esc_url( $_img['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+              data-sizes="auto"
               height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '100' }}"
               width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '100' }}"
-              class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50"
+              class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50 lazyload"
               alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-              loading="lazy"
             >
           @elseif ( is_string( $_img ) && $_img !== '' )
             <img
-              src="{{ esc_url( $_img ) }}"
+              data-src="{{ esc_url( $_img ) }}"
+              data-sizes="auto"
               height="100"
               width="100"
-              class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50"
+              class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50 lazyload"
               alt=""
-              loading="lazy"
             >
           @endif
         </div>
@@ -84,19 +85,22 @@
                   <div class="card-img">
                     @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                       <img
-                        src="{{ esc_url( $_img['url'] ) }}"
+                        data-src="{{ esc_url( $_img['url'] ) }}"
+                        data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                        data-sizes="auto"
                         height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '510' }}"
                         width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '420' }}"
                         alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                        loading="lazy"
+                        class="lazyload"
                       >
                     @elseif ( is_string( $_img ) && $_img !== '' )
                       <img
-                        src="{{ esc_url( $_img ) }}"
+                        data-src="{{ esc_url( $_img ) }}"
+                        data-sizes="auto"
                         height="510"
                         width="420"
                         alt=""
-                        loading="lazy"
+                        class="lazyload"
                       >
                     @endif
                   </div>
@@ -109,19 +113,22 @@
                     @php( $_img = $_row['cye_experience_icon'] )
                     @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                       <img
-                        src="{{ esc_url( $_img['url'] ) }}"
+                        data-src="{{ esc_url( $_img['url'] ) }}"
+                        data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                        data-sizes="auto"
                         height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '60' }}"
                         width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '60' }}"
                         alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                        loading="lazy"
+                        class="lazyload"
                       >
                     @elseif ( is_string( $_img ) && $_img !== '' )
                       <img
-                        src="{{ esc_url( $_img ) }}"
+                        data-src="{{ esc_url( $_img ) }}"
+                        data-sizes="auto"
                         height="60"
                         width="60"
                         alt=""
-                        loading="lazy"
+                        class="lazyload"
                       >
                     @endif
                   @endif

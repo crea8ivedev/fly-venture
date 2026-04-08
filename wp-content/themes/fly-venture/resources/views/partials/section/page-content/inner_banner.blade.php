@@ -134,11 +134,12 @@
                 @for ( $s = 0; $s < $rating_value; $s++ )
                   <li>
                     <img
-                      src="{{ esc_url( $star_uri ) }}"
+                      data-src="{{ esc_url( $star_uri ) }}"
+                      data-sizes="auto"
                       height="16"
                       width="17"
                       alt="star"
-                      loading="lazy"
+                      class="lazyload"
                     >
                   </li>
                 @endfor

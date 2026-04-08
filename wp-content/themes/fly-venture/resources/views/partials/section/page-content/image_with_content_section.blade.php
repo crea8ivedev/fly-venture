@@ -36,10 +36,13 @@
       @if ( $isLeft && ! empty( $image ) )
         <div class="adventure-media">
           <img
-            src="{{ esc_url( $image['url'] ) }}"
+            data-src="{{ esc_url( $image['url'] ) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset( $image['ID'] ?? 0 ) }}"
+            data-sizes="auto"
             width="{{ absint( $image['width'] ) }}"
             height="{{ absint( $image['height'] ) }}"
             alt="{{ esc_attr( $image['alt'] ?: $image['title'] ) }}"
+            class="lazyload"
           >
         </div>
       @endif
@@ -50,10 +53,13 @@
           @if ( ! empty( $icon ) )
             <div class="adventure-icon" aria-hidden="true">
               <img
-                src="{{ esc_url( $icon['url'] ) }}"
+                data-src="{{ esc_url( $icon['url'] ) }}"
+                data-srcset="{{ wp_get_attachment_image_srcset( $icon['ID'] ?? 0 ) }}"
+                data-sizes="auto"
                 width="{{ absint( $icon['width'] ) }}"
                 height="{{ absint( $icon['height'] ) }}"
                 alt="{{ esc_attr( $icon['alt'] ?: $icon['title'] ) }}"
+                class="lazyload"
               >
             </div>
           @endif
@@ -92,10 +98,13 @@
       @if ( ! $isLeft && ! empty( $image ) )
         <div class="adventure-media">
           <img
-            src="{{ esc_url( $image['url'] ) }}"
+            data-src="{{ esc_url( $image['url'] ) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset( $image['ID'] ?? 0 ) }}"
+            data-sizes="auto"
             width="{{ absint( $image['width'] ) }}"
             height="{{ absint( $image['height'] ) }}"
             alt="{{ esc_attr( $image['alt'] ?: $image['title'] ) }}"
+            class="lazyload"
           >
         </div>
       @endif

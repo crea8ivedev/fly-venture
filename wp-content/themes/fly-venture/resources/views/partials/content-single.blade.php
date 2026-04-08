@@ -44,20 +44,20 @@
       {{-- Meta: Author & Date --}}
       <div class="blog-single__meta my-24">
         <span class="blog-single__author">
-        <img src="@asset('resources/images/author-icon.svg')" alt="Author Icon" loading="lazy">
+        <img data-src="@asset('resources/images/author-icon.svg')" data-sizes="auto" alt="Author Icon" class="lazyload">
           <a href="{{ esc_url(get_author_posts_url(get_the_author_meta('ID'))) }}">
             {{ esc_html(get_the_author()) }}
           </a>
         </span>
         <span class="blog-single__author">
-          <img src="@asset('resources/images/date-icon.svg')" alt="Date Icon" loading="lazy">
+          <img data-src="@asset('resources/images/date-icon.svg')" data-sizes="auto" alt="Date Icon" class="lazyload">
           <time class="blog-single__date" datetime="{{ esc_attr(get_post_time('c', true)) }}">
             {!! get_the_date() !!}
           </time>
         </span>
         @if(!empty($categories))
   <div class="blog-single__author">
-    <img src="@asset('resources/images/category-icon.svg')" alt="Category Icon" loading="lazy">
+    <img data-src="@asset('resources/images/category-icon.svg')" data-sizes="auto" alt="Category Icon" class="lazyload">
 
     @foreach($categories as $cat)
       <a href="{{ esc_url(get_category_link($cat->term_id)) }}" class="blog-category-link">

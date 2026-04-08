@@ -32,19 +32,22 @@
             <div class="bundle-save-image">
               @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                 <img
-                  src="{{ esc_url( $_img['url'] ) }}"
+                  data-src="{{ esc_url( $_img['url'] ) }}"
+                  data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                  data-sizes="auto"
                   height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '722' }}"
                   width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '490' }}"
                   alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                  loading="lazy"
+                  class="lazyload"
                 >
               @elseif ( is_string( $_img ) && $_img !== '' )
                 <img
-                  src="{{ esc_url( $_img ) }}"
+                  data-src="{{ esc_url( $_img ) }}"
+                  data-sizes="auto"
                   height="722"
                   width="490"
                   alt=""
-                  loading="lazy"
+                  class="lazyload"
                 >
               @endif
             </div>
@@ -56,19 +59,22 @@
             <div class="bundle-save-image">
               @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                 <img
-                  src="{{ esc_url( $_img['url'] ) }}"
+                  data-src="{{ esc_url( $_img['url'] ) }}"
+                  data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                  data-sizes="auto"
                   height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '722' }}"
                   width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '490' }}"
                   alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                  loading="lazy"
+                  class="lazyload"
                 >
               @elseif ( is_string( $_img ) && $_img !== '' )
                 <img
-                  src="{{ esc_url( $_img ) }}"
+                  data-src="{{ esc_url( $_img ) }}"
+                  data-sizes="auto"
                   height="722"
                   width="490"
                   alt=""
-                  loading="lazy"
+                  class="lazyload"
                 >
               @endif
             </div>
@@ -86,19 +92,22 @@
           <div class="bundle-icon">
             @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
               <img
-                src="{{ esc_url( $_img['url'] ) }}"
+                data-src="{{ esc_url( $_img['url'] ) }}"
+                data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                data-sizes="auto"
                 height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '100' }}"
                 width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '100' }}"
                 alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                loading="lazy"
+                class="lazyload"
               >
             @elseif ( is_string( $_img ) && $_img !== '' )
               <img
-                src="{{ esc_url( $_img ) }}"
+                data-src="{{ esc_url( $_img ) }}"
+                data-sizes="auto"
                 height="100"
                 width="100"
                 alt=""
-                loading="lazy"
+                class="lazyload"
               >
             @endif
           </div>

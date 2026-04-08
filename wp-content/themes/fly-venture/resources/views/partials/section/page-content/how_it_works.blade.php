@@ -7,8 +7,8 @@
                 <div class="how-it-works-header">
                     @if (!empty($content->works_icon))
                         <div class="how-it-works-icon">
-                            <img src="{!! $content->works_icon['url'] !!}" width="100" height="83"
-                                alt="{!! $content->works_icon['url'] !!}" loading="lazy">
+                            <img data-src="{!! $content->works_icon['url'] !!}" data-srcset="{{ wp_get_attachment_image_srcset($content->works_icon['ID'] ?? 0) }}" data-sizes="auto" width="100" height="83"
+                                alt="{!! $content->works_icon['alt'] ?? '' !!}" class="lazyload">
                         </div>
                     @endif
                     @if (!empty($content->title))
@@ -30,8 +30,8 @@
                             
                             @if ($add_steps['image'])
                                 <div class="step-image-wrap">
-                                    <img src="{!! $add_steps['image']['url'] !!}" width="212" height="212"
-                                        alt="{!! $add_steps['image']['alt'] !!}" loading="lazy">
+                                    <img data-src="{!! $add_steps['image']['url'] !!}" data-srcset="{{ wp_get_attachment_image_srcset($add_steps['image']['ID'] ?? 0) }}" data-sizes="auto" width="212" height="212"
+                                        alt="{!! $add_steps['image']['alt'] !!}" class="lazyload">
                                 </div>
                             @endif
 
@@ -57,7 +57,7 @@
                         {{-- Arrow (not after last item) --}}
                         @if (!$loop->last)
                             <div class="step-arrow {!! $loop->index % 2 != 0 ? 'step-arrow-flip' : '' !!}" aria-hidden="true">
-                                <img src="@asset('resources/images/how-it-works-arrow.svg')" width="187" height="120" alt="" loading="lazy">
+                                <img data-src="@asset('resources/images/how-it-works-arrow.svg')" data-sizes="auto" width="187" height="120" alt="" class="lazyload">
                             </div>
                         @endif
                     @endforeach

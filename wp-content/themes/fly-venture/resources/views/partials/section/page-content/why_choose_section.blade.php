@@ -42,19 +42,22 @@
                     <div class="icon">
                       @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                         <img
-                          src="{{ esc_url( $_img['url'] ) }}"
+                          data-src="{{ esc_url( $_img['url'] ) }}"
+                          data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                          data-sizes="auto"
                           height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '120' }}"
                           width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '120' }}"
                           alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                          loading="lazy"
+                          class="lazyload"
                         >
                       @elseif ( is_string( $_img ) && $_img !== '' )
                         <img
-                          src="{{ esc_url( $_img ) }}"
+                          data-src="{{ esc_url( $_img ) }}"
+                          data-sizes="auto"
                           height="120"
                           width="120"
                           alt=""
-                          loading="lazy"
+                          class="lazyload"
                         >
                       @endif
                     </div>
@@ -122,21 +125,22 @@
               <div class="pretitle-icon">
                 @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
                   <img
-                    src="{{ esc_url( $_img['url'] ) }}"
+                    data-src="{{ esc_url( $_img['url'] ) }}"
+                    data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                    data-sizes="auto"
                     height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '107' }}"
                     width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '100' }}"
-                    class="h-full w-full max-w-100 max-1023:max-w-50 object-cover"
+                    class="h-full w-full max-w-100 max-1023:max-w-50 object-cover lazyload"
                     alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-                    loading="lazy"
                   >
                 @elseif ( is_string( $_img ) && $_img !== '' )
                   <img
-                    src="{{ esc_url( $_img ) }}"
+                    data-src="{{ esc_url( $_img ) }}"
+                    data-sizes="auto"
                     height="107"
                     width="100"
-                    class="h-full w-full max-w-100 max-1023:max-w-50 object-cover"
+                    class="h-full w-full max-w-100 max-1023:max-w-50 object-cover lazyload"
                     alt=""
-                    loading="lazy"
                   >
                 @endif
               </div>

@@ -45,10 +45,12 @@
 
         <div class="phone">
           <img
-            src="{{ get_theme_file_uri('/resources/images/white-call-icon.svg') }}"
+            data-src="{{ get_theme_file_uri('/resources/images/white-call-icon.svg') }}"
+            data-sizes="auto"
             height="12"
             width="12"
             alt="phone icon"
+            class="lazyload"
           >
           <a href="{{ $header_phone_href }}" aria-label="{{ $header_phone_label }}" role="link">
             {{ $header_phone_label }}
@@ -93,7 +95,6 @@
               class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover xl:pb-16"
               height="60"
               width="280"
-              loading="eager"
             >
           @else
             <img
@@ -102,7 +103,6 @@
               class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover"
               height="60"
               width="280"
-              loading="eager"
             >
           @endif
         </a>

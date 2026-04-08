@@ -28,19 +28,22 @@
         <div class="full-img-conatent-media">
           @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
             <img
-              src="{{ esc_url( $_img['url'] ) }}"
+              data-src="{{ esc_url( $_img['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+              data-sizes="auto"
               height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '438' }}"
               width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '977' }}"
               alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-              loading="lazy"
+              class="lazyload"
             >
           @elseif ( is_string( $_img ) && $_img !== '' )
             <img
-              src="{{ esc_url( $_img ) }}"
+              data-src="{{ esc_url( $_img ) }}"
+              data-sizes="auto"
               height="438"
               width="977"
               alt=""
-              loading="lazy"
+              class="lazyload"
             >
           @endif
         </div>
@@ -88,11 +91,13 @@
         <div class="full-img-conatent-icon" aria-hidden="true">
           @if ( is_array( $_img ) && ! empty( $_img['url'] ) )
             <img
-              src="{{ esc_url( $_img['url'] ) }}"
+              data-src="{{ esc_url( $_img['url'] ) }}"
+              data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+              data-sizes="auto"
               height="{{ ! empty( $_img['height'] ) ? absint( $_img['height'] ) : '169' }}"
               width="{{ ! empty( $_img['width'] ) ? absint( $_img['width'] ) : '180' }}"
               alt="{{ esc_attr( $_img['alt'] ?? '' ) }}"
-              loading="lazy"
+              class="lazyload"
             >
           @endif
         </div>

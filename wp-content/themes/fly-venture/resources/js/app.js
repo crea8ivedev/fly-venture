@@ -11,7 +11,8 @@ import.meta.glob([
   
   import { initHeader } from './header.js';
   import script from './script.js';
-  
+  import 'lazysizes';
+  import 'lazysizes/plugins/parent-fit/ls.parent-fit';
   // -----------------------------
   // Dynamic Animation Loader
   // -----------------------------

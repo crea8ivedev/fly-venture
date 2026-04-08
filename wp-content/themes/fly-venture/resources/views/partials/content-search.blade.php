@@ -2,12 +2,12 @@
     <div class="flex justify-center pb-20">
         <a href="{!! get_permalink() !!}">
             <img 
-                src="{!! get_the_post_thumbnail_url(get_the_ID()) ?: get_template_directory_uri() . '/resources/images/placeholder-image.jpg' !!}" 
+                data-src="{!! get_the_post_thumbnail_url(get_the_ID()) ?: get_template_directory_uri() . '/resources/images/placeholder-image.jpg' !!}" 
+                data-sizes="auto"
                 alt="{!! get_the_title() !!}" 
                 width="400" 
                 height="340" 
-                class="max-w-full w-full h-auto aspect-[1.18/1] object-cover rounded-[8px] shadow-shadowWhiteBtn"
-                loading="lazy"
+                class="max-w-full w-full h-auto aspect-[1.18/1] object-cover rounded-[8px] shadow-shadowWhiteBtn lazyload"
             >
         </a>
     </div>

@@ -22,10 +22,13 @@
       @if(!empty($content->icon))
         <div class="employment-openings-icon">
           <img
-            src="{{ esc_url($content->icon['url']) }}"
+            data-src="{{ esc_url($content->icon['url']) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset($content->icon['ID'] ?? 0) }}"
+            data-sizes="auto"
             height="{{ $content->icon['height'] ?? 100 }}"
             width="{{ $content->icon['width'] ?? 92 }}"
             alt="{{ esc_attr($content->icon['alt'] ?? '') }}"
+            class="lazyload"
           >
         </div>
       @endif

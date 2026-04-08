@@ -47,10 +47,13 @@
       @if(!empty($content->icon))
         <div class="gift-section-icon">
           <img
-            src="{{ esc_url($content->icon['url']) }}"
+            data-src="{{ esc_url($content->icon['url']) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset($content->icon['ID'] ?? 0) }}"
+            data-sizes="auto"
             height="{{ $content->icon['height'] ?? 100 }}"
             width="{{ $content->icon['width'] ?? 90 }}"
             alt="{{ esc_attr($content->icon['alt'] ?? '') }}"
+            class="lazyload"
           >
         </div>
       @endif
@@ -106,8 +109,10 @@
 
                 @if(!empty($card['image']))
                   <img
-                    src="{{ esc_url($card['image']['url']) }}"
-                    class="gift-card-stamp-img"
+                    data-src="{{ esc_url($card['image']['url']) }}"
+                    data-srcset="{{ wp_get_attachment_image_srcset($card['image']['ID'] ?? 0) }}"
+                    data-sizes="auto"
+                    class="gift-card-stamp-img lazyload"
                     alt="{{ esc_attr($card['image']['alt'] ?? '') }}"
                     width="{{ $card['image']['width'] ?? 602 }}"
                     height="{{ $card['image']['height'] ?? 412 }}"

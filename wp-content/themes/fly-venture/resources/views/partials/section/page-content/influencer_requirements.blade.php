@@ -12,11 +12,13 @@
       @if(!empty($content->ip_icon))
         <div class="title-icon">
           <img
-            src="{{ esc_url($content->ip_icon['url']) }}"
+            data-src="{{ esc_url($content->ip_icon['url']) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset($content->ip_icon['ID'] ?? 0) }}"
+            data-sizes="auto"
             width="{{ $content->ip_icon['width'] ?? '' }}"
             height="{{ $content->ip_icon['height'] ?? '' }}"
             alt="{{ esc_attr($content->ip_icon['alt'] ?? '') }}"
-            class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50"
+            class="w-full h-full object-cover max-w-100 max-h-100 max-1023:max-w-50 max-1023:max-h-50 lazyload"
           >
         </div>
       @endif
@@ -44,10 +46,13 @@
             @if(!empty($box['media_icon']))
               <div class="icon">
                 <img
-                  src="{{ esc_url($box['media_icon']['url']) }}"
+                  data-src="{{ esc_url($box['media_icon']['url']) }}"
+                  data-srcset="{{ wp_get_attachment_image_srcset($box['media_icon']['ID'] ?? 0) }}"
+                  data-sizes="auto"
                   height="66"
                   width="auto"
                   alt="{{ esc_attr($box['media_icon']['alt'] ?? '') }}"
+                  class="lazyload"
                 >
               </div>
             @endif

@@ -35,9 +35,6 @@
   $firstCategoryTarget = !empty($firstButton['target']) ? $firstButton['target']          : '_self';
   $selectedToursAttr = !empty($selectedTourIds) ? implode(',', $selectedTourIds) : '';
 @endphp
-@if(current_user_can('administrator'))
-  <!-- DEBUG firstCategory: {{ $firstCategory }} | firstButton: {{ json_encode($content->view_all_st_pete_tours_button) }} -->
-@endif
 
   <!-- popular-tours-start -->
 <section
@@ -98,7 +95,7 @@
 
         {{-- View all button (desktop) — updates on tab switch via JS --}}
         <div class="btn-custom mt-46 max-1023:hidden">
-          <a href="{{ $firstCategoryLink }}"
+          <a href="{!! $firstCategoryLink !!}"
              class="btn btn-orange popular-tour-cta"
              aria-label="{{ esc_attr($firstCategoryLabel) }}"
              data-city="{{ esc_attr($firstCategory) }}"

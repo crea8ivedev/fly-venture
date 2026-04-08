@@ -35,10 +35,13 @@
       @if ( ! empty( $icon['url'] ) )
         <div class="wys-head-icon" aria-hidden="true">
           <img
-            src="{{ esc_url( $icon['url'] ) }}"
+            data-src="{{ esc_url( $icon['url'] ) }}"
+            data-srcset="{{ wp_get_attachment_image_srcset( $icon['ID'] ?? 0 ) }}"
+            data-sizes="auto"
             width="{{ absint( $icon['width'] ) }}"
             height="{{ absint( $icon['height'] ) }}"
             alt="{{ esc_attr( $icon['alt'] ?: $icon['title'] ) }}"
+            class="lazyload"
           >
         </div>
       @endif
@@ -72,11 +75,13 @@
               <div class="wys-card">
                 <div class="wys-card-media">
                   <img
-                    src="{{ esc_url( $_img['url'] ) }}"
+                    data-src="{{ esc_url( $_img['url'] ) }}"
+                    data-srcset="{{ wp_get_attachment_image_srcset( $_img['ID'] ?? 0 ) }}"
+                    data-sizes="auto"
                     width="{{ absint( $_img['width'] ) }}"
                     height="{{ absint( $_img['height'] ) }}"
                     alt="{{ esc_attr( $_img['alt'] ?: $_img['title'] ) }}"
-                    loading="lazy"
+                    class="lazyload"
                   >
                   <div class="wys-card-overlay" aria-hidden="true"></div>
 

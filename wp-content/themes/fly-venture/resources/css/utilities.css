@@ -1572,7 +1572,7 @@ body.fv-popup-open {
 }
 
 .features-grid__container {
-  @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 1440:gap-42 gap-30;
+  @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 1440:gap-42 gap-30 w-full;
 }
 
 .features-grid__container .feature-card {
@@ -1818,4 +1818,25 @@ article.type-post {
 }
 .fv-offer-popup__note p {
   @apply mb-10 text-white text-heading-4 leading-28 font-normal max-1023:text-heading-5 max-1023:leading-24 ;
+}
+
+
+.ti-widget.ti-goog.ti-disable-font {
+  @apply overflow-hidden!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-review-item > .ti-inner {
+  @apply p-24!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-inner .ti-stars .ti-star {
+  @apply filter-[brightness(0)_saturate(100%)_invert(58%)_sepia(19%)_saturate(7306%)_hue-rotate(351deg)_brightness(90%)_contrast(90%)]! w-24! h-24! py-4! px-2! m-0!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-review-content {
+  @apply text-[#2C2C2C]!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-reviews-container-wrapper .ti-inner > .ti-stars {
+  @apply h-auto! mt-0! mb-12!;
 }

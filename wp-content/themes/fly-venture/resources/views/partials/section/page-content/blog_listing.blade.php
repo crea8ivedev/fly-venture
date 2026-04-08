@@ -66,8 +66,8 @@ $categories = get_categories(['hide_empty' => true, 'orderby' => 'name', 'order'
           <div class="popular-tour-card-media">
             @if(!empty($post['thumbnail']['url']))
 
-            <img src="{{ esc_url($post['thumbnail']['url']) }}" alt="{{ esc_attr($post['thumbnail']['alt']) }}"
-              height="250" width="375" loading="lazy">
+            <img data-src="{{ esc_url($post['thumbnail']['url']) }}" data-srcset="{{ wp_get_attachment_image_srcset($post['thumbnail']['id'] ?? 0) }}" data-sizes="auto" alt="{{ esc_attr($post['thumbnail']['alt']) }}"
+              height="250" width="375" class="lazyload">
 
             @endif
 

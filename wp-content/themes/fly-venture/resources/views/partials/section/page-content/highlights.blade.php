@@ -5,7 +5,7 @@
                 <div class="common-head fadeText">
                     @if (!empty($content->highlights_icon))
                         <div class="common-head-icon" aria-hidden="true">
-                            <img src="{!! $content->highlights_icon['url'] !!}" width="68" height="100" alt="{!! $content->highlights_icon['alt'] !!}" loading="lazy">
+                            <img data-src="{!! $content->highlights_icon['url'] !!}" data-srcset="{{ wp_get_attachment_image_srcset($content->highlights_icon['ID'] ?? 0) }}" data-sizes="auto" width="68" height="100" alt="{!! $content->highlights_icon['alt'] ?? '' !!}" class="lazyload">
                         </div>
                     @endif
                     @if (!empty($content->title))
@@ -24,7 +24,7 @@
                         @foreach ($content->add_highlights as $add_highlights)
                             <div class="feature-card">
                                 @if ($add_highlights['image'])
-                                    <img src="{!! $add_highlights['image']['url'] !!}" alt="{!! $add_highlights['image']['alt'] !!}" class="feature-card__img" loading="lazy">
+                                    <img data-src="{!! $add_highlights['image']['url'] !!}" data-srcset="{{ wp_get_attachment_image_srcset($add_highlights['image']['ID'] ?? 0) }}" data-sizes="auto" alt="{!! $add_highlights['image']['alt'] ?? '' !!}" class="feature-card__img lazyload">
                                     <div class="feature-card__overlay">
                                         <h4 class="feature-card__title">{!! $add_highlights['title'] !!}</h4>
                                         {!! $add_highlights['description'] !!}
