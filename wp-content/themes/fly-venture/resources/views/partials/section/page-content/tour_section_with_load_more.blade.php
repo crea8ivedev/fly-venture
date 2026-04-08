@@ -222,7 +222,7 @@
                   @if ( ! empty( $originalPrice ) )
                     <small>From <span>{{ esc_html( $originalPrice ) }}</span></small>
                   @endif
-                  <div class="flex max-575:flex-col items-baseline gap-2">
+                  <div class="flex flex-wrap max-575:flex-col items-baseline gap-2">
                   @if ( ! empty( $offerPrice ) )
                     <strong>Now {{ esc_html( $offerPrice ) }}</strong>
                   @endif

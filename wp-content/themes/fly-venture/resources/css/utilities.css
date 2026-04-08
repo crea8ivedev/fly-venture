@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-880 max-1441:h-680 overflow-hidden ;
+  @apply relative h-880 max-1680:h-680 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -40,7 +40,7 @@
   }
 }
 .hero-content-wrap {
-  @apply relative h-full z-2 pt-154 max-1441:pt-75 max-1199:pt-109 max-767:pt-70  flex items-center justify-between gap-40 ;
+  @apply relative h-full z-2 pt-154 max-1680:pt-75 max-1199:pt-109 max-767:pt-70  flex items-center justify-between gap-40 ;
 }
 
 .hero-content-left {
@@ -237,7 +237,7 @@
 }
 
 .experience-card-content p {
-  @apply  text-white/50 text-body-2 leading-19 max-575:text-sm max-575:leading-20;
+  @apply  text-white/50 text-body-2 leading-20 max-575:text-sm max-575:leading-20;
 }
 
 .custom-experience-progress.swiper-pagination-progressbar {
@@ -468,7 +468,7 @@
 }
 
 .popular-tours-intro {
-  @apply max-w-538 max-1600:max-w-500 max-1441:max-w-400 max-1023:max-w-300 max-1023:max-w-full max-1023:items-center max-1023:text-center flex flex-col justify-center  w-fit max-1023:px-60 max-992:px-24 max-575:px-16;
+  @apply max-w-538 max-1680:max-w-450 max-1441:max-w-400 max-1023:max-w-300 max-1023:max-w-full max-1023:items-center max-1023:text-center flex flex-col justify-center  w-fit max-1023:px-60 max-992:px-24 max-575:px-16;
 }
 
 .popular-tours-intro .icon img {
@@ -528,7 +528,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.83%, rgba(0, 0, 0, 0.75) 100%);
 }
 .popular-tour-card-body .bottom-content{
-  @apply mt-48 max-1441:mt-20 max-575:mt-14 max-575:mb-14 last:mb-0;
+  @apply mt-48 max-1680:mt-20 max-575:mt-14 max-575:mb-14 last:mb-0;
 }
 
 .popular-tour-card-media img {
@@ -552,15 +552,15 @@
 
 
 .popular-tour-pill {
-  @apply absolute left-24 bottom-24 bg-white rounded-full z-2 text-blue text-[18px] leading-21 max-575:text-sm max-575:leading-18 font-semibold px-16 py-8 max-575:px-12 max-575:py-6;
+  @apply absolute left-24 bottom-24 bg-white rounded-full z-2 text-blue text-[18px] leading-21 max-1680:text-sm max-1680:leading-18 font-semibold px-16 py-8 max-1680:px-12 max-1680:py-6;
 }
 
 .popular-tour-card-body {
-  @apply p-24 max-575:p-18 flex flex-col justify-between h-full;
+  @apply p-24 max-1680:p-20 max-575:p-18 flex flex-col justify-between h-full;
 }
 
 .popular-tour-card-body h4 {
-  @apply text-black text-[28px] max-575:text-[18px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
+  @apply text-black text-[28px] max-1680:text-xl max-575:text-[18px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
 }
 
 .popular-tour-meta {
@@ -568,13 +568,13 @@
 }
 
 .popular-tour-meta > div {
-  @apply border border-[#EEEEEE] mb-16 max-575:mb-14 rounded-[10px] flex flex-col justify-center px-16 py-12 max-575:px-10 max-575:py-10;
+  @apply border border-[#EEEEEE] mb-16 max-575:mb-14 rounded-[10px] flex flex-col justify-center px-16 py-12 max-1680:px-10 max-1680:py-10;
 }
 .popular-tour-card-body p + p{
   @apply mt-12
 }
 .popular-tour-card-body p{
-  @apply leading-19 max-575:text-sm;
+  @apply leading-19 max-1680:text-sm;
 }
 
 .popular-tour-meta small {

@@ -92,7 +92,7 @@
             <img
               src="{{ esc_url($header_logo['url']) }}"
               alt="{{ esc_attr($header_logo['alt'] ?? get_bloginfo('name')) }}"
-              class="max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover xl:pb-16"
+              class="max-w-280 max-1441:max-w-250 max-1199:max-w-200 h-full w-full object-cover xl:pb-16"
               height="60"
               width="280"
             >
