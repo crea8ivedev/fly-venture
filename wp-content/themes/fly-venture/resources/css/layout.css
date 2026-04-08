@@ -277,9 +277,9 @@
 
 
 /* Submenu indicators */
-.main-navigation .menu li.menu-item-has-children > a::after {
+.main-navigation .menu li.menu-item-has-children .submenu-inner a::after {
   content: '';
-  @apply inline-block ml-11 bg-[url(../images/down-arrow.svg)] h-6 w-12 mb-3 bg-no-repeat bg-center bg-cover transition-transform duration-200;
+  @apply inline-block ml-11 bg-[url(../images/down-arrow.svg)] h-6 w-12 mb-3 bg-no-repeat bg-center bg-cover transition-transform duration-200 max-1199:hidden;
 }
 
 .main-navigation .menu li.menu-item-has-children.submenu-open > a::after {
