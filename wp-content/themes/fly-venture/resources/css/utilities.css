@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-880 max-1441:h-700 overflow-hidden ;
+  @apply relative h-880 max-1441:h-680 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -560,7 +560,7 @@
 }
 
 .popular-tour-card-body h4 {
-  @apply text-black text-[28px] max-575:text-[20px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
+  @apply text-black text-[28px] max-575:text-[18px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
 }
 
 .popular-tour-meta {
@@ -1830,13 +1830,37 @@ article.type-post {
 }
 
 .ti-widget.ti-goog.ti-disable-font .ti-inner .ti-stars .ti-star {
-  @apply filter-[brightness(0)_saturate(100%)_invert(58%)_sepia(19%)_saturate(7306%)_hue-rotate(351deg)_brightness(90%)_contrast(90%)]! w-24! h-24! py-4! px-2! m-0!;
+  @apply filter-[brightness(0)_saturate(100%)_invert(58%)_sepia(19%)_saturate(7306%)_hue-rotate(351deg)_brightness(90%)_contrast(90%)]! w-20! h-20! p-0! m-0!;
 }
 
 .ti-widget.ti-goog.ti-disable-font .ti-review-content {
-  @apply text-[#2C2C2C]!;
+  @apply text-[#2C2C2C]! font-worksans! text-body-2! leading-24! max-575:text-sm! max-575:leading-20!;
 }
 
-.ti-widget.ti-goog.ti-disable-font .ti-reviews-container-wrapper .ti-inner > .ti-stars {
-  @apply h-auto! mt-0! mb-12!;
+.ti-widget.ti-goog.ti-disable-font .ti-review-item .ti-stars{
+  @apply h-auto! mt-16! mb-12! flex! justify-start! gap-4!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-platform-icon, .ti-widget.ti-goog.ti-disable-font .ti-verified-review, .ti-widget.ti-goog.ti-show-rating-text .ti-rating-text {
+  @apply hidden!;
+}
+
+/* .ti-widget.ti-goog.ti-disable-font .ti-profile-img img {
+  @apply w-60! h-60!;
+} */
+
+.ti-widget.ti-goog.ti-disable-font .ti-widget-container .ti-name {
+  @apply text-[#2C2C2C]! font-worksans! text-body-2! leading-24! max-575:text-sm! max-575:leading-20!
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-review-item {
+  @apply min-1440:px-16!;
+}
+
+.ti-widget.ti-goog.ti-disable-font .ti-widget-container {
+  @apply m-0!;
+}
+
+.YONDER_APP__wrapper .YONDER_APP__display-button {
+  @apply max-767:bottom-100!;
 }

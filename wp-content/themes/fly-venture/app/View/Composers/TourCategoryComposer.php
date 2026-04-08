@@ -67,9 +67,8 @@ class TourCategoryComposer extends Composer
                     'desktop_media_type'       => $content['desktop_media_type']       ?? null,
                     'desktop_background_image' => $content['desktop_background_image'] ?? null,
                     'desktop_background_video' => $content['desktop_background_video'] ?? null,
-                    'mobile_media_type'        => $content['mobile_media_type']        ?? null,
-                    'mobile_background_image'  => $content['mobile_background_image']  ?? null,
-                    'mobile_background_video'  => $content['mobile_background_video']  ?? null,
+                    'poster_image' => $content['poster_image'] ?? null,
+                   
                     'select_rating'            => $content['select_rating']            ?? null,
                     'rating_text'              => $content['rating_text']              ?? null,
                     'banner_heading'           => $content['banner_heading']           ?? null,

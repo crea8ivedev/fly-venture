@@ -39,12 +39,10 @@
     };
 
     $desktop_type  = $content->desktop_media_type ?? 'image';
-    $mobile_type   = $content->mobile_media_type  ?? 'image';
 
     $desktop_image = $resolve_media( $content->desktop_background_image ?? null );
     $desktop_video = $resolve_media( $content->desktop_background_video ?? null );
-    $mobile_image  = $resolve_media( $content->mobile_background_image  ?? null );
-    $mobile_video  = $resolve_media( $content->mobile_background_video  ?? null );
+    $poster_image = $resolve_media( $content->poster_image ?? null );
   @endphp
 
   <div class="hero-bg">
@@ -52,17 +50,18 @@
     {{-- ===== DESKTOP ===== --}}
     @if ( $desktop_type === 'video' && $desktop_video )
 
-      <video
-        src="{{ esc_url( $desktop_video['url'] ) }}"
-        @if ( $desktop_video['width']  ) width="{{ $desktop_video['width'] }}"   @endif
-        @if ( $desktop_video['height'] ) height="{{ $desktop_video['height'] }}" @endif
-        class="h-full w-full object-cover max-767:hidden!"
-        autoplay
-        playsinline
-        loop
-        muted
-        preload="metadata"
-      ></video>
+        <video
+          src="{{ esc_url( $desktop_video['url'] ) }}"
+          @if ( $poster_image ) poster="{!! esc_url( $poster_image['url'] ) !!}" @endif
+          @if ( $desktop_video['width']  ) width="{{ $desktop_video['width'] }}"   @endif
+          @if ( $desktop_video['height'] ) height="{{ $desktop_video['height'] }}" @endif
+          class="h-full w-full object-cover"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="metadata"
+        ></video>
 
     @elseif ( $desktop_type === 'image' && $desktop_image )
 
@@ -72,35 +71,6 @@
         @if ( $desktop_image['width']  ) width="{{ $desktop_image['width'] }}"   @endif
         @if ( $desktop_image['height'] ) height="{{ $desktop_image['height'] }}" @endif
         class="h-full w-full object-cover destop-img max-767:hidden!"
-        loading="eager"
-        fetchpriority="high"
-      >
-
-    @endif
-
-    {{-- ===== MOBILE ===== --}}
-    @if ( $mobile_type === 'video' && $mobile_video )
-
-      <video
-        src="{{ esc_url( $mobile_video['url'] ) }}"
-        @if ( $mobile_video['width']  ) width="{{ $mobile_video['width'] }}"   @endif
-        @if ( $mobile_video['height'] ) height="{{ $mobile_video['height'] }}" @endif
-        class="hidden h-full w-full object-cover max-767:block"
-        autoplay
-        playsinline
-        loop
-        muted
-        preload="metadata"
-      ></video>
-
-    @elseif ( $mobile_type === 'image' && $mobile_image )
-
-      <img
-        src="{{ esc_url( $mobile_image['url'] ) }}"
-        alt="{{ esc_attr( $mobile_image['alt'] ?: 'Hero background' ) }}"
-        @if ( $mobile_image['width']  ) width="{{ $mobile_image['width'] }}"   @endif
-        @if ( $mobile_image['height'] ) height="{{ $mobile_image['height'] }}" @endif
-        class="hidden h-full w-full object-cover max-767:block"
         loading="eager"
         fetchpriority="high"
       >

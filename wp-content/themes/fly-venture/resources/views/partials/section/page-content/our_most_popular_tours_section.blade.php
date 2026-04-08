@@ -26,13 +26,20 @@
       'st-pete' => $content->view_all_st_pete_tours_button ?? null,
   ];
 
+  // Normalize ACF button: link-type returns array, url-type returns string
+  $resolveBtn = function($btn) {
+      if (is_array($btn)) return $btn;
+      if (is_string($btn) && !empty($btn)) return ['url' => $btn, 'title' => '', 'target' => '_self'];
+      return ['url' => '', 'title' => '', 'target' => '_self'];
+  };
+
   $firstCategory = array_key_first($allCategories) ?? '';
 
   // Resolve the CTA for the first/active category
-  $firstButton = $categoryButtons[$firstCategory] ?? null;
-  $firstCategoryLink  = !empty($firstButton['url'])   ? esc_url($firstButton['url'])    : 'javascript:void(0);';
-  $firstCategoryLabel = !empty($firstButton['title'])  ? $firstButton['title']           : 'VIEW ALL TOURS';
-  $firstCategoryTarget = !empty($firstButton['target']) ? $firstButton['target']          : '_self';
+  $firstButton = $resolveBtn($categoryButtons[$firstCategory] ?? null);
+  $firstCategoryLink  = !empty($firstButton['url'])    ? esc_url($firstButton['url'])   : 'javascript:void(0);';
+  $firstCategoryLabel = !empty($firstButton['title'])  ? $firstButton['title']          : 'VIEW ALL TOURS';
+  $firstCategoryTarget = !empty($firstButton['target']) ? $firstButton['target']         : '_self';
   $selectedToursAttr = !empty($selectedTourIds) ? implode(',', $selectedTourIds) : '';
 @endphp
 
