@@ -752,7 +752,7 @@
 }
 
 .wys-grid {
-  @apply grid grid-cols-4 max-1023:grid-cols-3 max-767:grid-cols-2 max-575:grid-cols-1 gap-y-40 gap-x-44 max-1023:gap-y-24 max-1023:gap-x-24 w-full;
+  @apply grid grid-cols-4 max-1023:grid-cols-3 max-767:grid-cols-2 max-575:grid-cols-1 gap-y-40 gap-x-44 max-1365:gap-y-24 max-1365:gap-x-24 w-full;
 }
 
 
@@ -1862,7 +1862,7 @@ article.type-post {
 }
 
 .YONDER_APP__wrapper .YONDER_APP__display-button {
-  @apply max-767:bottom-100!;
+  @apply max-767:bottom-85!;
 }
 
 .ti-widget.ti-goog.ti-disable-font .ti-reviews-container {

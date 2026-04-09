@@ -7,7 +7,7 @@ $star_uri = get_theme_file_uri( '/resources/images/star.svg' );
             @if($content->desktop_media_type === 'image')
                     <img src="{!! $content->desktop_background_image['url'] !!}"  height="992" class="h-full w-full object-cover destop-img max-767:hidden!" alt="{!! $content->desktop_background_image['alt'] !!}">
             @elseif($content->desktop_media_type === 'video')
-                <video src="{!! $content->desktop_background_video['url'] !!}" preload="none"  autoplay playsisline loop  muted height="856" width="768"
+                <video src="{!! $content->desktop_background_video['url'] !!}" preload="auto" autoplay playsinline webkit-playsinline loop muted height="856" width="768"
                     class="h-full w-full object-cover max-767:block" loading="eager" fetchpriority="high"></video>
             @endif
         </div>

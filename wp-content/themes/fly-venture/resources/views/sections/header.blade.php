@@ -7,16 +7,15 @@
         <div class="swiper-wrapper">
 
           @php
-            $announcement_text     = $announcement_text ?? '';
-            $announcement_button   = (!empty($announcement_button) && is_array($announcement_button)) ? $announcement_button : [];
-            $announcement_url      = esc_url($announcement_button['url'] ?? '');
-            $announcement_title    = esc_html($announcement_button['title'] ?? '');
-            $announcement_end_time = $announcement_end_time ?? '';
+            $announcement_text   = $announcement_text ?? '';
+            $announcement_button = (!empty($announcement_button) && is_array($announcement_button)) ? $announcement_button : [];
+            $announcement_url    = esc_url($announcement_button['url'] ?? '');
+            $announcement_title  = esc_html($announcement_button['title'] ?? '');
           @endphp
 
           @for ($i = 0; $i < 6; $i++)
             <div class="swiper-slide">
-              <p class="announcement-item" @if(!empty($announcement_end_time)) data-countdown-end="{{ esc_attr($announcement_end_time) }}" @endif>
+              <p class="announcement-item">
                 {!! wp_kses_post($announcement_text) !!}
                 @if(!empty($announcement_url) && !empty($announcement_title))
                   <a href="{!! esc_url($announcement_url) !!}" class="btn-white" aria-label="{{ $announcement_title }}" role="link">

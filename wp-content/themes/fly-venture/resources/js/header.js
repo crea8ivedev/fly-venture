@@ -124,30 +124,31 @@ export const initHeader = () => {
     window.addEventListener('scroll', toggleStickyHeader, { passive: true });
   }
 
-  // Announcement countdown timer — targets the empty <span> placed inside announcement_text
-  const announcementItems = document.querySelectorAll('.announcement-item[data-countdown-end]');
-  if (announcementItems.length) {
-    // ACF returns "DD/MM/YYYY H:MM am/pm" — parse manually for cross-browser reliability
-    const rawEnd = announcementItems[0].dataset.countdownEnd;
-    const [datePart, timePart, period] = rawEnd.split(' ');
-    const [day, month, year] = datePart.split('/').map(Number);
-    const [rawHour, minute]  = timePart.split(':').map(Number);
-    const hour = period?.toLowerCase() === 'pm' && rawHour !== 12 ? rawHour + 12
-               : period?.toLowerCase() === 'am' && rawHour === 12 ? 0
-               : rawHour;
-    const endTime = new Date(year, month - 1, day, hour, minute).getTime();
-    const spans   = [...announcementItems].map(el => el.querySelector('span')).filter(Boolean);
-    const pad     = (n) => String(n).padStart(2, '0');
+  // Announcement countdown — 24-hour rolling timer stored in localStorage
+  const announcementItems = document.querySelectorAll('.announcement-item');
+  const spans = [...announcementItems].map(el => el.querySelector('span')).filter(Boolean);
+
+  if (spans.length) {
+    const STORAGE_KEY = 'fv_announcement_end';
+    const DAY_MS      = 24 * 60 * 60 * 1000;
+    const stored      = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    const now         = Date.now();
+
+    // Start a fresh 24h timer if none stored or previous one has expired
+    const endTime = (!stored || stored <= now)
+      ? (() => { const t = now + DAY_MS; localStorage.setItem(STORAGE_KEY, t); return t; })()
+      : stored;
+
+    const pad = (n) => String(n).padStart(2, '0');
 
     const tick = () => {
-      const diff = endTime - Date.now();
-      const days    = Math.floor(diff / 86400000);
+      const diff    = endTime - Date.now();
       const hours   = Math.floor((diff % 86400000) / 3600000);
       const minutes = Math.floor((diff % 3600000) / 60000);
       const seconds = Math.floor((diff % 60000) / 1000);
-      const text = diff <= 0
+      const text    = diff <= 0
         ? '00h 00m 00s'
-        : (days > 0 ? `${pad(days)}d ` : '') + `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+        : `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
 
       spans.forEach(span => { span.textContent = text; });
 
