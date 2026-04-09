@@ -289,8 +289,8 @@
             <div class="bottom-content">
               <div class="popular-tour-btns">
 
-                <a href="{{ esc_url( $bookUrl ) }}" class="btn btn-orange" aria-label="Book now" role="link">{{ $bookButtonText }}</a>
-                <a href="{{ esc_url(get_permalink( $_tour->ID )) }}" class="btn btn-b-white" aria-label="Learn more" role="link">
+                <a href="{!! esc_url( $bookUrl ) !!}" class="btn btn-orange" aria-label="Book now" role="link">{{ $bookButtonText }}</a>
+                <a href="{!! esc_url(get_permalink( $_tour->ID )) !!}" class="btn btn-b-white" aria-label="Learn more" role="link">
                   {!! $learnButtonText !!} </a>
               </div>
 

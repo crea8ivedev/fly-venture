@@ -128,7 +128,7 @@
 
                 <div class="bottom-contents">
                   <div class="popular-tour-btns inline-block! w-full">
-                    <a href="{{ esc_url($post['permalink']) }}" class="btn btn-orange w-full" aria-label="Read More" role="link" target="_self">READ MORE</a>
+                    <a href="{!! esc_url($post['permalink']) !!}" class="btn btn-orange w-full" aria-label="Read More" role="link" target="_self">READ MORE</a>
                   </div>
                 </div>
               </div>
