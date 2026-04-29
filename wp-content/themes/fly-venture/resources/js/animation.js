@@ -82,6 +82,12 @@ const initAnimations = (gsap, ScrollTrigger, Lenis) => {
         }
       );
     });
+
+    // Lazy-loaded images change the page height after GSAP initializes,
+    // causing ScrollTrigger's trigger-position calculations to be stale.
+    // Refresh once immediately and again whenever a lazy image loads.
+    ScrollTrigger.refresh();
+    document.addEventListener('lazyloaded', () => ScrollTrigger.refresh());
   }
 
   // -----------------------------

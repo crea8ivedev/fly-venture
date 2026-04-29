@@ -72,11 +72,18 @@ const initPopularTours = () => {
       return null;
     }
 
+    const prevEl = wrap.querySelector('.popular-tour-prev');
+    const nextEl = wrap.querySelector('.popular-tour-next');
+
     const instance = new Swiper(sliderElement, {
       slidesPerView: 1,
       spaceBetween: 16,
       speed: 450,
       watchOverflow: false,
+      navigation: {
+        prevEl,
+        nextEl,
+      },
       scrollbar: {
         el: progressElement,
         draggable: true,

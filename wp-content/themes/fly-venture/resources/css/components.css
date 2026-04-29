@@ -10,7 +10,7 @@
 
 /* button */
 .btn {
-  @apply inline-flex gap-8 cursor-pointer items-center justify-center rounded-lg border-0 text-[20px] max-1441:text-body-1 max-1441:py-16 max-1199:text-body-3 max-1199:leading-16 font-semibold tracking-[0.04em] leading-23 uppercase transition-all duration-300 ease-in-out;
+  @apply inline-flex gap-8 cursor-pointer items-center justify-center rounded-lg border-0 text-[18px] max-1441:text-body-1 max-1441:py-16 max-1199:text-body-3 max-1199:leading-16 font-semibold tracking-[0.04em] leading-23 uppercase transition-all duration-300 ease-in-out;
 }
 .btn-b-white {
   @apply text-white hover:text-black relative bg-transparent border-white border-3 border-solid inline-flex items-center px-32 py-16 justify-center text-center transition-all duration-300 delay-75 shadow-none rounded-lg z-1 overflow-hidden;

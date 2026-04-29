@@ -77,7 +77,7 @@
           @foreach ($allCategories as $slug => $data)
             @php
               $btn    = $categoryButtons[$slug] ?? null;
-              $btnUrl = !empty($btn['url'])    ? esc_url($btn['url'])    : 'javascript:void(0);';
+              $btnUrl = !empty($btn['url'])    ? esc_url($btn['url'])    : home_url(esc_attr($slug)) . '/';
               $btnLbl = !empty($btn['title'])  ? $btn['title']           : 'VIEW ALL ' . strtoupper($data['name']) . ' TOURS';
               $btnTarget = !empty($btn['target']) ? $btn['target']       : '_self';
             @endphp
@@ -115,10 +115,16 @@
 
       {{-- Tour cards wrapper — AJAX replaces content on tab switch --}}
       <div class="popular-tour-cards-wrap" data-city="{{ esc_attr($firstCategory) }}">
+        <button class="popular-tour-nav popular-tour-prev" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
         <div class="popular-tour-slider swiper-container">
           <div class="popular-tour-cards swiper-wrapper">
           </div>
         </div>
+        <button class="popular-tour-nav popular-tour-next" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
         <div class="popular-tour-progress" aria-hidden="true"></div>
       </div>
     </div>

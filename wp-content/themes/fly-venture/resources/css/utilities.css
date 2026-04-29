@@ -1,6 +1,6 @@
 /* herobanner-start */
 .hero-section {
-  @apply relative h-880 max-1680:h-680 overflow-hidden ;
+  @apply relative h-880 max-1680:h-660 overflow-hidden ;
 }
 .hero-section h1 {
   @apply font-extrabold
@@ -40,7 +40,7 @@
   }
 }
 .hero-content-wrap {
-  @apply relative h-full z-2 pt-154 max-1680:pt-75 max-1199:pt-109 max-767:pt-70  flex items-center justify-between gap-40 ;
+  @apply relative h-full z-2 pt-154 max-1680:pt-75 max-1199:pt-109 max-767:pt-80  flex items-center justify-between gap-40;
 }
 
 .hero-content-left {
@@ -130,7 +130,7 @@
 
 
 .partner-logo-strip {
-  @apply bg-white py-60;
+  @apply bg-white py-60 max-767:py-40;
 }
 
 .partner-logo-slider {
@@ -150,6 +150,7 @@
   will-change: transform;
   animation: partnerLogoMarquee 30s linear infinite;
   -webkit-animation: partnerLogoMarquee 30s linear infinite;
+    @apply max-767:gap-40;
 }
 
 .partner-logo-slider.is-marquee .swiper-slide {
@@ -180,7 +181,7 @@
 }
 
 .partner-logo-pair {
-  @apply relative inline-block;
+  @apply relative inline-block max-1199:max-w-150 max-767:max-w-100;
 }
 
 .partner-logo {
@@ -234,6 +235,10 @@
 
 .experience-card-content {
   @apply absolute left-30 max-767:left-20 max-767:bottom-20 max-767:gap-10 flex flex-col gap-14 right-30 bottom-30 z-2 text-white;
+}
+
+.experience-card-content img {
+  @apply max-w-60;
 }
 
 .experience-card-content p {
@@ -521,14 +526,14 @@
 }
 
 .popular-tour-card-media {
-  @apply relative pt-[51%] max-767:pt-[70%];
+  @apply relative pt-[42%] max-767:pt-[70%];
 }
 .popular-tour-card-media::before{
   @apply content-[''] absolute top-0 left-0 h-full w-full z-1 ;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.83%, rgba(0, 0, 0, 0.75) 100%);
 }
 .popular-tour-card-body .bottom-content{
-  @apply mt-48 max-1680:mt-20 max-575:mt-14 max-575:mb-14 last:mb-0;
+  @apply mt-12 last:mb-0;
 }
 
 .popular-tour-card-media img {
@@ -536,13 +541,13 @@
 }
 
 .popular-tour-badge {
-  @apply absolute top-0 left-1/2 gap-3 -translate-x-1/2 w-max bg-white  text-body-2 leading-19 inline-flex justify-center items-center font-bold rounded-bl-lg rounded-br-lg px-32 py-10;
+  @apply absolute top-0 left-1/2 gap-3 -translate-x-1/2 w-max bg-white  text-body-2 leading-19 inline-flex justify-center items-center font-bold rounded-bl-lg rounded-br-lg px-20 py-5;
 }
 .popular-tour-badge img {
   @apply relative inset-0 h-auto w-auto
 }
 .popular-tour-badge span {
-  @apply text-body-2 leading-19 block pl-5;
+  @apply text-body-3 leading-19 block pl-5;
   background: linear-gradient(180deg, #F79808 0%, #E26216 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -556,11 +561,11 @@
 }
 
 .popular-tour-card-body {
-  @apply p-24 max-1680:p-20 max-575:p-18 flex flex-col justify-between h-full;
+  @apply p-24 max-1680:p-20 max-575:p-14 flex flex-col justify-between h-full;
 }
 
 .popular-tour-card-body h4 {
-  @apply text-black text-[28px] max-1680:text-xl max-575:text-[18px] max-575:leading-24 font-semibold leading-33 mb-16 max-575:mb-14;
+  @apply text-black text-[24px] max-1680:text-xl max-575:text-[18px] max-575:leading-24 font-semibold leading-33 mb-8;
 }
 
 .popular-tour-meta {
@@ -587,11 +592,11 @@
   @apply text-body-2 leading-19 text-black font-normal;
 }
 .popular-tour-meta strong {
-  @apply block text-blue text-[22px] leading-26 max-575:text-lg;
+  @apply block text-blue text-[18px] leading-26 max-575:text-lg;
 }
 
 .popular-tour-meta .best-price-tag {
-  @apply inline-flex items-center w-fit font-medium justify-center gap-4 mt-6 text-body-3 leading-16 max-575:text-[12px] text-[#116029] bg-[#D4FED1] rounded-sm px-8 py-4 max-575:gap-3;
+  @apply inline-flex items-center w-fit font-medium justify-center gap-4 mt-6 max-575:mt-4 text-body-3 leading-16 max-575:text-[12px] text-[#116029] bg-[#D4FED1] rounded-sm px-8 py-4 max-575:gap-3;
 }
 .popular-tour-meta .best-price-tag img {
   @apply max-575:max-w-10
@@ -622,7 +627,7 @@
   background: linear-gradient(90deg, #F79808 0%, #E26216 100%);
 }
 .popular-tour-rating {
-  @apply mt-20 max-575:mt-14 text-body-2 max-575:text-sm text-black leading-19 font-medium inline-flex items-center gap-15;
+  @apply mt-10 max-575:mt-10 text-body-2 max-575:text-sm text-black leading-19 font-medium inline-flex items-center gap-6;
 }
 
 .popular-tour-rating svg {
@@ -643,6 +648,30 @@
 
 .popular-tour-progress .swiper-scrollbar-drag {
   @apply bg-blue rounded-full;
+}
+
+.popular-tour-cards-wrap {
+  position: relative;
+}
+
+.popular-tour-nav {
+  @apply absolute top-1/2 max-575:top-[40%] z-10 flex items-center justify-center w-40 h-40 rounded-full bg-blue text-white shadow-md -translate-y-1/2 transition-opacity duration-200 border-0 cursor-pointer;
+}
+
+.popular-tour-nav:hover {
+  @apply bg-blue/80;
+}
+
+.popular-tour-nav.swiper-button-disabled {
+  @apply opacity-30 pointer-events-none;
+}
+
+.popular-tour-prev {
+  left: 0;
+}
+
+.popular-tour-next {
+  right: 0;
 }
 
 
@@ -824,6 +853,10 @@
 {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.16);
 }
+.popular-tours-wrap .popular-tour-card .popular-tour-meta>div
+{
+  @apply py-8 mb-12;
+}
 
 .custom-experience-section .content p + p {
   @apply mt-20;
@@ -1003,8 +1036,16 @@ body.fv-popup-open {
   @apply max-1441:w-14 max-1441:h-14;
 }
 
+.popular-tour-card .popular-tour-rating .rating-svg {
+  @apply max-1680:gap-4!;
+}
+
+.popular-tour-card .popular-tour-rating .rating-svg svg {
+  @apply max-1441:w-14 max-1441:h-14;
+}
+
 .tour-overview-section .tab-nav .tab-btn{
-  @apply py-20 px-24 text-body-2 leading-19 max-[1900px]:py-12 max-[1900px]:px-16 max-[1900px]:text-body-4 max-1199:py-10 max-1199:px-14 max-767:px-10 max-767:py-8 font-medium text-black uppercase cursor-pointer;
+  @apply py-20 px-20 text-body-2 leading-19 max-[1900px]:py-12 max-[1900px]:px-16 max-[1900px]:text-body-4 max-1199:py-10 max-1199:px-14 max-767:px-10 max-767:py-8 font-medium text-black uppercase cursor-pointer;
 }
 
 .tour-overview-section .tab-nav .tab-btn.active {
@@ -1021,7 +1062,7 @@ body.fv-popup-open {
   @apply flex flex-col gap-20;
 }
 .tour-overview-section .tab-content li {
-  @apply relative pl-18 text-body-2 leading-24 text-black;
+  @apply relative pl-18 text-body-2 leading-24 max-575:text-sm max-575:leading-20 text-black;
 }
 .tour-overview-section .tab-content li::before {
   @apply content-[''] absolute left-0 top-8 h-8 w-8 rounded-full bg-blue;
@@ -1042,10 +1083,10 @@ body.fv-popup-open {
   @apply border border-[#EEEEEE] p-24 rounded-[10px] max-767:p-18
 }
 .tour-overview-section .tab-content .location-grid .box .title h4{
-  @apply flex items-center gap-8 text-[22] font-semibold leading-26
+  @apply flex items-center gap-8 font-semibold leading-26 max-575:text-base
 }
 .tour-overview-section .tab-content .location-grid .box-inner{
-  @apply mt-16
+  @apply mt-16 max-575:mt-10;
 }
 .tour-overview-section .tab-content .location-grid .box-inner a {
   @apply font-semibold
@@ -1057,7 +1098,7 @@ body.fv-popup-open {
   @apply border-0 p-0 m-0 flex items-center flex-row flex-wrap justify-start gap-8
 }
 .tour-overview-section .popular-tour-meta small , .tour-overview-section .popular-tour-meta small span {
-  @apply text-heading-5 max-1199:text-body-2
+  @apply text-heading-5 max-1199:text-body-2 max-575:text-sm;
 }
 .tour-overview-section .popular-tour-meta strong{
   @apply text-heading-tablet-2 leading-38 max-1199:text-heading-4 max-1199:leading-30 max-575:text-xl;
@@ -1530,10 +1571,10 @@ body.fv-popup-open {
 }
 
 .mobile-sticky-btn {
-  @apply hidden max-767:block w-full max-767:fixed max-767:bottom-0 max-767:left-0 max-767:right-0 max-767:z-50 max-767:bg-white max-767:p-30 max-575:p-16 max-767:text-center max-767:shadow-[0px_-4px_26px_rgba(0,0,0,0.2)] max-767:translate-y-full max-767:opacity-0 max-767:transition-all max-767:duration-300 rounded-tl-[10px] rounded-tr-[10px] max-767:ease-in-out;
+  @apply hidden max-767:block w-full max-767:fixed max-767:bottom-0 max-767:left-0 max-767:right-0 max-767:z-50 max-767:bg-white max-767:p-30 max-575:p-14 max-767:text-center max-767:shadow-[0px_-4px_26px_rgba(0,0,0,0.2)] max-767:translate-y-full max-767:opacity-0 max-767:transition-all max-767:duration-300 rounded-tl-[10px] rounded-tr-[10px] max-767:ease-in-out;
 }
 .mobile-sticky-btn .btn {
-  @apply w-full
+  @apply w-full max-575:py-12;
 }
 
 .mobile-sticky-btn.is-sticky {

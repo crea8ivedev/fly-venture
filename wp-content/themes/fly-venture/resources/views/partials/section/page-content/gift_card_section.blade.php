@@ -42,7 +42,7 @@
   <div class="container-fluid">
 
     {{-- Section Header --}}
-    <div class="gift-section-head fadeText">
+    <div class="gift-section-head">
 
       @if(!empty($content->icon))
         <div class="gift-section-icon">

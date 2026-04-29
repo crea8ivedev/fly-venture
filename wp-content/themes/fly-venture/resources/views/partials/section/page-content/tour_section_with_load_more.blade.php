@@ -140,6 +140,7 @@
     : '';
 
           $rating = floatval($reviewBlock['select_star_rating'] ?? 4.5);
+          $ratingDisplay = floor($rating) === $rating ? number_format($rating, 1) : $rating;
           $reviewText    = $reviewBlock['review_text'] ?? '';
 
           $badgeLabel = '';
@@ -222,7 +223,7 @@
                   @if ( ! empty( $originalPrice ) )
                     <small>From <span>{{ esc_html( $originalPrice ) }}</span></small>
                   @endif
-                  <div class="flex flex-wrap max-575:flex-col items-baseline gap-2">
+                  <div class="flex flex-wrap items-baseline gap-2">
                   @if ( ! empty( $offerPrice ) )
                     <strong>Now {{ esc_html( $offerPrice ) }}</strong>
                   @endif
@@ -281,9 +282,6 @@
                 <p>{!! wp_kses_post( $_tour->post_content ) !!}</p>
               @endif
 
-              @if ( ! empty( $bestFor ) )
-                <p><strong>Best for:</strong> {{ esc_html( $bestFor ) }}</p>
-              @endif
             </div>
 
             <div class="bottom-content">
@@ -296,7 +294,8 @@
 
               <div class="popular-tour-rating">
                   <?php echo flyventure_render_svg_rating($rating, $_tour->ID); ?>
-                  <?php echo wp_strip_all_tags($reviewText); ?>
+                   <span><?php echo esc_html($ratingDisplay); ?></span>
+                    <?php echo '(' . wp_strip_all_tags($reviewText) . ')'; ?>
               </div>
             </div>
           </div>

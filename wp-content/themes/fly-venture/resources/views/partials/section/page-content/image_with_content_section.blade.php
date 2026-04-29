@@ -31,10 +31,10 @@
   @if ( ! empty( $bgColor ) ) style="background-color: {{ esc_attr( $bgColor ) }};" @endif
 >
   <div class="container-fluid">
-    <div class="adventure-inner fadeText">
+    <div class="adventure-inner">
 
       @if ( $isLeft && ! empty( $image ) )
-        <div class="adventure-media">
+        <div class="adventure-media fadeText">
           <img
             data-src="{{ esc_url( $image['url'] ) }}"
             data-srcset="{{ wp_get_attachment_image_srcset( $image['ID'] ?? 0 ) }}"
@@ -51,7 +51,7 @@
         <div class="adventure-content">
 
           @if ( ! empty( $icon ) )
-            <div class="adventure-icon" aria-hidden="true">
+            <div class="adventure-icon fadeText" aria-hidden="true">
               <img
                 data-src="{{ esc_url( $icon['url'] ) }}"
                 data-srcset="{{ wp_get_attachment_image_srcset( $icon['ID'] ?? 0 ) }}"
@@ -65,20 +65,20 @@
           @endif
 
           @if ( ! empty( $title ) )
-            <div class="title title-blue">
+            <div class="title title-blue fadeText">
               <h2>{{ $title }}</h2>
             </div>
           @endif
 
           <div>
             @if ( ! empty( $description ) )
-              <div class="content content-black">
+              <div class="content content-black fadeText">
                 {!! wp_kses_post( $description ) !!}
               </div>
             @endif
 
             @if ( ! empty( $button['url'] ) && ! empty( $button['title'] ) )
-              <div class="adventure-cta">
+              <div class="adventure-cta fadeText">
 
              <a href="{!! esc_url( $button['url'] ) !!}"
                 class="btn btn-orange"

@@ -9,6 +9,10 @@
     $features = $tourSinglePageData['tourFeatures'];
     $cta = $tourSinglePageData['cta'];
     $starCount = $rating['reviewBlock']['starRating'] ?: 5;
+    $reviewStarRating = $rating['reviewBlock']['starRating'] ?? 0;
+    $reviewStarRatingDisplay = is_numeric($reviewStarRating) && floor((float) $reviewStarRating) === (float) $reviewStarRating
+        ? number_format((float) $reviewStarRating, 1)
+        : $reviewStarRating;
 
     // Build section classes
     $section_classes = 'hero-section inner-hero-section single-tour-hero';
@@ -213,11 +217,12 @@
                     class="higlited-nav flex flex-wrap items-center justify-between gap-8 992:gap-15 1441:gap-24 max-575:flex-col max-575:justify-start max-575:items-start text-body-3 font-medium text-black">
 
                     {{-- Star rating + review count --}}
-                    @if ($rating['reviewBlock']['starRating'] > 0 || !empty($rating['reviewBlock']['reviewText']))
+                    @if ($reviewStarRating > 0 || !empty($rating['reviewBlock']['reviewText']))
 
                         <div class="flex items-center gap-7">
-                            @if ($rating['reviewBlock']['starRating'] > 0)
-                                <?php echo flyventure_render_svg_rating($rating['reviewBlock']['starRating'], $tourID); ?>
+                            @if ($reviewStarRating > 0)
+                                <?php echo flyventure_render_svg_rating($reviewStarRating, $tourID); ?>
+                                <span><?php echo esc_html($reviewStarRatingDisplay); ?></span>
                                 @if (!empty($rating['reviewBlock']['reviewText']))
                                     <p> <?php echo wp_kses_post($rating['reviewBlock']['reviewText']); ?></p>
                                 @endif
@@ -588,7 +593,7 @@
                     {{-- Tour feature highlights --}}
                     @if (!empty($features))
                         <div
-                            class="grid grid-cols-2 gap-y-24 gap-x-10 mt-24 max-1365:grid-cols-1 max-1680:gap-y-15 max-1365:gap-y-10 max-1023:grid-cols-2 max-575:grid-cols-1">
+                            class="grid grid-cols-2 gap-y-24 gap-x-10 mt-24 max-1680:gap-y-15 max-1365:gap-y-10 max-1023:grid-cols-2">
                             @foreach ($features as $feature)
                                 @php
                                     $featureIconUrl = esc_url($feature['icon']['url'] ?? '');
@@ -597,13 +602,13 @@
                                 @endphp
                                 @if (!empty($featureText))
                                     <div
-                                        class="flex items-center gap-8 max-1441:gap-4 max-1680:text-body-3 font-medium leading-24 text-[#008236]">
+                                        class="flex items-center gap-8 max-1441:gap-4 max-1680:text-body-3 max-1365:text-[13px] font-medium leading-24 text-[#008236]">
                                         @if ($featureIconUrl)
                                             <img data-src="{{ $featureIconUrl }}" data-sizes="auto" alt="{{ $featureIconAlt }}"
-                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 lazyload">
+                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 max-1365:w-14 max-1365:h-14 lazyload">
                                         @else
                                             <img data-src="{{ esc_url($location_check_uri) }}" data-sizes="auto" alt=""
-                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 lazyload" aria-hidden="true">
+                                                class="w-20 h-20 max-1680:w-16 max-1680:h-16 max-1365:w-14 max-1365:h-14 lazyload" aria-hidden="true">
                                         @endif
                                         {!! wp_kses_post($featureText) !!}
                                     </div>

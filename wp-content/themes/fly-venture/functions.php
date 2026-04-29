@@ -107,7 +107,7 @@ function flyventure_render_svg_rating($rating, $unique_id = '') {
     ob_start();
     ?>
 
-    <div class="rating-svg" style="display:flex; gap:8px;">
+    <div class="rating-svg" style="display:flex; gap:4px;">
         <?php for ($i = 0; $i < 5; $i++) : ?>
 
             <?php
@@ -249,6 +249,7 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
     // Review block
     $rating = floatval($reviewBlock['select_star_rating'] ?? 4.5);
+    $ratingDisplay = floor($rating) === $rating ? number_format($rating, 1) : $rating;
     $reviewText = $reviewBlock['review_text'] ?? '';
 
     // Featured image
@@ -340,7 +341,7 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
                             <small>From <span><?php echo esc_html($originalPrice); ?></span></small>
                         <?php endif; ?>
 
-                          <div class="flex flex-wrap mt-6 items-baseline gap-2">
+                          <div class="flex flex-wrap mt-6 max-575:mt-4 items-baseline gap-2">
                         <?php if (!empty($offerPrice)) : ?>
                             <strong>Now <?php echo esc_html($offerPrice); ?></strong>
                         <?php endif;
@@ -397,9 +398,6 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
                 <p><?php echo wp_kses_post($tour->post_content); ?></p>
 
-                <?php if (!empty($bestFor)) : ?>
-                    <p><strong>Best for: </strong><?php echo esc_html($bestFor); ?></p>
-                <?php endif; ?>
             </div>
 
             <div class="bottom-content">
@@ -410,7 +408,8 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
                 <div class="popular-tour-rating">
                     <?php echo flyventure_render_svg_rating($rating, $tour->ID); ?>
-                    <?php echo wp_strip_all_tags($reviewText); ?>
+                    <span><?php echo esc_html($ratingDisplay); ?></span>
+                    <?php echo '(' . wp_strip_all_tags($reviewText) . ')'; ?>
                 </div>
 
             </div>
@@ -420,16 +419,6 @@ function flyventure_render_popular_tour_card($tour, $active_category = '') {
 
     return ob_get_clean();
 }
-
-
-
-
-
-
-
-
-
-
 
 add_action( 'wp_ajax_flyventure_load_more_tours',        'flyventure_ajax_load_more_tours' );
 add_action( 'wp_ajax_nopriv_flyventure_load_more_tours', 'flyventure_ajax_load_more_tours' );
@@ -668,9 +657,6 @@ function flyventure_render_tampa_tour_card( $tour ): string {
                     <p><?php echo wp_kses_post( $tour->post_content ); ?></p>
                 <?php endif; ?>
 
-                <?php if ( ! empty( $bestFor ) ) : ?>
-                    <p><strong>Best for:</strong> <?php echo esc_html( $bestFor ); ?></p>
-                <?php endif; ?>
             </div>
 
             <div class="bottom-content">
@@ -682,6 +668,7 @@ function flyventure_render_tampa_tour_card( $tour ): string {
                 <div class="popular-tour-rating">
                     <?php echo flyventure_render_svg_rating($rating, $tour->ID); ?>
                     <?php echo wp_strip_all_tags($reviewText); ?>
+                    <?php echo '(' . wp_strip_all_tags($reviewText) . ')'; ?>
                 </div>
 
             </div>
