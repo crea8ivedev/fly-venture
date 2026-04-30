@@ -224,7 +224,7 @@
                                 <?php echo flyventure_render_svg_rating($reviewStarRating, $tourID); ?>
                                 <span><?php echo esc_html($reviewStarRatingDisplay); ?></span>
                                 @if (!empty($rating['reviewBlock']['reviewText']))
-                                    <p> <?php echo wp_kses_post($rating['reviewBlock']['reviewText']); ?></p>
+                                    <p> <?php echo '(' .  wp_kses_post($rating['reviewBlock']['reviewText']) . ')'; ?></p>
                                 @endif
                             @endif
                         </div>

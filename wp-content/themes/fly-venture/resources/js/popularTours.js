@@ -80,6 +80,11 @@ const initPopularTours = () => {
       spaceBetween: 16,
       speed: 450,
       watchOverflow: false,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
       navigation: {
         prevEl,
         nextEl,
@@ -135,9 +140,10 @@ const initPopularTours = () => {
     activeSwiper = instance;
 
     if (instance) {
-      requestAnimationFrame(() => {  // ← only change
+      requestAnimationFrame(() => {
         instance.slideTo(0, 0);
         instance.update();
+        instance.autoplay?.start();
       });
     }
   };

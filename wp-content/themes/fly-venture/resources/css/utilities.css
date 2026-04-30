@@ -526,7 +526,7 @@
 }
 
 .popular-tour-card-media {
-  @apply relative pt-[42%] max-767:pt-[70%];
+  @apply relative pt-[42%] max-767:pt-[70%] max-639:pt-[46%];
 }
 .popular-tour-card-media::before{
   @apply content-[''] absolute top-0 left-0 h-full w-full z-1 ;
@@ -583,16 +583,16 @@
 }
 
 .popular-tour-meta small {
-  @apply block text-body-2 leading-19 text-black/50 ;
+  @apply block text-body-2 max-1680:text-body-3 leading-19 text-black/50 ;
 }
 .popular-tour-meta small span {
-  @apply line-through text-body-2 leading-19 text-black/50  bg-transparent p-0 m-0;
+  @apply line-through text-body-2 max-1680:text-body-3 leading-19 text-black/50  bg-transparent p-0 m-0;
 }
 .popular-tour-meta small  strong {
-  @apply text-body-2 leading-19 text-black font-normal;
+  @apply text-body-2 max-1680:text-body-3 leading-19 text-black font-normal;
 }
 .popular-tour-meta strong {
-  @apply block text-blue text-[18px] leading-26 max-575:text-lg;
+  @apply block text-blue text-[18px] max-1680:text-body-2 leading-26 max-575:text-lg;
 }
 
 .popular-tour-meta .best-price-tag {
@@ -655,7 +655,7 @@
 }
 
 .popular-tour-nav {
-  @apply absolute top-1/2 max-575:top-[40%] z-10 flex items-center justify-center w-40 h-40 rounded-full bg-blue text-white shadow-md -translate-y-1/2 transition-opacity duration-200 border-0 cursor-pointer;
+  @apply absolute top-1/2 max-575:top-[32%] z-10 flex items-center justify-center w-40 h-40 rounded-full bg-blue text-white shadow-md -translate-y-1/2 transition-opacity duration-200 border-0 cursor-pointer;
 }
 
 .popular-tour-nav:hover {
